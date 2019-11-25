@@ -44,6 +44,8 @@ class Catalog_Seafile extends Catalog
      */
     public function get_description()
     {
+        self::$description = T_('Seafile Remote Catalog');
+
         return self::$description;
     } // get_description
 

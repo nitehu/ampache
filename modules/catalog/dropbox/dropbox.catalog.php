@@ -152,6 +152,7 @@ class Catalog_dropbox extends Catalog
      */
     public function __construct($catalog_id = null)
     {
+        $this->description = T_('Dropbox Remote Catalog');
         if ($catalog_id) {
             $this->id = intval($catalog_id);
             $info     = $this->get_info($catalog_id);
