@@ -91,10 +91,11 @@ function usage() {
     echo "----------------------------------------------------------\n\t\t";
     echo T_("Usage:");
     echo "\n\033[32m";
-    echo T_("file_update.inc [-c|-v|-a|-g] [FILENAME]") . "\033[0m (\033[31m!\033[0m)";
+    echo T_("file_update.inc [-c|-v|-a|-g] [FILEPATH]") . "\033[0m (\033[31m!\033[0m)";
     echo "\033[0m\n";
     echo "----------------------------------------------------------";
     echo "\n";
+    echo "-c\t";
     echo T_('Cleans Catalogs from orphaned entries');
     echo "\n-v\t";
     echo T_('Verifies Catalog entries and updates them if related files have new information');
@@ -106,3 +107,4 @@ function usage() {
     echo "----------------------------------------------------------";
     echo "\n";
 }
+
