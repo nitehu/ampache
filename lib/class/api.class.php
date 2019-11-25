@@ -1035,7 +1035,7 @@ class Api
         ob_end_clean();
         $playlist = new Playlist($input['filter']);
 
-        if (!$playlist->has_access($user->id)) {
+        if (!$playlist->has_access($user->id)  && !Access::check('interface', 75, $user->id)) {
             echo XML_Data::error('401', T_('Access denied to this playlist'));
         } else {
             $array = [
@@ -1062,7 +1062,7 @@ class Api
         $user = User::get_from_username(Session::username($input['auth']));
         ob_end_clean();
         $playlist = new Playlist($input['filter']);
-        if (!$playlist->has_access($user->id)) {
+        if (!$playlist->has_access($user->id)  && !Access::check('interface', 75, $user->id)) {
             echo XML_Data::error('401', T_('Access denied to this playlist'));
         } else {
             $playlist->delete();
@@ -1088,7 +1088,7 @@ class Api
         ob_end_clean();
         $playlist = new Playlist($input['filter']);
         $song     = $input['song'];
-        if (!$playlist->has_access($user->id)) {
+        if (!$playlist->has_access($user->id) && !Access::check('interface', 75, $user->id)) {
             echo XML_Data::error('401', T_('Access denied to this playlist'));
 
             return;
@@ -1121,15 +1121,25 @@ class Api
         $user = User::get_from_username(Session::username($input['auth']));
         ob_end_clean();
         $playlist = new Playlist($input['filter']);
-        if (!$playlist->has_access($user->id)) {
+        if (!$playlist->has_access($user->id)  && !Access::check('interface', 75, $user->id)) {
             echo XML_Data::error('401', T_('Access denied to this playlist'));
         } else {
             if ($input['song']) {
                 $track = scrub_in($input['song']);
+                if (!$playlist->has_item($track)) {
+                    echo XML_Data::error('404', T_('Song not found in playlist'));
+    
+                    return;
+                }
                 $playlist->delete_track($track);
                 $playlist->regenerate_track_numbers();
                 echo XML_Data::success('song removed from playlist');
             } else {
+                if (!$playlist->has_item(null, $track)) {
+                    echo XML_Data::error('404', T_('Track ID not found in playlist'));
+    
+                    return;
+                }
                 $track = scrub_in($input['track']);
                 $playlist->delete_track_number($track);
                 $playlist->regenerate_track_numbers();
