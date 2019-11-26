@@ -1195,7 +1195,7 @@ class Api
             $rule_count++;
         } elseif ($mode == 'unplayed') {
             debug_event('api.class', 'playlist_generate unplayed', 5);
-            // random / anywhere
+            //unplayed songs
             $array['rule_' . $rule_count]               = 'myplayed';
             $array['rule_' . $rule_count . '_operator'] = 1;
             $rule_count++;
@@ -1820,7 +1820,7 @@ class Api
         $type      = $input['type'];
         $object_id = $input['id'];
         $flag      = $input['flag'];
-        $user      = User::get_from_apikey($input['auth']);
+        $user      = User::get_from_username(Session::username($input['auth']));
         $user_id   = null;
         if ($user) {
             $user_id = $user->id;
