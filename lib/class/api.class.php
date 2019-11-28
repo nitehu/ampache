@@ -20,6 +20,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 /**
  * API Class
@@ -78,7 +79,7 @@ class Api
      * @param integer|string|boolean|null $value
      * @return boolean
      */
-    public static function set_filter($filter, $value)
+    public static function set_filter($filter, $value): bool
     {
         if (!strlen($value)) {
             return false;
@@ -132,7 +133,7 @@ class Api
      * @param string[] $parameters e.g. array('auth','type')
      * @return boolean
      */
-    private static function check_parameter($input, $parameters, $method = '')
+    private static function check_parameter($input, $parameters, $method = ''): bool
     {
         foreach ($parameters as $parameter) {
             if (empty($input[$parameter])) {
@@ -160,7 +161,7 @@ class Api
      * version   = (string) $version //optional)
      * @return boolean
      */
-    public static function handshake($input)
+    public static function handshake($input): bool
     {
         $timestamp  = preg_replace('/[^0-9]/', '', $input['timestamp']);
         $passphrase = $input['auth'];

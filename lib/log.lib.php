@@ -19,6 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 /*
  * log_event
@@ -144,7 +145,7 @@ function ampache_error_handler($errno, $errstr, $errfile, $errline)
  * @param integer $level
  * @return boolean
  */
-function debug_event($type, $message, $level, $file = '', $username = '')
+function debug_event($type, $message, $level, $file = '', $username = ''): bool
 {
     if (!AmpConfig::get('debug') || $level > AmpConfig::get('debug_level')) {
         return false;

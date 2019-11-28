@@ -20,6 +20,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 /**
  * show_rating
@@ -37,7 +38,7 @@ function show_rating($object_id, $type)
  * This takes a score and returns the name that we should use
  * @return string
  */
-function get_rating_name($score)
+function get_rating_name($score): string
 {
     switch ($score) {
         case '0':

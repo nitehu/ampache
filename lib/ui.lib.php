@@ -26,6 +26,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 /**
  * show_confirmation
@@ -36,7 +37,6 @@
  * @param    string    $text    The details of the message
  * @param    string    $next_url    Where to go next
  * @param    integer    $cancel    T/F show a cancel button that uses return_referrer()
- * @return    void
  */
 function show_confirmation($title, $text, $next_url, $cancel = 0, $form_name = 'confirmation', $visible = true)
 {
@@ -79,7 +79,7 @@ function sse_worker($url)
  * to clean it up, take the filename then check for a /admin/ and dump the rest
  * @return string
  */
-function return_referer()
+function return_referer(): string
 {
     $referer = $_SERVER['HTTP_REFERER'];
     if (substr($referer, -1) == '/') {

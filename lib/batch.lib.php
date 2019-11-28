@@ -19,6 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 /**
  * get_media_files
@@ -28,7 +29,7 @@
  * @param array $media_ids Media IDs.
  * @return array
  */
-function get_media_files($media_ids)
+function get_media_files($media_ids): array
 {
     $media_files = array();
     $total_size  = 0;
@@ -105,7 +106,7 @@ function send_zip($name, $media_files)
  * @param string $object_type
  * @return boolean
  */
-function check_can_zip($object_type)
+function check_can_zip($object_type): boolean
 {
     $allowed = true;
     if (AmpConfig::get('allow_zip_types')) {

@@ -19,13 +19,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 /*
  * check_php
  * check for required modules
  * @return boolean
  */
-function check_php()
+function check_php(): bool
 {
     if (
         check_php_version() &&
@@ -48,7 +49,7 @@ function check_php()
  * check for required php version
  * @return boolean
  */
-function check_php_version()
+function check_php_version(): bool
 {
     if (floatval(phpversion()) < 7.1) {
         return false;
@@ -62,7 +63,7 @@ function check_php_version()
  * check for required function exists
  * @return boolean
  */
-function check_php_hash()
+function check_php_hash(): bool
 {
     return function_exists('hash_algos');
 }
@@ -72,7 +73,7 @@ function check_php_hash()
  * check for required function exists
  * @return boolean
  */
-function check_php_hash_algo()
+function check_php_hash_algo(): bool
 {
     return function_exists('hash_algos') ? in_array('sha256', hash_algos()) : false;
 }
@@ -82,7 +83,7 @@ function check_php_hash_algo()
  * check for required function exists
  * @return boolean
  */
-function check_php_json()
+function check_php_json(): bool
 {
     return function_exists('json_encode');
 }
@@ -92,7 +93,7 @@ function check_php_json()
  * check for required function exists
  * @return boolean
  */
-function check_php_curl()
+function check_php_curl(): bool
 {
     return function_exists('curl_version');
 }
@@ -102,7 +103,7 @@ function check_php_curl()
  * check for required function exists
  * @return boolean
  */
-function check_php_session()
+function check_php_session(): bool
 {
     return function_exists('session_set_save_handler');
 }
@@ -112,7 +113,7 @@ function check_php_session()
  * check for required function exists
  * @return boolean
  */
-function check_php_pdo()
+function check_php_pdo(): bool
 {
     return class_exists('PDO');
 }
@@ -122,7 +123,7 @@ function check_php_pdo()
  * check for required function exists
  * @return boolean
  */
-function check_php_pdo_mysql()
+function check_php_pdo_mysql(): bool
 {
     return class_exists('PDO') ? in_array('mysql', PDO::getAvailableDrivers()) : false;
 }
@@ -132,7 +133,7 @@ function check_php_pdo_mysql()
  * check for required function exists
  * @return boolean
  */
-function check_mbstring_func_overload()
+function check_mbstring_func_overload(): bool
 {
     if (ini_get('mbstring.func_overload') > 0) {
         return false;
@@ -147,7 +148,7 @@ function check_mbstring_func_overload()
  * @param array $conf
  * @return boolean
  */
-function check_config_values($conf)
+function check_config_values($conf): bool
 {
     if (!$conf['database_hostname']) {
         return false;
@@ -190,7 +191,7 @@ function check_config_values($conf)
  * catalog.
  * @return boolean
  */
-function check_php_memory()
+function check_php_memory(): bool
 {
     $current_memory = ini_get('memory_limit');
     $current_memory = substr($current_memory, 0, strlen($current_memory) - 1);
@@ -208,7 +209,7 @@ function check_php_memory()
  * semi-sane limit, IE greater then 60 seconds
  * @return boolean
  */
-function check_php_timelimit()
+function check_php_timelimit(): bool
 {
     $current = (int) (ini_get('max_execution_time'));
 
@@ -220,7 +221,7 @@ function check_php_timelimit()
  * Checks to make sure we aren't in safe mode
  * @return boolean
  */
-function check_php_safemode()
+function check_php_safemode(): bool
 {
     if (ini_get('safe_mode')) {
         return false;
@@ -234,7 +235,7 @@ function check_php_safemode()
  * This checks to see if we can manually override the memory limit
  * @return boolean
  */
-function check_override_memory()
+function check_override_memory(): bool
 {
     /* Check memory */
     $current_memory = ini_get('memory_limit');
@@ -261,7 +262,7 @@ function check_override_memory()
  * This checks to see if we can manually override the max execution time
  * @return boolean
  */
-function check_override_exec_time()
+function check_override_exec_time(): bool
 {
     $current = ini_get('max_execution_time');
     set_time_limit($current + 60);
@@ -277,7 +278,7 @@ function check_override_exec_time()
  * check_upload_size
  * This checks to see if max upload size is not too small
  */
-function check_upload_size()
+function check_upload_size(): bool
 {
     $upload_max = return_bytes(ini_get('upload_max_filesize'));
     $post_max   = return_bytes(ini_get('post_max_size'));
@@ -286,22 +287,22 @@ function check_upload_size()
     return (($upload_max >= $mini || $upload_max <= 0) && ($post_max >= $mini || $post_max <= 0));
 }
 
-function check_php_int_size()
+function check_php_int_size(): bool
 {
     return (PHP_INT_SIZE > 4);
 }
 
-function check_php_zlib()
+function check_php_zlib(): bool
 {
     return function_exists('gzcompress');
 }
 
-function check_php_simplexml()
+function check_php_simplexml(): bool
 {
     return function_exists('simplexml_load_string');
 }
 
-function check_php_gd()
+function check_php_gd(): bool
 {
     return (extension_loaded('gd') || extension_loaded('gd2'));
 }
@@ -309,7 +310,7 @@ function check_php_gd()
 /**
  * @param string $val
  */
-function return_bytes($val)
+function return_bytes($val): int
 {
     $val  = trim($val);
     $last = strtolower($val[strlen($val) - 1]);
@@ -329,7 +330,7 @@ function return_bytes($val)
     return $val;
 }
 
-function check_dependencies_folder()
+function check_dependencies_folder(): bool
 {
     return file_exists(AmpConfig::get('prefix') . '/lib/vendor');
 }
@@ -339,26 +340,26 @@ function check_dependencies_folder()
  * This checks whether we can write the config file
  * @return boolean
  */
-function check_config_writable()
+function check_config_writable(): bool
 {
     // file eixsts && is writable, or dir is writable
     return ((file_exists(AmpConfig::get('prefix') . '/config/ampache.cfg.php') && is_writable(AmpConfig::get('prefix') . '/config/ampache.cfg.php'))
         || (!file_exists(AmpConfig::get('prefix') . '/config/ampache.cfg.php') && is_writeable(AmpConfig::get('prefix') . '/config/')));
 }
 
-function check_htaccess_channel_writable()
+function check_htaccess_channel_writable(): bool
 {
     return ((file_exists(AmpConfig::get('prefix') . '/channel/.htaccess') && is_writable(AmpConfig::get('prefix') . '/channel/.htaccess'))
         || (!file_exists(AmpConfig::get('prefix') . '/channel/.htaccess') && is_writeable(AmpConfig::get('prefix') . '/channel/')));
 }
 
-function check_htaccess_rest_writable()
+function check_htaccess_rest_writable(): bool
 {
     return ((file_exists(AmpConfig::get('prefix') . '/rest/.htaccess') && is_writable(AmpConfig::get('prefix') . '/rest/.htaccess'))
         || (!file_exists(AmpConfig::get('prefix') . '/rest/.htaccess') && is_writeable(AmpConfig::get('prefix') . '/rest/')));
 }
 
-function check_htaccess_play_writable()
+function check_htaccess_play_writable(): bool
 {
     return ((file_exists(AmpConfig::get('prefix') . '/play/.htaccess') && is_writable(AmpConfig::get('prefix') . '/play/.htaccess'))
         || (!file_exists(AmpConfig::get('prefix') . '/play/.htaccess') && is_writeable(AmpConfig::get('prefix') . '/play/')));
@@ -369,7 +370,7 @@ function check_htaccess_play_writable()
  * Convenience function to format the output.
  * @param string|boolean $status
  */
-function debug_result($status = false, $value = null, $comment = '')
+function debug_result($status = false, $value = null, $comment = ''): string
 {
     $class = $status ? 'success' : 'danger';
 
@@ -386,7 +387,7 @@ function debug_result($status = false, $value = null, $comment = '')
  *
  * Convenience function to format the output.
  */
-function debug_wresult($status = false, $value = null, $comment = '')
+function debug_wresult($status = false, $value = null, $comment = ''): string
 {
     $class = $status ? 'success' : 'warning';
 

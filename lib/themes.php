@@ -20,6 +20,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 /**
  * get_themes
@@ -28,7 +29,7 @@
  * array of the results
  * @return array
  */
-function get_themes()
+function get_themes(): array
 {
     /* Open the themes dir and start reading it */
     $handle = opendir(AmpConfig::get('prefix') . '/themes');
@@ -109,7 +110,7 @@ function get_theme_author($theme_name)
  * @discussion this function checks to make sure that a theme actually exists
  * @return boolean
  */
-function theme_exists($theme_name)
+function theme_exists($theme_name): bool
 {
     $theme_path = AmpConfig::get('prefix') . '/themes/' . $theme_name . '/theme.cfg.php';
 

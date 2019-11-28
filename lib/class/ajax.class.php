@@ -19,6 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 /**
  * Ajax class
@@ -52,7 +53,7 @@ class Ajax
      * @param string $confirm
      * @return string
      */
-    public static function observe($source, $method, $action, $confirm = '')
+    public static function observe($source, $method, $action, $confirm = ''): string
     {
         $non_quoted = array('document', 'window');
 
@@ -85,7 +86,7 @@ class Ajax
      * @param string $action
      * @return string
      */
-    public static function url($action)
+    public static function url($action): string
     {
         return AmpConfig::get('ajax_url') . $action;
     }
@@ -99,7 +100,7 @@ class Ajax
      * @param string $post
      * @return string
      */
-    public static function action($action, $source, $post = '')
+    public static function action($action, $source, $post = ''): string
     {
         $url = self::url($action);
 
@@ -133,7 +134,7 @@ class Ajax
      * @param string $confirm
      * @return string
      */
-    public static function button($action, $icon, $alt, $source = '', $post = '', $class = '', $confirm = '')
+    public static function button($action, $icon, $alt, $source = '', $post = '', $class = '', $confirm = ''): string
     {
         // Get the correct action
         $ajax_string = self::action($action, $source, $post);
@@ -166,7 +167,7 @@ class Ajax
      * @param string $class
      * @return string
      */
-    public static function text($action, $text, $source, $post = '', $class = '')
+    public static function text($action, $text, $source, $post = '', $class = ''): string
     {
         // Temporary workaround to avoid sorting on custom base requests
         if (!defined("NO_BROWSE_SORTING") || strpos($source, "sort_") === false) {

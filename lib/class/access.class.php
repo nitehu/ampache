@@ -20,6 +20,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 /**
  * Access Class
@@ -121,7 +122,7 @@ class Access
      * Gets the vars for $this out of the database.
      * @return array
      */
-    private function has_info()
+    private function has_info(): array
     {
         $sql        = 'SELECT * FROM `access_list` WHERE `id` = ?';
         $db_results = Dba::read($sql, array($this->id));
@@ -155,7 +156,7 @@ class Access
      * @param string $endp
      * @return boolean
      */
-    private static function _verify_range($startp, $endp)
+    private static function _verify_range($startp, $endp): bool
     {
         $startn = @inet_pton($startp);
         $endn   = @inet_pton($endp);
@@ -187,7 +188,7 @@ class Access
      * @param array $data
      * @return boolean
      */
-    public function update(array $data)
+    public function update(array $data): bool
     {
         if (!self::_verify_range($data['start'], $data['end'])) {
             return false;
@@ -217,7 +218,7 @@ class Access
      * @param array $data
      * @return boolean
      */
-    public static function create(array $data)
+    public static function create(array $data): bool
     {
         if (!self::_verify_range($data['start'], $data['end'])) {
             return false;
@@ -254,7 +255,7 @@ class Access
      * @param array $data
      * @return boolean
      */
-    public static function exists(array $data)
+    public static function exists(array $data): bool
     {
         $start = inet_pton($data['start']);
         $end   = inet_pton($data['end']);
@@ -290,7 +291,7 @@ class Access
      * @param string $type
      * @return boolean
      */
-    public static function check_function($type)
+    public static function check_function($type): bool
     {
         switch ($type) {
             case 'download':
@@ -324,7 +325,7 @@ class Access
      * @param string $user_ip
      * @return boolean
      */
-    public static function check_network($type, $user = null, $level, $user_ip = null, $apikey = null)
+    public static function check_network($type, $user = null, $level, $user_ip = null, $apikey = null): bool
     {
         if (!AmpConfig::get('access_control')) {
             switch ($type) {
@@ -400,7 +401,7 @@ class Access
      * @param integer|null $user_id
      * @return boolean
      */
-    public static function check($type, $level, $user_id = null)
+    public static function check($type, $level, $user_id = null): bool
     {
         if (AmpConfig::get('demo_mode')) {
             return true;
@@ -436,7 +437,7 @@ class Access
      * @param string $type
      * @return string
      */
-    public static function validate_type($type)
+    public static function validate_type($type): string
     {
         switch ($type) {
             case 'rpc':
@@ -453,7 +454,7 @@ class Access
      * returns a full listing of all access rules on this server
      * @return array
      */
-    public static function get_access_lists()
+    public static function get_access_lists(): array
     {
         $sql        = 'SELECT `id` FROM `access_list`';
         $db_results = Dba::read($sql);
@@ -473,7 +474,7 @@ class Access
      * take the int level and return a named level
      * @return string
      */
-    public function get_level_name()
+    public function get_level_name(): string
     {
         if ($this->level >= '75') {
             return T_('All');
@@ -495,7 +496,7 @@ class Access
      * Return a name for the users covered by this ACL.
      * @return string
      */
-    public function get_user_name()
+    public function get_user_name(): string
     {
         if ($this->user == '-1') {
             return T_('All');
@@ -512,7 +513,7 @@ class Access
      * This function returns the pretty name for our current type.
      * @return string
      */
-    public function get_type_name()
+    public function get_type_name(): string
     {
         switch ($this->type) {
             case 'rpc':

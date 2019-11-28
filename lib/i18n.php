@@ -19,6 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 use Gettext\Translator;
 
@@ -28,7 +29,7 @@ use Gettext\Translator;
  *
  * @return boolean
  */
-function load_gettext()
+function load_gettext(): bool
 {
     $lang   = AmpConfig::get('lang');
     $popath = AmpConfig::get('prefix') . '/locale/' . $lang . '/LC_MESSAGES/messages.po';
@@ -47,7 +48,7 @@ function load_gettext()
  * @param string $msgid
  * @return string
  */
-function T_($msgid)
+function T_($msgid): string
 {
     if (function_exists('__')) {
         return __($msgid);

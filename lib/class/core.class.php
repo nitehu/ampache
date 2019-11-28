@@ -19,6 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 /**
  * Core Class
@@ -95,7 +96,7 @@ class Core
      * @param string $variable
      * @return string
      */
-    public static function get_request($variable)
+    public static function get_request($variable): string
     {
         if (filter_input(INPUT_POST, $variable, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES) !== null) {
             return filter_input(INPUT_POST, $variable, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
@@ -120,7 +121,7 @@ class Core
      * @param string $variable
      * @return string
      */
-    public static function get_get($variable)
+    public static function get_get($variable): string
     {
         if (filter_has_var(INPUT_GET, $variable)) {
             return filter_input(INPUT_GET, $variable, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
@@ -142,7 +143,7 @@ class Core
      * @param string $variable
      * @return string
      */
-    public static function get_cookie($variable)
+    public static function get_cookie($variable): string
     {
         if (filter_has_var(INPUT_COOKIE, $variable)) {
             return filter_input(INPUT_COOKIE, $variable, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
@@ -164,7 +165,7 @@ class Core
      * @param string $variable
      * @return string
      */
-    public static function get_server($variable)
+    public static function get_server($variable): string
     {
         if (filter_has_var(INPUT_SERVER, $variable)) {
             return filter_input(INPUT_SERVER, $variable, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
@@ -190,7 +191,7 @@ class Core
      * @param string $variable
      * @return string
      */
-    public static function get_post($variable)
+    public static function get_post($variable): string
     {
         if (filter_has_var(INPUT_POST, $variable)) {
             return filter_input(INPUT_POST, $variable, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES);
@@ -553,7 +554,7 @@ class Core
      *
      * @return string
      */
-    public static function get_tmp_dir()
+    public static function get_tmp_dir(): string
     {
         $tmp_dir = AmpConfig::get('tmp_dir_path');
         if (function_exists('sys_get_temp_dir')) {

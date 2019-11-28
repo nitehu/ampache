@@ -20,6 +20,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 /**
  * Config Class
@@ -66,7 +67,7 @@ class AmpConfig
      * This returns all of the current config variables as an array.
      * @return array
      */
-    public static function get_all()
+    public static function get_all(): array
     {
         return self::$_global;
     }
@@ -77,7 +78,7 @@ class AmpConfig
      * This function is used in mashup and random queries
      * @return integer
      */
-    public static function get_rating_filter()
+    public static function get_rating_filter(): int
     {
         $rating_filter = 0;
         if (self::get('rating_browse_filter')) {

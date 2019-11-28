@@ -19,6 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 /**
  * Error class
@@ -91,7 +92,7 @@ class AmpError
      * This returns true / false if an error has occurred anywhere
      * @return boolean
      */
-    public static function occurred()
+    public static function occurred(): bool
     {
         if (self::$state == '1') {
             return true;
@@ -105,7 +106,7 @@ class AmpError
      * This returns an error by name
      * @return string
      */
-    public static function get($name)
+    public static function get($name): string
     {
         if (!isset(AmpError::$errors[$name])) {
             return '';

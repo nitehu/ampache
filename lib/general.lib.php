@@ -19,6 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 /**
  * set_memory_limit
@@ -48,7 +49,7 @@ function set_memory_limit($new_limit)
  * @param integer $length (optional)
  * @return string
  */
-function generate_password($length = null)
+function generate_password($length = null): string
 {
     // set a random password length so it's not as easy to guess
     if ($length === null) {
@@ -90,7 +91,7 @@ function scrub_in($input)
  * @param string $string
  * @return string
  */
-function scrub_out($string)
+function scrub_out($string): string
 {
     return htmlentities($string, ENT_NOQUOTES, AmpConfig::get('site_charset'));
 } // scrub_out
@@ -101,7 +102,7 @@ function scrub_out($string)
  * @param string $string
  * @return string
  */
-function unhtmlentities($string)
+function unhtmlentities($string): string
 {
     return html_entity_decode($string, ENT_QUOTES, AmpConfig::get('site_charset'));
 } //unhtmlentities
@@ -112,7 +113,7 @@ function unhtmlentities($string)
  * This function behaves like escapeshellarg, but isn't broken
  * @return string
  */
-function scrub_arg($arg)
+function scrub_arg($arg): string
 {
     if (strtoupper(substr(PHP_OS, 0, 3)) === 'WIN') {
         return '"' . str_replace(array('"', '%'), array('', ''), $arg) . '"';
@@ -371,7 +372,7 @@ function translate_pattern_code($code)
  * this is used by the installer and by the admin/system page
  * @return string
  */
-function generate_config($current)
+function generate_config($current): string
 {
     // Start building the new config file
     $distfile = AmpConfig::get('prefix') . '/config/ampache.cfg.php.dist';

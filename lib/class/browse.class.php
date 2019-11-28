@@ -19,6 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 /**
  * Browse Class
@@ -87,7 +88,7 @@ class Browse extends Query
      *
      * @return array
      */
-    public function get_supplemental_objects()
+    public function get_supplemental_objects(): array
     {
         $objects = isset($_SESSION['browse']['supplemental'][$this->id]) ? $_SESSION['browse']['supplemental'][$this->id] : '';
 
@@ -468,7 +469,7 @@ class Browse extends Query
      *
      * @return boolean
      */
-    public function is_use_pages()
+    public function is_use_pages(): bool
     {
         return $this->_state['use_pages'];
     }
@@ -489,7 +490,7 @@ class Browse extends Query
      *
      * @return boolean
      */
-    public function is_grid_view()
+    public function is_grid_view(): bool
     {
         return $this->_state['grid_view'];
     }
@@ -518,7 +519,7 @@ class Browse extends Query
      *
      * @return boolean
      */
-    public function is_use_alpha()
+    public function is_use_alpha(): bool
     {
         return $this->_state['use_alpha'];
     }
@@ -545,7 +546,7 @@ class Browse extends Query
      *
      * @return boolean
      */
-    public function is_show_header()
+    public function is_show_header(): bool
     {
         return $this->show_header;
     }
@@ -554,7 +555,7 @@ class Browse extends Query
      *
      * @return boolean
      */
-    public function is_update_session()
+    public function is_update_session(): bool
     {
         return $this->_state['update_session'];
     }
@@ -572,7 +573,7 @@ class Browse extends Query
      *
      * @return string
      */
-    public function get_threshold()
+    public function get_threshold(): string
     {
         return $this->_state['threshold'];
     }
@@ -581,7 +582,7 @@ class Browse extends Query
      *
      * @return string
      */
-    public function get_css_class()
+    public function get_css_class(): string
     {
         $css = '';
         if (!$this->_state['grid_view']) {
