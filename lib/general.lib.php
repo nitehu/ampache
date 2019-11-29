@@ -130,7 +130,7 @@ function scrub_arg($arg): string
  * @param string $string
  * @return boolean
  */
-function make_bool($string)
+function make_bool($string): bool
 {
     if ($string === null) {
         return false;
