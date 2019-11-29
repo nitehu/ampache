@@ -40,6 +40,8 @@ function load_gettext(): bool
         $gettext->loadTranslations($translations);
     }
     $gettext->register();
+
+    return true;
 } // load_gettext
 
 /*

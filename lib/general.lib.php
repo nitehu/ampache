@@ -132,6 +132,9 @@ function scrub_arg($arg): string
  */
 function make_bool($string)
 {
+    if ($string === null) {
+        return false;
+    }
     if (strcasecmp($string, 'false') == 0 || $string == '0') {
         return false;
     }

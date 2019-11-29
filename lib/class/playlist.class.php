@@ -91,10 +91,12 @@ class Playlist extends playlist_object
      * get_playlists
      * Returns a list of playlists accessible by the user.
      * @param boolean $incl_public
-     * @param int $user_id
+     * @param integer $user_id
+     * @param string $playlist_name
+     * @param boolean $like
      * @return array
      */
-    public static function get_playlists($incl_public = true, $user_id = -1, $playlist_name = '')
+    public static function get_playlists($incl_public = true, $user_id = -1, $playlist_name = '', $like = true)
     {
         if (!$user_id) {
             $user_id = Core::get_global('user')->id;
@@ -118,14 +120,15 @@ class Playlist extends playlist_object
         }
 
         if ($playlist_name !== '') {
+            $playlist_name = (!$like) ? "= '" . $playlist_name . "'" : "LIKE  '%" . $playlist_name . "%' ";
             if (count($params) > 0 || $incl_public) {
-                $sql .= " AND `name` = '" . $playlist_name . "'";
+                $sql .= " AND `name` " . $playlist_name;
             } else {
-                $sql .= " WHERE `name` = '" . $playlist_name . "'";
+                $sql .= " WHERE `name` " . $playlist_name;
             }
         }
         $sql .= ' ORDER BY `name`';
-        //debug_event('playlist.class', 'get_playlists query: ' . $sql, 5);
+        debug_event('playlist.class', 'get_playlists query: ' . $sql, 5);
 
         $db_results = Dba::read($sql, $params);
         $results    = array();
@@ -139,9 +142,13 @@ class Playlist extends playlist_object
     /**
      * get_smartlists
      * Returns a list of playlists accessible by the user.
+     * @param boolean $incl_public
+     * @param integer $user_id
+     * @param string $playlist_name
+     * @param boolean $like
      * @return array
      */
-    public static function get_smartlists($incl_public = true, $user_id = null)
+    public static function get_smartlists($incl_public = true, $user_id = null, $playlist_name = '', $like = true)
     {
         if ($user_id === null) {
             $user_id = Core::get_global('user')->id;
@@ -164,6 +171,14 @@ class Playlist extends playlist_object
             $sql .= "`type` = 'public'";
         }
 
+        if ($playlist_name !== '') {
+            $playlist_name = (!$like) ? "= '" . $playlist_name . "'" : "LIKE  '%" . $playlist_name . "%' ";
+            if (count($params) > 0 || $incl_public) {
+                $sql .= " AND `name` " . $playlist_name;
+            } else {
+                $sql .= " WHERE `name` " . $playlist_name;
+            }
+        }
         $sql .= ' ORDER BY `name`';
 
         $db_results = Dba::read($sql, $params);
