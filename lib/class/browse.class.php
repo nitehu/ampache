@@ -428,7 +428,7 @@ class Browse extends Query
         if ((filter_has_var(INPUT_COOKIE, $name))) {
             $this->set_use_alpha(filter_input(INPUT_COOKIE, $name, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES) == 'true');
         } else {
-            $default_alpha = (!AmpConfig::get('libitem_browse_alpha')) ? explode(",", AmpConfig::get('libitem_browse_alpha')) : array();
+            $default_alpha = (!AmpConfig::get('libitem_browse_alpha')) ? array() : explode(",", AmpConfig::get('libitem_browse_alpha'));
             if (in_array($type, $default_alpha)) {
                 $this->set_use_alpha(true, false);
             }
