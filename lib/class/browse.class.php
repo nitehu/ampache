@@ -471,7 +471,7 @@ class Browse extends Query
      */
     public function is_use_pages(): bool
     {
-        return $this->_state['use_pages'];
+        return make_bool($this->_state['use_pages']);
     }
 
     /**
@@ -492,7 +492,7 @@ class Browse extends Query
      */
     public function is_grid_view(): bool
     {
-        return $this->_state['grid_view'];
+        return make_bool($this->_state['grid_view']);
     }
 
     /**
@@ -548,7 +548,7 @@ class Browse extends Query
      */
     public function is_show_header(): bool
     {
-        return $this->show_header;
+        return make_bool($this->show_header);
     }
 
     /**
@@ -575,7 +575,7 @@ class Browse extends Query
      */
     public function get_threshold(): string
     {
-        return $this->_state['threshold'];
+        return (string) $this->_state['threshold'];
     }
 
     /**
