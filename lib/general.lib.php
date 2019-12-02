@@ -139,7 +139,7 @@ function make_bool($string): bool
     if ($string === null) {
         return false;
     }
-    if (strcasecmp($string, 'false') == 0 || $string == '0') {
+    if (strcasecmp((string) $string, 'false') == 0 || $string == '0') {
         return false;
     }
 

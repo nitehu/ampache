@@ -310,7 +310,7 @@ function check_php_gd(): bool
 /**
  * @param string $val
  */
-function return_bytes($val): int
+function return_bytes($val): string
 {
     $val  = trim($val);
     $last = strtolower($val[strlen($val) - 1]);
