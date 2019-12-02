@@ -97,7 +97,7 @@ function scrub_out($string): string
         return '';
     }
 
-    return htmlentities($string, ENT_NOQUOTES, AmpConfig::get('site_charset'));
+    return htmlentities((string) $string, ENT_NOQUOTES, AmpConfig::get('site_charset'));
 } // scrub_out
 
 /**
@@ -108,7 +108,7 @@ function scrub_out($string): string
  */
 function unhtmlentities($string): string
 {
-    return html_entity_decode($string, ENT_QUOTES, AmpConfig::get('site_charset'));
+    return html_entity_decode((string) $string, ENT_QUOTES, AmpConfig::get('site_charset'));
 } //unhtmlentities
 
 /**
