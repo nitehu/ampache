@@ -521,7 +521,7 @@ class Browse extends Query
      */
     public function is_use_alpha(): bool
     {
-        return $this->_state['use_alpha'];
+        return make_bool($this->_state['use_alpha']);
     }
 
     /**
@@ -557,7 +557,7 @@ class Browse extends Query
      */
     public function is_update_session(): bool
     {
-        return $this->_state['update_session'];
+        return make_bool($this->_state['update_session']);
     }
 
     /**
