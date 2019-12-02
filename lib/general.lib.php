@@ -72,11 +72,11 @@ function generate_password($length = null): string
 function scrub_in($input)
 {
     if (!is_array($input)) {
-        return stripslashes(htmlspecialchars(strip_tags($input), ENT_NOQUOTES, AmpConfig::get('site_charset')));
+        return stripslashes(htmlspecialchars(strip_tags((string) $input), ENT_NOQUOTES, AmpConfig::get('site_charset')));
     } else {
         $results = array();
         foreach ($input as $item) {
-            $results[] = scrub_in($item);
+            $results[] = scrub_in((string) $item);
         }
 
         return $results;
