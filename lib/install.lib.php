@@ -112,7 +112,7 @@ function install_check_server_apache()
 
 /**
  * @param string $file
- * @return boolean|string
+ * @return bool|string
  */
 function install_check_rewrite_rules($file, $web_path, $fix = false)
 {

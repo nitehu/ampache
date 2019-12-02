@@ -343,7 +343,7 @@ class Dba
      * check_database
      *
      * Make sure that we can connect to the database
-     * @return boolean
+     * @return bool
      */
     public static function check_database()
     {
@@ -365,7 +365,7 @@ class Dba
      *
      * Checks to make sure that you have inserted the database
      * and that the user you are using has access to it.
-     * @return boolean
+     * @return bool
      */
     public static function check_database_inserted()
     {

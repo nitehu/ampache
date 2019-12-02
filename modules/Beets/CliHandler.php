@@ -144,7 +144,7 @@ class CliHandler extends Handler
     /**
      *
      * @param string $item
-     * @return boolean
+     * @return bool
      */
     protected function itemIsComlete($item)
     {

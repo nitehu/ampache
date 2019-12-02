@@ -210,7 +210,7 @@ class Label extends database_object implements library_item
 
     /**
      * can_edit
-     * @return boolean
+     * @return bool
      */
     public function can_edit($user = null)
     {
@@ -330,7 +330,7 @@ class Label extends database_object implements library_item
     /**
      * add_artist_assoc
      * @param integer $artist_id
-     * @return boolean|PDOStatement
+     * @return bool|PDOStatement
      */
     public function add_artist_assoc($artist_id)
     {
@@ -342,7 +342,7 @@ class Label extends database_object implements library_item
     /**
      * remove_artist_assoc
      * @param integer $artist_id
-     * @return boolean|PDOStatement
+     * @return bool|PDOStatement
      */
     public function remove_artist_assoc($artist_id)
     {

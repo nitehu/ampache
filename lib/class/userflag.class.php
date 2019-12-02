@@ -50,7 +50,7 @@ class Userflag extends database_object
      * This attempts to get everything we'll need for this page load in a
      * single query, saving on connection overhead
      * @param string $type
-     * @return boolean
+     * @return bool
      */
     public static function build_cache($type, $ids, $user_id = null)
     {
@@ -114,7 +114,7 @@ class Userflag extends database_object
      * get_flag
      * @param boolean|integer $user_id
      * @param boolean $get_date
-     * @return boolean|array
+     * @return bool|array
      */
     public function get_flag($user_id = null, $get_date = null)
     {
@@ -362,7 +362,7 @@ class Userflag extends database_object
      * @param string $object_type
      * @param integer $old_object_id
      * @param integer $new_object_id
-     * @return boolean|PDOStatement
+     * @return bool|PDOStatement
      */
     public static function migrate($object_type, $old_object_id, $new_object_id)
     {

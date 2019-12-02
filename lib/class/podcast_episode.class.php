@@ -268,7 +268,7 @@ class Podcast_Episode extends database_object implements media, library_item
      * @param integer $user
      * @param string $agent
      * @param array $location
-     * @return boolean
+     * @return bool
      */
     public function set_played($user, $agent, $location)
     {
@@ -312,7 +312,7 @@ class Podcast_Episode extends database_object implements media, library_item
      * @param integer $value
      * @param integer $song_id
      * @param integer $level
-     * @return boolean
+     * @return bool
      */
     private static function _update_item($field, $value, $song_id, $level)
     {

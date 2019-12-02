@@ -132,7 +132,7 @@ function scrub_arg($arg): string
  * value. We need a special function because PHP considers "false" to be true.
  *
  * @param string $string
- * @return boolean
+ * @return bool
  */
 function make_bool($string): bool
 {
@@ -339,7 +339,7 @@ function get_languages()
 /**
  * is_rtl
  * This checks whether to be a Right-To-Left language.
- * @return boolean
+ * @return bool
  */
 function is_rtl($locale)
 {

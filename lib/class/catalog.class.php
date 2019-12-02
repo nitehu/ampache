@@ -142,11 +142,11 @@ abstract class Catalog extends database_object
      */
     abstract public function get_create_help();
     /**
-     * @return boolean
+     * @return bool
      */
     abstract public function is_installed();
     /**
-     * @return boolean
+     * @return bool
      */
     abstract public function install();
     abstract public function add_to_catalog($options = null);
@@ -168,7 +168,7 @@ abstract class Catalog extends database_object
 
     /**
      * Check if the catalog is ready to perform actions (configuration completed, ...)
-     * @return boolean
+     * @return bool
      */
     public function isReady()
     {
@@ -194,7 +194,7 @@ abstract class Catalog extends database_object
     /**
      * uninstall
      * This removes the remote catalog
-     * @return boolean
+     * @return bool
      */
     public function uninstall()
     {
@@ -322,7 +322,7 @@ abstract class Catalog extends database_object
      * create_catalog_path
      * This returns the catalog types that are available
      * @param string $path
-     * @return boolean
+     * @return bool
      */
     public static function create_catalog_path($path)
     {
@@ -381,7 +381,7 @@ abstract class Catalog extends database_object
     /**
      * Check if a file is an audio.
      * @param string $file
-     * @return boolean
+     * @return bool
      */
     public static function is_audio_file($file)
     {
@@ -393,7 +393,7 @@ abstract class Catalog extends database_object
     /**
      * Check if a file is a video.
      * @param string $file
-     * @return boolean
+     * @return bool
      */
     public static function is_video_file($file)
     {
@@ -467,7 +467,7 @@ abstract class Catalog extends database_object
      * _create_filecache
      *
      * This populates an array which is used to speed up the add process.
-     * @return boolean
+     * @return bool
      */
     protected function _create_filecache()
     {
@@ -1554,7 +1554,7 @@ abstract class Catalog extends database_object
      * update_settings
      * This function updates the basic setting of the catalog
      * @param array $data
-     * @return boolean
+     * @return bool
      */
     public static function update_settings($data)
     {
@@ -2639,7 +2639,7 @@ abstract class Catalog extends database_object
      * @param string $object_type
      * @param integer $old_object_id
      * @param integer $new_object_id
-     * @return boolean
+     * @return bool
      */
     public static function migrate($object_type, $old_object_id, $new_object_id)
     {

@@ -117,7 +117,7 @@ class Song_Preview extends database_object implements media, playable_item
      * This attempts to reduce queries by asking for everything in the
      * browse all at once and storing it in the cache, this can help if the
      * db connection is the slow point.
-     * @return boolean
+     * @return bool
      */
     public static function build_cache($song_ids)
     {
@@ -206,7 +206,7 @@ class Song_Preview extends database_object implements media, playable_item
      * This takes the current song object
      * and does a ton of formatting on it creating f_??? variables on the current
      * object
-     * @return boolean
+     * @return bool
      */
     public function format($details = true)
     {

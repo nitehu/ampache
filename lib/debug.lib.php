@@ -24,7 +24,7 @@ declare(strict_types=1);
 /*
  * check_php
  * check for required modules
- * @return boolean
+ * @return bool
  */
 function check_php(): bool
 {
@@ -47,7 +47,7 @@ function check_php(): bool
 /*
  * check_php_version
  * check for required php version
- * @return boolean
+ * @return bool
  */
 function check_php_version(): bool
 {
@@ -61,7 +61,7 @@ function check_php_version(): bool
 /*
  * check_php_hash
  * check for required function exists
- * @return boolean
+ * @return bool
  */
 function check_php_hash(): bool
 {
@@ -71,7 +71,7 @@ function check_php_hash(): bool
 /*
  * check_php_hash_algo
  * check for required function exists
- * @return boolean
+ * @return bool
  */
 function check_php_hash_algo(): bool
 {
@@ -81,7 +81,7 @@ function check_php_hash_algo(): bool
 /*
  * check_php_json
  * check for required function exists
- * @return boolean
+ * @return bool
  */
 function check_php_json(): bool
 {
@@ -91,7 +91,7 @@ function check_php_json(): bool
 /*
  * check_php_curl
  * check for required function exists
- * @return boolean
+ * @return bool
  */
 function check_php_curl(): bool
 {
@@ -101,7 +101,7 @@ function check_php_curl(): bool
 /*
  * check_php_session
  * check for required function exists
- * @return boolean
+ * @return bool
  */
 function check_php_session(): bool
 {
@@ -111,7 +111,7 @@ function check_php_session(): bool
 /*
  * check_php_pdo
  * check for required function exists
- * @return boolean
+ * @return bool
  */
 function check_php_pdo(): bool
 {
@@ -121,7 +121,7 @@ function check_php_pdo(): bool
 /*
  * check_php_pdo_mysql
  * check for required function exists
- * @return boolean
+ * @return bool
  */
 function check_php_pdo_mysql(): bool
 {
@@ -131,7 +131,7 @@ function check_php_pdo_mysql(): bool
 /*
  * check_mbstring_func_overload
  * check for required function exists
- * @return boolean
+ * @return bool
  */
 function check_mbstring_func_overload(): bool
 {
@@ -146,7 +146,7 @@ function check_mbstring_func_overload(): bool
  * check_config_values
  * checks to make sure that they have at least set the needed variables
  * @param array $conf
- * @return boolean
+ * @return bool
  */
 function check_config_values($conf): bool
 {
@@ -189,7 +189,7 @@ function check_config_values($conf): bool
  * This checks to make sure that the php memory limit is withing the
  * recommended range, this doesn't take into account the size of your
  * catalog.
- * @return boolean
+ * @return bool
  */
 function check_php_memory(): bool
 {
@@ -207,7 +207,7 @@ function check_php_memory(): bool
  * check_php_timelimit
  * This checks to make sure that the php timelimit is set to some
  * semi-sane limit, IE greater then 60 seconds
- * @return boolean
+ * @return bool
  */
 function check_php_timelimit(): bool
 {
@@ -219,7 +219,7 @@ function check_php_timelimit(): bool
 /**
  * check_safe_mode
  * Checks to make sure we aren't in safe mode
- * @return boolean
+ * @return bool
  */
 function check_php_safemode(): bool
 {
@@ -233,7 +233,7 @@ function check_php_safemode(): bool
 /**
  * check_override_memory
  * This checks to see if we can manually override the memory limit
- * @return boolean
+ * @return bool
  */
 function check_override_memory(): bool
 {
@@ -260,7 +260,7 @@ function check_override_memory(): bool
 /**
  * check_override_exec_time
  * This checks to see if we can manually override the max execution time
- * @return boolean
+ * @return bool
  */
 function check_override_exec_time(): bool
 {
@@ -338,7 +338,7 @@ function check_dependencies_folder(): bool
 /**
  * check_config_writable
  * This checks whether we can write the config file
- * @return boolean
+ * @return bool
  */
 function check_config_writable(): bool
 {

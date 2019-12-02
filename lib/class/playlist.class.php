@@ -575,7 +575,7 @@ class Playlist extends playlist_object
     * look for the track id or the object id in a playlist
     * @param integer $object
     * @param integer $track
-    * @return boolean
+    * @return bool
     */
     public function has_item($object = null, $track = null)
     {

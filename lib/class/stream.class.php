@@ -433,7 +433,7 @@ class Stream
      * This checks to see if the media is already being played.
      * @param integer $media_id
      * @param string $type
-     * @return boolean
+     * @return bool
      */
     public static function check_lock_media($media_id, $type)
     {

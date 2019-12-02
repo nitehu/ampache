@@ -777,7 +777,7 @@ class Horde_Browser
      *
      * @param string $browser  The browser to check.
      *
-     * @return boolean  Is the given browser the same as the current?
+     * @return bool  Is the given browser the same as the current?
      */
     public function isBrowser($browser)
     {
@@ -797,7 +797,7 @@ class Horde_Browser
     /**
      * Is the current browser to be a mobile device?
      *
-     * @return boolean  True if we do, false if we don't.
+     * @return bool  True if we do, false if we don't.
      */
     public function isMobile()
     {
@@ -823,7 +823,7 @@ class Horde_Browser
      *
      * @since 2.1.0
      *
-     * @return boolean  True if we do, false if we don't.
+     * @return bool  True if we do, false if we don't.
      */
     public function isTablet()
     {
@@ -833,7 +833,7 @@ class Horde_Browser
     /**
      * Is the browser a robot?
      *
-     * @return boolean  True if browser is a known robot.
+     * @return bool  True if browser is a known robot.
      */
     public function isRobot()
     {
@@ -935,7 +935,7 @@ class Horde_Browser
      *
      * @param string $quirk  The behavior to check.
      *
-     * @return boolean  Does the browser have the behavior set?
+     * @return bool  Does the browser have the behavior set?
      */
     public function hasQuirk($quirk)
     {
@@ -998,7 +998,7 @@ class Horde_Browser
      *
      * @param string $feature  The capability to check.
      *
-     * @return boolean  Does the browser have the capability set?
+     * @return bool  Does the browser have the capability set?
      */
     public function hasFeature($feature)
     {
@@ -1022,7 +1022,7 @@ class Horde_Browser
     /**
      * Determines if we are using a secure (SSL) connection.
      *
-     * @return boolean  True if using SSL, false if not.
+     * @return bool  True if using SSL, false if not.
      */
     public function usingSSLConnection()
     {
@@ -1243,7 +1243,7 @@ class Horde_Browser
      *
      * @param string $mimetype  The MIME type to check.
      *
-     * @return boolean  True if the browser can display the MIME type.
+     * @return bool  True if the browser can display the MIME type.
      */
     public function isViewable($mimetype)
     {

@@ -62,7 +62,7 @@ class License
      * has_info
      * does the db call, reads from the license table
      * @param integer $id
-     * @return boolean
+     * @return bool
      */
     private function has_info($id)
     {

@@ -81,7 +81,7 @@ class Stats
      * @param string $object_type
      * @param integer $old_object_id
      * @param integer $new_object_id
-     * @return boolean|PDOStatement
+     * @return bool|PDOStatement
      */
     public static function migrate($object_type, $old_object_id, $new_object_id)
     {
@@ -150,7 +150,7 @@ class Stats
      * @param integer $user
      * @param integer $oid
      * @param integer $date
-     * @return boolean
+     * @return bool
      */
     public static function is_already_inserted($type, $oid, $user, $count_type = 'stream', $date = null, $song_time = 0)
     {

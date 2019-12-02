@@ -293,7 +293,7 @@ class Album extends database_object implements library_item
      * This takes an array of object ids and caches all of their information
      * with a single query
      * @param array $ids
-     * @return boolean
+     * @return bool
      */
     public static function build_cache(array $ids)
     {
@@ -434,7 +434,7 @@ class Album extends database_object implements library_item
     /**
      * can_edit
      * @param integer $user
-     * @return boolean
+     * @return bool
      */
     public function can_edit($user = null)
     {

@@ -313,7 +313,7 @@ class Subsonic_Api
     /**
      * has_Nested_Array
      * Used for xml2json to detect a sub-array
-     * @return boolean
+     * @return bool
      */
     private static function has_Nested_Array($properties)
     {

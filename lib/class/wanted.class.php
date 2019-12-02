@@ -361,7 +361,7 @@ class Wanted extends database_object
      * Check if a release mbid is already marked as wanted
      * @param string $mbid
      * @param integer $userid
-     * @return boolean|integer
+     * @return bool|integer
      */
     public static function has_wanted($mbid, $userid = 0)
     {

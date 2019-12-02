@@ -106,7 +106,7 @@ class Query
      * _auto_init
      * Automatically called when the class is loaded.
      * Populate static arrays if necessary
-     * @return boolean
+     * @return bool
      */
     public static function _auto_init()
     {
@@ -458,7 +458,7 @@ class Query
      * This saves the filter data we pass it.
      * @param string $key
      * @param mixed $value
-     * @return boolean
+     * @return bool
      */
     public function set_filter($key, $value)
     {
@@ -887,7 +887,7 @@ class Query
 
     /**
      *
-     * @return boolean
+     * @return bool
      */
     public function is_static_content()
     {
@@ -897,7 +897,7 @@ class Query
     /**
      * is_simple
      * This returns whether or not the current browse type is set to static.
-     * @return boolean
+     * @return bool
      */
     public function is_simple()
     {
@@ -1876,7 +1876,7 @@ class Query
      * require additional queries per object... :(
      *
      * @param integer $object_id
-     * @return boolean
+     * @return bool
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     private function logic_filter($object_id)
@@ -2317,7 +2317,7 @@ class Query
      * This takes the existing objects, looks at the current
      * sort method and then re-sorts them This is internally
      * called by the set_sort() function
-     * @return boolean
+     * @return bool
      */
     private function resort_objects()
     {
@@ -2394,7 +2394,7 @@ class Query
      * This takes the full array of object ids, often passed into show and
      * if necessary it saves them
      * @param int[] $object_ids
-     * @return boolean
+     * @return bool
      */
     public function save_objects($object_ids)
     {

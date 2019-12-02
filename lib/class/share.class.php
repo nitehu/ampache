@@ -310,7 +310,7 @@ class Share extends database_object
 
     /**
      * is_valid
-     * @return boolean
+     * @return bool
      */
     public function is_valid($secret, $action)
     {
@@ -458,7 +458,7 @@ class Share extends database_object
      * @param string $object_type
      * @param integer $old_object_id
      * @param integer $new_object_id
-     * @return boolean|PDOStatement
+     * @return bool|PDOStatement
      */
     public static function migrate($object_type, $old_object_id, $new_object_id)
     {

@@ -467,7 +467,7 @@ class Browse extends Query
 
     /**
      *
-     * @return boolean
+     * @return bool
      */
     public function is_use_pages(): bool
     {
@@ -488,7 +488,7 @@ class Browse extends Query
 
     /**
      *
-     * @return boolean
+     * @return bool
      */
     public function is_grid_view(): bool
     {
@@ -517,7 +517,7 @@ class Browse extends Query
 
     /**
      *
-     * @return boolean
+     * @return bool
      */
     public function is_use_alpha(): bool
     {
@@ -544,7 +544,7 @@ class Browse extends Query
 
     /**
      *
-     * @return boolean
+     * @return bool
      */
     public function is_show_header(): bool
     {
@@ -553,7 +553,7 @@ class Browse extends Query
 
     /**
      *
-     * @return boolean
+     * @return bool
      */
     public function is_update_session(): bool
     {

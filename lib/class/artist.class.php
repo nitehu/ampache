@@ -219,7 +219,7 @@ class Artist extends database_object implements library_item
      * this attempts to build a cache of the data from the passed albums all in one query
      * @param int[] $ids
      * @param boolean $extra
-     * @return boolean
+     * @return bool
      */
     public static function build_cache($ids, $extra = false, $limit_threshold = '')
     {
@@ -555,7 +555,7 @@ class Artist extends database_object implements library_item
      * information and reformats the relevent values
      * so they can be displayed in a table for example
      * it changes the title into a full link.
-     * @return boolean
+     * @return bool
       */
     public function format($details = true, $limit_threshold = '')
     {

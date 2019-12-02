@@ -133,7 +133,7 @@ class Channel extends database_object implements media, library_item
 
     /**
      * delete
-     * @return boolean|PDOStatement
+     * @return bool|PDOStatement
      */
     public function delete()
     {
@@ -276,7 +276,7 @@ class Channel extends database_object implements media, library_item
 
     /**
      * get_parent
-     * @return boolean|null
+     * @return bool|null
      */
     public function get_parent()
     {
@@ -324,7 +324,7 @@ class Channel extends database_object implements media, library_item
 
     /**
      * get_user_owner
-     * @return boolean|null
+     * @return bool|null
      */
     public function get_user_owner()
     {
@@ -447,7 +447,7 @@ class Channel extends database_object implements media, library_item
 
     /**
      * check_channel
-     * @return boolean
+     * @return bool
      */
     public function check_channel()
     {

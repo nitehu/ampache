@@ -86,7 +86,7 @@ class AmpacheStreamHits
     /**
      * Check stream control
      * @param array $media_ids
-     * @return boolean
+     * @return bool
      */
     public function stream_control($media_ids)
     {

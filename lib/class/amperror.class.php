@@ -90,7 +90,7 @@ class AmpError
     /**
      * occurred
      * This returns true / false if an error has occurred anywhere
-     * @return boolean
+     * @return bool
      */
     public static function occurred(): bool
     {

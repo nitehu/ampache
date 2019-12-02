@@ -234,7 +234,7 @@ class Stream_Playlist
 
     /**
      * check_autoplay_append
-     * @return boolean
+     * @return bool
      */
     public static function check_autoplay_append()
     {
@@ -246,7 +246,7 @@ class Stream_Playlist
 
     /**
      * check_autoplay_next
-     * @return boolean
+     * @return bool
      */
     public static function check_autoplay_next()
     {

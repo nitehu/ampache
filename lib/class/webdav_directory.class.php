@@ -105,7 +105,7 @@ class WebDAV_Directory extends DAV\Collection
 
     /**
      * childExists
-     * @return boolean
+     * @return bool
      */
     public function childExists($name)
     {

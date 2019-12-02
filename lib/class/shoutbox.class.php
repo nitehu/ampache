@@ -355,7 +355,7 @@ class Shoutbox
      * @param string $object_type
      * @param integer $old_object_id
      * @param integer $new_object_id
-     * @return boolean|PDOStatement
+     * @return bool|PDOStatement
      */
     public static function migrate($object_type, $old_object_id, $new_object_id)
     {

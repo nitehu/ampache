@@ -143,7 +143,7 @@ function ampache_error_handler($errno, $errstr, $errfile, $errline)
  * @param string $type
  * @param string $message
  * @param integer $level
- * @return boolean
+ * @return bool
  */
 function debug_event($type, $message, $level, $file = '', $username = ''): bool
 {

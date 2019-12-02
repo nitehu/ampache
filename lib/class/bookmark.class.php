@@ -133,7 +133,7 @@ class Bookmark extends database_object
 
     /**
      * create
-     * @return boolean|PDOStatement
+     * @return bool|PDOStatement
      */
     public static function create(array $data)
     {
@@ -148,7 +148,7 @@ class Bookmark extends database_object
 
     /**
      * update
-     * @return boolean|PDOStatement
+     * @return bool|PDOStatement
      */
     public function update($position)
     {
@@ -159,7 +159,7 @@ class Bookmark extends database_object
 
     /**
      * remove
-     * @return boolean|PDOStatement
+     * @return bool|PDOStatement
      */
     public function remove()
     {

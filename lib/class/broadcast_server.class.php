@@ -355,7 +355,7 @@ class Broadcast_Server implements MessageComponentInterface
     /**
      *
      * @param \Ratchet\ConnectionInterface $conn
-     * @return boolean
+     * @return bool
      */
     protected function isBroadcaster(ConnectionInterface $conn)
     {

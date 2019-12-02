@@ -592,7 +592,7 @@ class User extends database_object
     /**
      * is_registered
      * Check if the user is registered
-     * @return boolean
+     * @return bool
      */
     public static function is_registered()
     {
@@ -1249,7 +1249,7 @@ class User extends database_object
      * delete
      * deletes this user and everything associated with it. This will affect
      * ratings and total stats
-     * @return boolean
+     * @return bool
      */
     public function delete()
     {
@@ -1443,7 +1443,7 @@ class User extends database_object
 
     /**
      * @param string $data
-     * @return boolean
+     * @return bool
      */
     public function update_avatar($data, $mime = '')
     {
@@ -1456,7 +1456,7 @@ class User extends database_object
 
     /**
      *
-     * @return boolean
+     * @return bool
      */
     public function upload_avatar()
     {
@@ -1514,7 +1514,7 @@ class User extends database_object
     /**
      * is_xmlrpc
      * checks to see if this is a valid xmlrpc user
-     * @return boolean
+     * @return bool
      */
     public function is_xmlrpc()
     {
@@ -1567,7 +1567,7 @@ class User extends database_object
      * is_followed_by
      * Get if an user is followed by this user
      * @param integer $user_id
-     * @return boolean
+     * @return bool
      */
     public function is_followed_by($user_id)
     {
@@ -1581,7 +1581,7 @@ class User extends database_object
      * is_following
      * Get if this user is following an user
      * @param integer $user_id
-     * @return boolean
+     * @return bool
      */
     public function is_following($user_id)
     {
@@ -1594,7 +1594,7 @@ class User extends database_object
     /**
      * toggle_follow
      * @param integer $user_id
-     * @return boolean
+     * @return bool
      */
     public function toggle_follow($user_id)
     {
@@ -1645,7 +1645,7 @@ class User extends database_object
      * exist in this instance of Ampache
      *
      * @param string $username
-     * @return boolean
+     * @return bool
      */
     public static function check_username($username)
     {
@@ -1691,7 +1691,7 @@ class User extends database_object
      * Check all stream control plugins
      * @param array $media_ids
      * @param User $user
-     * @return boolean
+     * @return bool
      */
     public static function stream_control($media_ids, User $user = null)
     {

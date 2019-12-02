@@ -85,7 +85,7 @@ class MetadataField extends \Lib\DatabaseObject implements \Lib\Interfaces\Model
 
     /**
      *
-     * @return boolean
+     * @return bool
      */
     public function isPublic()
     {

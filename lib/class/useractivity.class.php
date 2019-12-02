@@ -61,7 +61,7 @@ class Useractivity extends database_object
     /**
      * this attempts to build a cache of the data from the passed activities all in one query
      * @param int[] $ids
-     * @return boolean
+     * @return bool
      */
     public static function build_cache($ids)
     {
@@ -314,7 +314,7 @@ class Useractivity extends database_object
      * @param string $object_type
      * @param integer $old_object_id
      * @param integer $new_object_id
-     * @return boolean|PDOStatement
+     * @return bool|PDOStatement
      */
     public static function migrate($object_type, $old_object_id, $new_object_id)
     {

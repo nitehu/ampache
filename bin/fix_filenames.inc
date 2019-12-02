@@ -90,7 +90,7 @@ echo "\n";
  * and corrects all of the non-matching filenames
  * it looks at the i_am_crazy var and if not set prompts for change
  * @param string $path
- * @return boolean
+ * @return bool
  */
 function charset_directory_correct($path) {
     $source_encoding = iconv_get_encoding('output_encoding');

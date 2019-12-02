@@ -131,7 +131,7 @@ class Catalog_beetsremote extends Beets\Catalog
     /**
      * Check if a song was added before
      * @param array $song
-     * @return boolean
+     * @return bool
      */
     public function checkSong($song)
     {

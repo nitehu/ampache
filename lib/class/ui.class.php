@@ -92,7 +92,7 @@ class UI
      * check_iconv
      *
      * Checks to see whether iconv is available;
-     * @return boolean
+     * @return bool
      */
     public static function check_iconv()
     {
@@ -108,7 +108,7 @@ class UI
      *
      * Stupid little cutesie thing to ratelimit output of long-running
      * operations.
-     * @return boolean
+     * @return bool
      */
     public static function check_ticker()
     {

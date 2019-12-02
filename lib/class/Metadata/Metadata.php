@@ -147,7 +147,7 @@ trait Metadata
 
     /**
      *
-     * @return boolean
+     * @return bool
      */
     public static function isCustomMetadataEnabled()
     {

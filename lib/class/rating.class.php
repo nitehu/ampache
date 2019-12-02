@@ -243,7 +243,7 @@ class Rating extends database_object
      * This function sets the rating for the current object.
      * If no user_id is passed in, we use the currently logged in user.
      * @param string $rating
-     * @return boolean
+     * @return bool
      */
     public function set_rating($rating, $user_id = null)
     {
@@ -297,7 +297,7 @@ class Rating extends database_object
      * This is currently only for grouped disk albums!
      * @param array $album
      * @param string $rating
-     * @return boolean
+     * @return bool
      */
     private static function set_rating_for_group($rating, $album, $user_id = null)
     {
@@ -378,7 +378,7 @@ class Rating extends database_object
      * @param string $object_type
      * @param integer $old_object_id
      * @param integer $new_object_id
-     * @return boolean|PDOStatement
+     * @return bool|PDOStatement
      */
     public static function migrate($object_type, $old_object_id, $new_object_id)
     {

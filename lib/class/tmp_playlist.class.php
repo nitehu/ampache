@@ -329,7 +329,7 @@ class Tmp_Playlist extends database_object
      * vote_active
      * This checks to see if this playlist is a voting playlist
      * and if it is active
-     * @return boolean
+     * @return bool
      */
     public function vote_active()
     {

@@ -139,7 +139,7 @@ class Art extends database_object
     /**
      * is_enabled
      * Checks whether the user currently wants art
-     * @return boolean
+     * @return bool
      */
     public static function is_enabled()
     {
@@ -189,7 +189,7 @@ class Art extends database_object
      * test_image
      * Runs some sanity checks on the putative image
      * @param string $source
-     * @return boolean
+     * @return bool
      */
     public static function test_image($source)
     {
@@ -255,7 +255,7 @@ class Art extends database_object
      * This pulls the information out from the database, depending
      * on if we want to resize and if there is not a thumbnail go
      * ahead and try to resize
-     * @return boolean
+     * @return bool
      */
     public function has_db_info()
     {
@@ -309,7 +309,7 @@ class Art extends database_object
      * @param integer $object_id
      * @param string $object_type
      * @param string $kind
-     * @return boolean
+     * @return bool
      */
     public static function has_db($object_id, $object_type, $kind = 'default')
     {
@@ -355,7 +355,7 @@ class Art extends database_object
      * the database. You must also pass the mime type.
      * @param string $source
      * @param string $mime
-     * @return boolean
+     * @return bool
      */
     public function insert($source, $mime = '')
     {
@@ -428,7 +428,7 @@ class Art extends database_object
     /**
      * check_dimensions
      * @param array $dimensions
-     * @return boolean
+     * @return bool
      */
     public static function check_dimensions($dimensions)
     {
@@ -471,7 +471,7 @@ class Art extends database_object
      * clean_art_by_dimension
      *
      * look for art in the image table that doesn't fit min or max dimensions and delete it
-     * @return boolean
+     * @return bool
      */
     public static function clean_art_by_dimension()
     {
@@ -1823,7 +1823,7 @@ class Art extends database_object
      * @param library_item $item
      * @param integer $thumb
      * @param string $link
-     * @return boolean
+     * @return bool
      */
     public static function display_item($item, $thumb, $link = null)
     {
@@ -1839,7 +1839,7 @@ class Art extends database_object
      * @param string $link
      * @param boolean $show_default
      * @param string $kind
-     * @return boolean
+     * @return bool
      */
     public static function display($object_type, $object_id, $name, $thumb, $link = null, $show_default = true, $kind = 'default')
     {

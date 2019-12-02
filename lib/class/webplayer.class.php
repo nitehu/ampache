@@ -25,7 +25,7 @@ class WebPlayer
     /**
      * Check if the playlist is a radio playlist.
      * @param \Stream_Playlist $playlist
-     * @return boolean
+     * @return bool
      */
     public static function is_playlist_radio($playlist)
     {
@@ -43,7 +43,7 @@ class WebPlayer
     /**
      * Check if the playlist is a video playlist.
      * @param \Stream_Playlist $playlist
-     * @return boolean
+     * @return bool
      */
     public static function is_playlist_video($playlist)
     {

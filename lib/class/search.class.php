@@ -1061,7 +1061,7 @@ class Search extends playlist_object
      * delete
      *
      * Does what it says on the tin.
-     * @return boolean
+     * @return bool
      */
     public function delete()
     {

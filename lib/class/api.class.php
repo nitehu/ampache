@@ -77,7 +77,7 @@ class Api
      * internally.
      * @param string $filter
      * @param integer|string|boolean|null $value
-     * @return boolean
+     * @return bool
      */
     public static function set_filter($filter, $value): bool
     {
@@ -131,7 +131,7 @@ class Api
      *
      * @param array $input
      * @param string[] $parameters e.g. array('auth','type')
-     * @return boolean
+     * @return bool
      */
     private static function check_parameter($input, $parameters, $method = ''): bool
     {
@@ -159,7 +159,7 @@ class Api
      * user      = (string) $username //optional
      * timestamp = (integer) UNIXTIME() //Required if login/password authentication)
      * version   = (string) $version //optional)
-     * @return boolean
+     * @return bool
      */
     public static function handshake($input): bool
     {

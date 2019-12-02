@@ -538,7 +538,7 @@ class Session
 
     /**
      * auth_remember
-     * @return boolean
+     * @return bool
      */
     public static function auth_remember()
     {

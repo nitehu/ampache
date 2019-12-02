@@ -479,7 +479,7 @@ class Song extends database_object implements media, library_item
      * browse all at once and storing it in the cache, this can help if the
      * db connection is the slow point.
      * @param int[] $song_ids
-     * @return boolean
+     * @return bool
      */
     public static function build_cache($song_ids, $limit_threshold = '')
     {
@@ -772,7 +772,7 @@ class Song extends database_object implements media, library_item
     /**
      * find
      * @param array $data
-     * @return boolean
+     * @return bool
      */
     public static function find($data)
     {
@@ -973,7 +973,7 @@ class Song extends database_object implements media, library_item
      * @param string $agent
      * @param array $location
      * @param integer $date
-     * @return boolean
+     * @return bool
      */
     public function set_played($user, $agent, $location, $date = null)
     {
@@ -996,7 +996,7 @@ class Song extends database_object implements media, library_item
      * this checks to see if the current object has been played
      * if not then it sets it to played. In any case it updates stats.
      * @param integer $user
-     * @return boolean
+     * @return bool
      */
     public function check_play_history($user)
     {

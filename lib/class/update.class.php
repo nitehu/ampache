@@ -102,7 +102,7 @@ class Update
      * need_update
      *
      * Checks to see if we need to update ampache at all.
-     * @return boolean
+     * @return bool
      */
     public static function need_update()
     {

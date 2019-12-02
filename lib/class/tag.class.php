@@ -866,7 +866,7 @@ class Tag extends database_object implements library_item
      * @param string $object_type
      * @param integer $object_id
      * @param string|boolean $user
-     * @return boolean
+     * @return bool
      */
     public static function can_edit_tag_map($object_type, $object_id, $user = true)
     {
@@ -899,7 +899,7 @@ class Tag extends database_object implements library_item
      * @param string $object_type
      * @param integer $old_object_id
      * @param integer $new_object_id
-     * @return boolean|PDOStatement
+     * @return bool|PDOStatement
      */
     public static function migrate($object_type, $old_object_id, $new_object_id)
     {

@@ -154,7 +154,7 @@ class Access
      * This outputs an error if the IP range is bad.
      * @param string $startp
      * @param string $endp
-     * @return boolean
+     * @return bool
      */
     private static function _verify_range($startp, $endp): bool
     {
@@ -186,7 +186,7 @@ class Access
      * This function takes a named array as a datasource and updates the current
      * access list entry.
      * @param array $data
-     * @return boolean
+     * @return bool
      */
     public function update(array $data): bool
     {
@@ -216,7 +216,7 @@ class Access
      * This takes a keyed array of data and trys to insert it as a
      * new ACL entry
      * @param array $data
-     * @return boolean
+     * @return bool
      */
     public static function create(array $data): bool
     {
@@ -253,7 +253,7 @@ class Access
      * This sees if the ACL that we've specified already exists in order to
      * prevent duplicates. The name is ignored.
      * @param array $data
-     * @return boolean
+     * @return bool
      */
     public static function exists(array $data): bool
     {
@@ -289,7 +289,7 @@ class Access
      *
      * This checks if specific functionality is enabled.
      * @param string $type
-     * @return boolean
+     * @return bool
      */
     public static function check_function($type): bool
     {
@@ -323,7 +323,7 @@ class Access
      * @param integer|string $user
      * @param integer $level
      * @param string $user_ip
-     * @return boolean
+     * @return bool
      */
     public static function check_network($type, $user = null, $level, $user_ip = null, $apikey = null): bool
     {
@@ -399,7 +399,7 @@ class Access
      * @param string $type
      * @param integer $level
      * @param integer|null $user_id
-     * @return boolean
+     * @return bool
      */
     public static function check($type, $level, $user_id = null): bool
     {
