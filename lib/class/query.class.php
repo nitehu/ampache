@@ -755,7 +755,7 @@ class Query
      */
     public function get_type(): string
     {
-        return $this->_state['type'];
+        return (string) $this->_state['type'];
     } // get_type
 
     /**
