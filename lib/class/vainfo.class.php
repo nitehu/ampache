@@ -403,7 +403,7 @@ class vainfo
             $info['comment']  = $info['comment'] ?: trim((string) $tags['comment']);
 
             $info['lyrics']    = $info['lyrics']
-                    ?: strip_tags(nl2br($tags['lyrics']), "<br>");
+                    ?: strip_tags(nl2br((string) $tags['lyrics']), "<br>");
             $info['replaygain_track_gain'] = $info['replaygain_track_gain'] ?: floatval($tags['replaygain_track_gain']);
             $info['replaygain_track_peak'] = $info['replaygain_track_peak'] ?: floatval($tags['replaygain_track_peak']);
             $info['replaygain_album_gain'] = $info['replaygain_album_gain'] ?: floatval($tags['replaygain_album_gain']);
