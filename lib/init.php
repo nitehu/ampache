@@ -142,7 +142,7 @@ if (substr($post_size, strlen($post_size) - 1, strlen($post_size)) != 'M') {
 ini_set('session.gc_probability', '5');
 
 if (!isset($results['memory_limit']) ||
-    (UI::unformat_bytes((string) ($results['memory_limit'])) < UI::unformat_bytes('32M'))
+    (UI::unformat_bytes($results['memory_limit']) < UI::unformat_bytes('32M'))
 ) {
     $results['memory_limit'] = '32M';
 }
