@@ -300,7 +300,7 @@ class Video extends database_object implements media, library_item
         $this->f_length = floor($this->time / 60) . ' ' . T_('minutes');
         $this->f_file   = $this->f_title . '.' . $this->type;
         if ($this->release_date) {
-            $this->f_release_date = date('Y-m-d', $this->release_date);
+            $this->f_release_date = date('Y-m-d', (int) $this->release_date);
         }
     } // format
 

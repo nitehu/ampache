@@ -912,8 +912,8 @@ class Subsonic_XML_Data
         $user = new User($playlist->user);
         $xplaylist->addAttribute('owner', $user->username);
         $xplaylist->addAttribute('public', ($playlist->type != "private") ? "true" : "false");
-        $xplaylist->addAttribute('created', date("c", $playlist->date));
-        $xplaylist->addAttribute('changed', date("c", $playlist->last_update));
+        $xplaylist->addAttribute('created', date("c", (int) $playlist->date));
+        $xplaylist->addAttribute('changed', date("c", (int) $playlist->last_update));
         $xplaylist->addAttribute('songCount', $songcount);
         $xplaylist->addAttribute('duration', $duration);
 
@@ -1035,7 +1035,7 @@ class Subsonic_XML_Data
             if (AmpConfig::get('userflags')) {
                 $starred = new Userflag($objectId, $objectType);
                 if ($res = $starred->get_flag(null, true)) {
-                    $xml->addAttribute('starred', date("Y-m-d",$res[1]) . 'T' . date("H:i:s", $res[1]) . 'Z');
+                    $xml->addAttribute('starred', date("Y-m-d", (int) $res[1]) . 'T' . date("H:i:s", (int) $res[1]) . 'Z');
                 }
             }
         }
@@ -1142,12 +1142,12 @@ class Subsonic_XML_Data
         $xshare->addAttribute('description', $share->description);
         $user = new User($share->user);
         $xshare->addAttribute('username', $user->username);
-        $xshare->addAttribute('created', date("c", $share->creation_date));
+        $xshare->addAttribute('created', date("c", (int) $share->creation_date));
         if ($share->lastvisit_date > 0) {
-            $xshare->addAttribute('lastVisited', date("c", $share->lastvisit_date));
+            $xshare->addAttribute('lastVisited', date("c", (int) $share->lastvisit_date));
         }
         if ($share->expire_days > 0) {
-            $xshare->addAttribute('expires', date("c", $share->creation_date + ($share->expire_days * 86400)));
+            $xshare->addAttribute('expires', date("c", (int) $share->creation_date + ($share->expire_days * 86400)));
         }
         $xshare->addAttribute('visitCount', $share->counter);
 
@@ -1327,7 +1327,7 @@ class Subsonic_XML_Data
         $xepisode->addAttribute('duration', $episode->time);
         $xepisode->addAttribute('genre', "Podcast");
         $xepisode->addAttribute('isDir', "false");
-        $xepisode->addAttribute('publishDate', date("c", $episode->pubdate));
+        $xepisode->addAttribute('publishDate', date("c", (int) $episode->pubdate));
         $xepisode->addAttribute('status', $episode->state);
         $xepisode->addAttribute('parent', self::getPodcastId($episode->podcast));
         if (Art::has_db($episode->podcast, 'podcast')) {
@@ -1384,8 +1384,8 @@ class Subsonic_XML_Data
         $xbookmark->addAttribute('position', $bookmark->position);
         $xbookmark->addAttribute('username', $bookmark->f_user);
         $xbookmark->addAttribute('comment', $bookmark->comment);
-        $xbookmark->addAttribute('created', date("c", $bookmark->creation_date));
-        $xbookmark->addAttribute('changed', date("c", $bookmark->update_date));
+        $xbookmark->addAttribute('created', date("c", (int) $bookmark->creation_date));
+        $xbookmark->addAttribute('changed', date("c", (int) $bookmark->update_date));
         if ($bookmark->object_type == "song") {
             $song = new Song($bookmark->object_id);
             self::addSong($xbookmark, $song->id, false, 'entry');

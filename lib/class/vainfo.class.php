@@ -1046,7 +1046,7 @@ class vainfo
                 case 'creation_date':
                     $parsed['release_date'] = strtotime(str_replace(" ", "", $data[0]));
                     if (strlen((string) $data['0']) > 4) {
-                        $data[0] = date('Y', $parsed['release_date']);
+                        $data[0] = date('Y', (int) $parsed['release_date']);
                     }
                     $parsed['year'] = $data[0];
                 break;

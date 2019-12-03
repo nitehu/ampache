@@ -271,8 +271,8 @@ class Share extends database_object
         }
         $this->f_allow_stream   = $this->allow_stream;
         $this->f_allow_download = $this->allow_download;
-        $this->f_creation_date  = date("Y-m-d H:i:s", $this->creation_date);
-        $this->f_lastvisit_date = ($this->lastvisit_date > 0) ? date("Y-m-d H:i:s", $this->creation_date) : '';
+        $this->f_creation_date  = date("Y-m-d H:i:s", (int) $this->creation_date);
+        $this->f_lastvisit_date = ($this->lastvisit_date > 0) ? date("Y-m-d H:i:s", (int) $this->creation_date) : '';
     }
 
     /**

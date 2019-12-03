@@ -311,9 +311,9 @@ class Api
                 echo XML_Data::keyed_array(array('auth' => $token,
                     'api' => self::$version,
                     'session_expire' => date("c", time() + AmpConfig::get('session_length') - 60),
-                    'update' => date("c", $row['update']),
-                    'add' => date("c", $row['add']),
-                    'clean' => date("c", $row['clean']),
+                    'update' => date("c", (int) $row['update']),
+                    'add' => date("c", (int) $row['add']),
+                    'clean' => date("c", (int) $row['clean']),
                     'songs' => $song['song'],
                     'albums' => $album['album'],
                     'artists' => $artist['artist'],
@@ -348,7 +348,7 @@ class Api
         // Check and see if we should extend the api sessions (done if valid session is passed)
         if (Session::exists('api', $input['auth'])) {
             Session::extend($input['auth']);
-            $xmldata = array_merge(array('session_expire' => date("c", time() + AmpConfig::get('session_length') - 60)), $xmldata);
+            $xmldata = array_merge(array('session_expire' => date("c", time() + (int) AmpConfig::get('session_length') - 60)), $xmldata);
         }
 
         debug_event('api.class', 'Ping Received from ' . Core::get_server('REMOTE_ADDR') . ' :: ' . $input['auth'], 5);

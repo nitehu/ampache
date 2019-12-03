@@ -547,13 +547,13 @@ abstract class Catalog extends database_object
         $this->f_link = '<a href="' . $this->link . '" title="' . scrub_out($this->name) . '">' .
             scrub_out($this->f_name) . '</a>';
         $this->f_update = $this->last_update
-            ? date('d/m/Y h:i', $this->last_update)
+            ? date('d/m/Y h:i', (int) $this->last_update)
             : T_('Never');
         $this->f_add = $this->last_add
-            ? date('d/m/Y h:i', $this->last_add)
+            ? date('d/m/Y h:i', (int) $this->last_add)
             : T_('Never');
         $this->f_clean = $this->last_clean
-            ? date('d/m/Y h:i', $this->last_clean)
+            ? date('d/m/Y h:i', (int) $this->last_clean)
             : T_('Never');
     }
 
@@ -2429,7 +2429,7 @@ abstract class Catalog extends database_object
                     $xml['dict']['Total Time']   = (int) ($song->time) * 1000; // iTunes uses milliseconds
                     $xml['dict']['Track Number'] = (int) ($song->track);
                     $xml['dict']['Year']         = (int) ($song->year);
-                    $xml['dict']['Date Added']   = date("Y-m-d\TH:i:s\Z", $song->addition_time);
+                    $xml['dict']['Date Added']   = date("Y-m-d\TH:i:s\Z", (int) $song->addition_time);
                     $xml['dict']['Bit Rate']     = (int) ($song->bitrate / 1000);
                     $xml['dict']['Sample Rate']  = (int) ($song->rate);
                     $xml['dict']['Play Count']   = (int) ($song->played);
@@ -2453,7 +2453,7 @@ abstract class Catalog extends database_object
                         $song->f_time . '","' .
                         $song->f_track . '","' .
                         $song->year . '","' .
-                        date("Y-m-d\TH:i:s\Z", $song->addition_time) . '","' .
+                        date("Y-m-d\TH:i:s\Z", (int) $song->addition_time) . '","' .
                         $song->f_bitrate . '","' .
                         $song->played . '","' .
                         $song->file . '"' . "\n";

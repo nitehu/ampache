@@ -1159,7 +1159,7 @@ class XML_Data
             //$xmlink = $xitem->addChild("link", htmlentities($media->link));
             $xitem->addChild("guid", htmlentities($media->link));
             if ($media->addition_time) {
-                $xitem->addChild("pubDate", date("r", $media->addition_time));
+                $xitem->addChild("pubDate", date("r", (int) $media->addition_time));
             }
             $description = $media->get_description();
             if (!empty($description)) {
