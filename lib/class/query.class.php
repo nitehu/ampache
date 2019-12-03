@@ -892,7 +892,7 @@ class Query
      */
     public function is_static_content(): bool
     {
-        return $this->_state['static'];
+        return make_bool($this->_state['static']);
     }
 
     /**
