@@ -1683,7 +1683,7 @@ abstract class Catalog extends database_object
         $new_song              = new Song();
         $new_song->file        = $results['file'];
         $new_song->title       = $results['title'];
-        $new_song->year        = (strlen((string) $results['year'] > 4) ? (int) substr($results['year'], -4, 4) : (int) ($results['year']));
+        $new_song->year        = (strlen((string) $results['year']) > 4) ? (int) substr($results['year'], -4, 4) : (int) ($results['year']);
         $new_song->comment     = $results['comment'];
         $new_song->language    = $results['language'];
         $new_song->lyrics      = str_replace(
