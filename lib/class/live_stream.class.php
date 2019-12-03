@@ -258,10 +258,10 @@ class Live_Stream extends database_object implements media, library_item
     public static function create(array $data)
     {
         // Make sure we've got a name and codec
-        if (!strlen($data['name'])) {
+        if (!strlen((string) $data['name'])) {
             AmpError::add('name', T_('Name is required'));
         }
-        if (!strlen($data['codec'])) {
+        if (!strlen((string) $data['codec'])) {
             AmpError::add('codec', T_('Codec is required (e.g. MP3, OGG...)'));
         }
 

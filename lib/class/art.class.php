@@ -194,15 +194,15 @@ class Art extends database_object
      */
     public static function test_image($source): bool
     {
-        if (strlen($source) < 10) {
+        if (strlen((string) $source) < 10) {
             debug_event('art.class', 'Invalid image passed', 1);
 
             return false;
         }
 
         // Check image size doesn't exceed the limit
-        if (strlen($source) > AmpConfig::get('max_upload_size')) {
-            debug_event('art.class', 'Image size (' . strlen($source) . ') exceed the limit (' . AmpConfig::get('max_upload_size') . ').', 1);
+        if (strlen((string) $source) > AmpConfig::get('max_upload_size')) {
+            debug_event('art.class', 'Image size (' . strlen((string) $source) . ') exceed the limit (' . AmpConfig::get('max_upload_size') . ').', 1);
 
             return false;
         }
@@ -825,7 +825,7 @@ class Art extends database_object
         ob_end_clean();
 
         imagedestroy($thumbnail);
-        if (!strlen($data)) {
+        if (!strlen((string) $data)) {
             debug_event('art.class', 'Unknown Error resizing art', 1);
 
             return array();

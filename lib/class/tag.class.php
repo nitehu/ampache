@@ -149,7 +149,7 @@ class Tag extends database_object implements library_item
 
         $cleaned_value = $value;
 
-        if (!strlen($cleaned_value)) {
+        if (!strlen((string) $cleaned_value)) {
             return false;
         }
 
@@ -185,7 +185,7 @@ class Tag extends database_object implements library_item
      */
     public static function add_tag($value)
     {
-        if (!strlen($value)) {
+        if (!strlen((string) $value)) {
             return false;
         }
 
@@ -204,7 +204,7 @@ class Tag extends database_object implements library_item
      */
     public function update(array $data)
     {
-        if (!strlen($data['name'])) {
+        if (!strlen((string) $data['name'])) {
             return false;
         }
         debug_event('tag.class', 'Updating tag {' . $this->id . '} with name {' . $data['name'] . '}...', 5);

@@ -85,7 +85,7 @@ class Session
      */
     public static function destroy($key)
     {
-        if (!strlen($key)) {
+        if (!strlen((string) $key)) {
             return false;
         }
 
@@ -241,7 +241,7 @@ class Session
             $geoname = $data['geo_name'];
         }
 
-        if (!strlen($value)) {
+        if (!strlen((string) $value)) {
             $value = ' ';
         }
 

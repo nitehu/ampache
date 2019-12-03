@@ -127,7 +127,7 @@ class Daap_Api
         echo $data;
         ob_flush();
 
-        return strlen($data);
+        return strlen((string) $data);
     }
 
     public static function output_header($curl, $header)
@@ -140,7 +140,7 @@ class Daap_Api
             }
         }
 
-        return strlen($header);
+        return strlen((string) $header);
     }
 
     /**
@@ -597,7 +597,7 @@ class Daap_Api
                     break;
             }
 
-            return $code . pack("N", strlen($value)) . $value;
+            return $code . pack("N", strlen((string) $value)) . $value;
         } else {
             debug_event('daap_api.class', 'Unknown DAAP tag `' . $tag . '`.', 3);
         }
@@ -607,7 +607,7 @@ class Daap_Api
 
     private static function tlv_string($tag, $value)
     {
-        return $tag . pack("N", strlen($value)) . $value;
+        return $tag . pack("N", strlen((string) $value)) . $value;
     }
 
     private static function tlv_long($tag, $value)
@@ -817,7 +817,7 @@ class Daap_Api
         self::setHeaders();
 
         if (Core::get_server('REQUEST_METHOD') != 'OPTIONS') {
-            header("Content-length: " . strlen($string));
+            header("Content-length: " . strlen((string) $string));
             echo $string;
         } else {
             header("Content-type: text/plain", true);

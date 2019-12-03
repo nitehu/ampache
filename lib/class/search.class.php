@@ -934,7 +934,7 @@ class Search extends playlist_object
             $prefix = substr($key, 0, 4);
             $value  = trim((string) $value);
 
-            if ($prefix == 'rule' && strlen($value)) {
+            if ($prefix == 'rule' && strlen((string) $value)) {
                 $request[$key] = Dba::escape(filter_var($value, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES));
             }
         }

@@ -478,7 +478,7 @@ class Preference extends database_object
         } // end while sys prefs
 
         /* Set the Theme mojo */
-        if (strlen($results['theme_name']) > 0) {
+        if (strlen((string) $results['theme_name']) > 0) {
             // In case the theme was removed
             if (!Core::is_readable(AmpConfig::get('prefix') . '/themes/' . $results['theme_name'])) {
                 unset($results['theme_name']);
@@ -498,7 +498,7 @@ class Preference extends database_object
         $themecfg                  = get_theme($results['theme_name']);
         $results['theme_css_base'] = $themecfg['base'];
 
-        if (strlen($results['theme_color']) > 0) {
+        if (strlen((string) $results['theme_color']) > 0) {
             // In case the color was removed
             if (!Core::is_readable(AmpConfig::get('prefix') . '/themes/' . $results['theme_name'] . '/templates/' . $results['theme_color'] . '.css')) {
                 unset($results['theme_color']);

@@ -572,7 +572,7 @@ class Channel extends database_object implements media, library_item
                         $this->header_chunk = '';
                     }
                     $chunk = fread($this->transcoder['handle'], $this->chunk_size);
-                    $this->media_bytes_streamed += strlen($chunk);
+                    $this->media_bytes_streamed += strlen((string) $chunk);
 
                     if ((ftell($this->transcoder['handle']) < 10000 && strtolower($this->stream_type) == "ogg") || $this->header_chunk_remainder) {
                         //debug_event('channel.class', 'File handle pointer: ' . ftell($this->transcoder['handle']), 5);
@@ -580,11 +580,11 @@ class Channel extends database_object implements media, library_item
 
                         if ($this->header_chunk_remainder) {
                             $this->header_chunk .= substr($clchunk, 0, $this->header_chunk_remainder);
-                            if (strlen($clchunk) >= $this->header_chunk_remainder) {
+                            if (strlen((string) $clchunk) >= $this->header_chunk_remainder) {
                                 $clchunk                      = substr($clchunk, $this->header_chunk_remainder);
                                 $this->header_chunk_remainder = 0;
                             } else {
-                                $this->header_chunk_remainder = $this->header_chunk_remainder - strlen($clchunk);
+                                $this->header_chunk_remainder = $this->header_chunk_remainder - strlen((string) $clchunk);
                                 $clchunk                      = '';
                             }
                         }
@@ -599,8 +599,8 @@ class Channel extends database_object implements media, library_item
                                     $ogg_sum_segm_laces += hexdec(substr($hex, 27 * 2 + $segm * 2, 2));
                                 }
                                 $this->header_chunk .= substr($clchunk, 0, 27 + $ogg_nr_of_segments + $ogg_sum_segm_laces);
-                                if (strlen($clchunk) < (27 + $ogg_nr_of_segments + $ogg_sum_segm_laces)) {
-                                    $this->header_chunk_remainder = (int) (27 + $ogg_nr_of_segments + $ogg_sum_segm_laces - strlen($clchunk));
+                                if (strlen((string) $clchunk) < (27 + $ogg_nr_of_segments + $ogg_sum_segm_laces)) {
+                                    $this->header_chunk_remainder = (int) (27 + $ogg_nr_of_segments + $ogg_sum_segm_laces - strlen((string) $clchunk));
                                 }
                                 $clchunk = substr($clchunk, 27 + $ogg_nr_of_segments + $ogg_sum_segm_laces);
                             } else { //no more interesting headers
@@ -610,7 +610,7 @@ class Channel extends database_object implements media, library_item
                     }
                     //debug_event('channel.class', 'File handle pointer: ' . ftell($this->transcoder['handle']), 5);
                     //debug_event('channel.class', 'CHUNK : ' . $chunk, 5);
-                    //debug_event('channel.class', 'Chunk size: ' . strlen($chunk), 5);
+                    //debug_event('channel.class', 'Chunk size: ' . strlen((string) $chunk), 5);
 
                     // End of file, prepare to move on for next call
                     if (feof($this->transcoder['handle'])) {
@@ -630,7 +630,7 @@ class Channel extends database_object implements media, library_item
                     $this->transcoder = null;
                 }
 
-                if (!strlen($chunk)) {
+                if (!strlen((string) $chunk)) {
                     $chunk = $this->get_chunk();
                 }
             }

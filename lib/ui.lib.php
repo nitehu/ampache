@@ -87,10 +87,10 @@ function return_referer(): string
     } else {
         $file = basename($referer);
         /* Strip off the filename */
-        $referer = substr($referer, 0, strlen($referer) - strlen($file));
+        $referer = substr($referer, 0, strlen((string) $referer) - strlen((string) $file));
     }
 
-    if (substr($referer, strlen($referer) - 6, 6) == 'admin/') {
+    if (substr($referer, strlen((string) $referer) - 6, 6) == 'admin/') {
         $file = 'admin/' . $file;
     }
 
@@ -112,7 +112,7 @@ function get_location()
 {
     $location = array();
 
-    if (strlen($_SERVER['PHP_SELF'])) {
+    if (strlen((string) $_SERVER['PHP_SELF'])) {
         $source = $_SERVER['PHP_SELF'];
     } else {
         $source = $_SERVER['REQUEST_URI'];

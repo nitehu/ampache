@@ -582,7 +582,7 @@ class Album extends database_object implements library_item
         }
         $sql .= "WHERE `song`.`album` = ? ";
         $params = array($this->id);
-        if (strlen($artist)) {
+        if (strlen((string) $artist)) {
             $sql .= "AND `artist` = ? ";
             $params[] = $artist;
         }

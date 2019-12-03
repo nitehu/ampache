@@ -369,7 +369,7 @@ class Access
 
         $params = array(inet_pton($user_ip), inet_pton($user_ip), $level, $type);
 
-        if (strlen($user) && $user != '-1') {
+        if (strlen((string) $user) && $user != '-1') {
             $sql .= " AND `user` IN(?, '-1')";
             $params[] = $user;
         } else {

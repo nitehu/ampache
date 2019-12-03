@@ -797,7 +797,7 @@ class Video extends database_object implements media, library_item
             $lang_name = T_("Unknown");
             if (count($psrt) >= 2) {
                 $lang_code = $psrt[count($psrt) - 2];
-                if (strlen($lang_code) == 2) {
+                if (strlen((string) $lang_code) == 2) {
                     $lang_name = $this->get_language_name($lang_code);
                 }
             }

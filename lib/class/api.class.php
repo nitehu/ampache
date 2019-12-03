@@ -81,7 +81,7 @@ class Api
      */
     public static function set_filter($filter, $value): bool
     {
-        if (!strlen($value)) {
+        if (!strlen((string) $value)) {
             return false;
         }
 
@@ -2401,7 +2401,7 @@ class Api
                 $thumb         = $art->get_thumb($dim);
                 if (!empty($thumb)) {
                     header('Content-type: ' . $thumb['thumb_mime']);
-                    header('Content-Length: ' . strlen($thumb['thumb']));
+                    header('Content-Length: ' . strlen((string) $thumb['thumb']));
                     echo $thumb['thumb'];
 
                     return;
@@ -2409,7 +2409,7 @@ class Api
             }
 
             header('Content-type: ' . $art->raw_mime);
-            header('Content-Length: ' . strlen($art->raw));
+            header('Content-Length: ' . strlen((string) $art->raw));
             echo $art->raw;
         }
         Session::extend($input['auth']);

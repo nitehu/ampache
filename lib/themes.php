@@ -65,7 +65,7 @@ function get_theme($name)
 {
     static $_mapcache = array();
 
-    if (strlen($name) < 1) {
+    if (strlen((string) $name) < 1) {
         return false;
     }
 

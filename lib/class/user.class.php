@@ -165,7 +165,7 @@ class User extends database_object
         }
 
         // Make sure the Full name is always filled
-        if (strlen($this->fullname) < 1) {
+        if (strlen((string) $this->fullname) < 1) {
             $this->fullname = $this->username;
         }
     } // Constructor
@@ -894,7 +894,7 @@ class User extends database_object
         $user_id = $this->id;
 
         // We shouldn't test on file only
-        if (!strlen($media->file)) {
+        if (!strlen((string) $media->file)) {
             return false;
         }
 

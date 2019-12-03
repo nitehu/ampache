@@ -87,7 +87,7 @@ class scrobbler
         if ($method == 'POST') {
             $opts['http']['content']  = $params;
             $opts['http']['header'][] = 'Content-type: application/x-www-form-urlencoded';
-            $opts['http']['header'][] = 'Content-length: ' . strlen($params);
+            $opts['http']['header'][] = 'Content-length: ' . strlen((string) $params);
             $params                   = '';
         }
         $context = stream_context_create($opts);

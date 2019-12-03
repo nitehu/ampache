@@ -34,7 +34,7 @@ function split_sql($sql): array
     $buffer    = array();
     $ret       = array();
     $in_string = false;
-    for ($count = 0; $count < strlen($sql) - 1; $count++) {
+    for ($count = 0; $count < strlen((string) $sql) - 1; $count++) {
         if ($sql[$count] == ";" && !$in_string) {
             $ret[] = substr($sql, 0, $count);
             $sql   = substr($sql, $count + 1);
@@ -172,7 +172,7 @@ function install_rewrite_rules($file, $web_path, $download): bool
         }
     } else {
         $browser = new Horde_Browser();
-        $browser->downloadHeaders(basename($file), 'text/plain', false, strlen($final));
+        $browser->downloadHeaders(basename($file), 'text/plain', false, strlen((string) $final));
         echo $final;
 
         return false;
@@ -230,7 +230,7 @@ function install_insert_db($db_user = null, $db_pass = null, $create_db = true, 
     Dba::disconnect();
 
     // Check to see if we should create a user here
-    if (strlen($db_user) && strlen($db_pass)) {
+    if (strlen((string) $db_user) && strlen((string) $db_pass)) {
         $db_host  = AmpConfig::get('database_hostname');
         // create the user account
         $sql_user = "CREATE USER '" . Dba::escape($db_user) . "'";
@@ -344,7 +344,7 @@ function install_create_config($download = false): bool
         }
     } else {
         $browser = new Horde_Browser();
-        $browser->downloadHeaders('ampache.cfg.php', 'text/plain', false, strlen($final));
+        $browser->downloadHeaders('ampache.cfg.php', 'text/plain', false, strlen((string) $final));
         echo $final;
 
         return false;
@@ -360,7 +360,7 @@ function install_create_config($download = false): bool
  */
 function install_create_account($username, $password, $password2): bool
 {
-    if (!strlen($username) || !strlen($password)) {
+    if (!strlen((string) $username) || !strlen((string) $password)) {
         AmpError::add('general', T_('No username or password was specified'));
 
         return false;

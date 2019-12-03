@@ -905,7 +905,7 @@ class vainfo
                 break;
                 case 'composer':
                     $BOM = chr(0xff) . chr(0xfe);
-                    if (strlen($data[0]) == 2 && $data[0] == $BOM) {
+                    if (strlen((string) $data[0]) == 2 && $data[0] == $BOM) {
                         $parsed['composer'] = str_replace($BOM, '', $data[0]);
                     } else {
                         $parsed['composer'] = reset($data);
@@ -1045,7 +1045,7 @@ class vainfo
             switch ($tag) {
                 case 'creation_date':
                     $parsed['release_date'] = strtotime(str_replace(" ", "", $data[0]));
-                    if (strlen($data['0']) > 4) {
+                    if (strlen((string) $data['0']) > 4) {
                         $data[0] = date('Y', $parsed['release_date']);
                     }
                     $parsed['year'] = $data[0];

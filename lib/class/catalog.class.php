@@ -1279,7 +1279,7 @@ abstract class Catalog extends database_object
         foreach ($results as $result) {
             // Pull the string representation from the source
             $image = Art::get_from_source($result, $type);
-            if (strlen($image) > '5') {
+            if (strlen((string) $image) > '5') {
                 $inserted = $art->insert($image, $result['mime']);
                 // If they've enabled resizing of images generate a thumbnail
                 if (AmpConfig::get('resize_images')) {
@@ -1683,7 +1683,7 @@ abstract class Catalog extends database_object
         $new_song              = new Song();
         $new_song->file        = $results['file'];
         $new_song->title       = $results['title'];
-        $new_song->year        = (strlen($results['year'] > 4) ? (int) substr($results['year'], -4, 4) : (int) ($results['year']));
+        $new_song->year        = (strlen((string) $results['year'] > 4) ? (int) substr($results['year'], -4, 4) : (int) ($results['year']));
         $new_song->comment     = $results['comment'];
         $new_song->language    = $results['language'];
         $new_song->lyrics      = str_replace(
@@ -1694,9 +1694,9 @@ abstract class Catalog extends database_object
         $new_song->rate                  = $results['rate'];
         $new_song->mode                  = ($results['mode'] == 'cbr') ? 'cbr' : 'vbr';
         $new_song->size                  = $results['size'];
-        $new_song->time                  = (strlen($results['time'] > 5) ? (int) substr($results['time'], -5, 5) : (int) ($results['time']));
+        $new_song->time                  = (strlen((string) $results['time'] > 5) ? (int) substr($results['time'], -5, 5) : (int) ($results['time']));
         $new_song->mime                  = $results['mime'];
-        $new_song->track                 = (strlen($results['track'] > 5) ? (int) substr($results['track'], -5, 5) : (int) ($results['track']));
+        $new_song->track                 = (strlen((string) $results['track'] > 5) ? (int) substr($results['track'], -5, 5) : (int) ($results['track']));
         $new_song->mbid                  = $results['mb_trackid'];
         $new_song->label                 = $results['publisher'];
         $new_song->composer              = $results['composer'];
@@ -2591,7 +2591,7 @@ abstract class Catalog extends database_object
             case 'update_from':
                 $catalog_id = 0;
                 // First see if we need to do an add
-                if ($options['add_path'] != '/' && strlen($options['add_path'])) {
+                if ($options['add_path'] != '/' && strlen((string) $options['add_path'])) {
                     if ($catalog_id = Catalog_local::get_from_path($options['add_path'])) {
                         $catalog = self::create_from_id($catalog_id);
                         if ($catalog !== null) {
@@ -2601,7 +2601,7 @@ abstract class Catalog extends database_object
                 } // end if add
 
                 // Now check for an update
-                if ($options['update_path'] != '/' && strlen($options['update_path'])) {
+                if ($options['update_path'] != '/' && strlen((string) $options['update_path'])) {
                     if ($catalog_id = Catalog_local::get_from_path($options['update_path'])) {
                         $songs = Song::get_from_path($options['update_path']);
                         foreach ($songs as $song_id) {

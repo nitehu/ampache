@@ -178,7 +178,7 @@ class Wanted extends database_object
                             }
                             $wanted->name = $group->title;
                             if (!empty($group->{'first-release-date'})) {
-                                if (strlen($group->{'first-release-date'}) == 4) {
+                                if (strlen((string) $group->{'first-release-date'}) == 4) {
                                     $wanted->year = $group->{'first-release-date'};
                                 } else {
                                     $wanted->year = date("Y", strtotime($group->{'first-release-date'}));

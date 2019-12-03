@@ -68,7 +68,7 @@ class Upnp_Api
     {
         $socket = socket_create(AF_INET, SOCK_DGRAM, SOL_UDP);
         socket_set_option($socket, SOL_SOCKET, SO_BROADCAST, 1);
-        socket_sendto($socket, $buf, strlen($buf), 0, $host, $port);
+        socket_sendto($socket, $buf, strlen((string) $buf), 0, $host, $port);
         socket_close($socket);
         usleep($delay * 1000);
     }

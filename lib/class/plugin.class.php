@@ -164,13 +164,13 @@ class Plugin
     public function is_valid()
     {
         /* Check the plugin to make sure it's got the needed vars */
-        if (!strlen($this->_plugin->name)) {
+        if (!strlen((string) $this->_plugin->name)) {
             return false;
         }
-        if (!strlen($this->_plugin->description)) {
+        if (!strlen((string) $this->_plugin->description)) {
             return false;
         }
-        if (!strlen($this->_plugin->version)) {
+        if (!strlen((string) $this->_plugin->version)) {
             return false;
         }
 
