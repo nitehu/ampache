@@ -225,7 +225,7 @@ class UI
             $value = $matches[1];
             $unit  = strtolower(substr($matches[2], 0, 1));
         } else {
-            return $value;
+            return (string) $value;
         }
 
         switch ($unit) {
