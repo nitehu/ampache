@@ -413,7 +413,7 @@ class User extends database_object
                 $admin = true;
             }
             $type_array[$type][$row['name']] = array('name' => $row['name'], 'level' => $row['level'], 'description' => $row['description'], 'value' => $row['value'], 'subcategory' => $row['subcatagory']);
-            $results[$type]                  = array('title' => ucwords($type), 'admin' => $admin, 'prefs' => $type_array[$type]);
+            $results[$type]                  = array('title' => ucwords((string) $type), 'admin' => $admin, 'prefs' => $type_array[$type]);
         } // end while
 
         return $results;

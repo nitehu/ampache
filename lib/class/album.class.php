@@ -336,7 +336,7 @@ class Album extends database_object implements library_item
         $artist       = "is null";
 
         if ($this->release_type) {
-            $release_type = "= '" . ucwords($this->release_type) . "'";
+            $release_type = "= '" . ucwords((string) $this->release_type) . "'";
         }
         if ($this->mbid) {
             $mbid = "= '$this->mbid'";
@@ -651,7 +651,7 @@ class Album extends database_object implements library_item
         $year         = (string) $this->year;
 
         if ($this->release_type) {
-            $release_type = "= '" . ucwords($this->release_type) . "'";
+            $release_type = "= '" . ucwords((string) $this->release_type) . "'";
         }
         if ($this->mbid) {
             $mbid = "= '$this->mbid'";
@@ -725,7 +725,7 @@ class Album extends database_object implements library_item
     {
         $web_path = AmpConfig::get('web_path');
 
-        $this->f_release_type = ucwords($this->release_type);
+        $this->f_release_type = ucwords((string) $this->release_type);
 
         if ($details) {
             /* Pull the advanced information */
