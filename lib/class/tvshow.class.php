@@ -344,7 +344,7 @@ class TVShow extends database_object implements library_item
             if ($tvshow_id != $this->id && $tvshow_id != null) {
                 $seasons = $this->get_seasons();
                 foreach ($seasons as $season_id) {
-                    Season::update_tvshow($tvshow_id, $season_id);
+                    TVShow_Season::update_tvshow($tvshow_id, $season_id);
                 }
                 $current_id = $tvshow_id;
                 Stats::migrate('tvshow', $this->id, $tvshow_id);
