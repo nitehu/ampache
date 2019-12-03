@@ -218,7 +218,7 @@ class UI
      * Parses a human-readable size
      * @return string
      */
-    public static function unformat_bytes($value): string
+    public static function unformat_bytes($value)
     {
         if (preg_match('/^([0-9]+) *([[:alpha:]]+)$/', $value, $matches)) {
             $value = $matches[1];
@@ -245,7 +245,7 @@ class UI
             // Intentional break fall-through
         }
 
-        return (string) $value;
+        return $value;
     }
 
     /**

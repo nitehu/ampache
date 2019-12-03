@@ -398,12 +398,12 @@ class Video extends database_object implements media, library_item
      * Get default art kind for this item.
      * @return string
      */
-    public function get_default_art_kind(): string
+    public function get_default_art_kind()
     {
         return 'preview';
     }
 
-    public function get_description(): string
+    public function get_description()
     {
         return '';
     }

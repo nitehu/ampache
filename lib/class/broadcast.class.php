@@ -277,12 +277,12 @@ class Broadcast extends database_object implements library_item
      * Get default art kind for this item.
      * @return string
      */
-    public function get_default_art_kind(): string
+    public function get_default_art_kind()
     {
         return 'default';
     }
 
-    public function get_description(): string
+    public function get_description()
     {
         return null;
     }

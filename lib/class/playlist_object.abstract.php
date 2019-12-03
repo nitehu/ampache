@@ -156,7 +156,7 @@ abstract class playlist_object extends database_object implements library_item
         return $this->user;
     }
 
-    public function get_default_art_kind(): string
+    public function get_default_art_kind()
     {
         return 'default';
     }

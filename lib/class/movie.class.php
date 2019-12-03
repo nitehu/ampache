@@ -139,7 +139,7 @@ class Movie extends Video
         return $keywords;
     }
 
-    public function get_default_art_kind(): string
+    public function get_default_art_kind()
     {
         return 'default';
     }

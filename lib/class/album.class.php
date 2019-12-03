@@ -914,7 +914,7 @@ class Album extends database_object implements library_item
      * Get default art kind for this item.
      * @return string
      */
-    public function get_default_art_kind(): string
+    public function get_default_art_kind()
     {
         return 'default';
     }
@@ -923,7 +923,7 @@ class Album extends database_object implements library_item
      * get_description
      * @return string
      */
-    public function get_description(): string
+    public function get_description()
     {
         // Album description is not supported yet, always return artist description
         $artist = new Artist($this->artist_id);

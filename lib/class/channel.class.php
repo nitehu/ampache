@@ -335,7 +335,7 @@ class Channel extends database_object implements media, library_item
      * get_default_art_kind
      * @return string
      */
-    public function get_default_art_kind(): string
+    public function get_default_art_kind()
     {
         return 'default';
     }
@@ -344,7 +344,7 @@ class Channel extends database_object implements media, library_item
      * get_description
      * @return string
      */
-    public function get_description(): string
+    public function get_description()
     {
         return $this->description;
     }

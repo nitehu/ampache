@@ -212,7 +212,7 @@ class TVShow_Episode extends Video
         );
     }
 
-    public function get_description(): string
+    public function get_description()
     {
         if (!empty($this->summary)) {
             return $this->summary;

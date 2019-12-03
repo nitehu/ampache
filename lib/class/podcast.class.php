@@ -224,7 +224,7 @@ class Podcast extends database_object implements library_item
         return null;
     }
 
-    public function get_default_art_kind(): string
+    public function get_default_art_kind()
     {
         return 'default';
     }
@@ -233,7 +233,7 @@ class Podcast extends database_object implements library_item
      * get_description
      * @return string
      */
-    public function get_description(): string
+    public function get_description()
     {
         return $this->f_description;
     }

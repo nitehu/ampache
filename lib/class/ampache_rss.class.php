@@ -104,7 +104,7 @@ class Ampache_RSS
      * This returns the standardized description for the rss feed based on this->type
      * @return string
      */
-    public function get_description(): string
+    public function get_description()
     {
         //FIXME: For now don't do any kind of translating
         return 'Ampache RSS Feeds';
