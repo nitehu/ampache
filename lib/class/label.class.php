@@ -129,12 +129,12 @@ class Label extends database_object implements library_item
         return array('artist' => $medias);
     }
 
-    public function get_default_art_kind()
+    public function get_default_art_kind(): string
     {
         return 'default';
     }
 
-    public function get_description()
+    public function get_description(): string
     {
         return $this->summary;
     }

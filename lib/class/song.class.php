@@ -1762,7 +1762,7 @@ class Song extends database_object implements media, library_item
      * Get default art kind for this item.
      * @return string
      */
-    public function get_default_art_kind()
+    public function get_default_art_kind(): string
     {
         return 'default';
     }
@@ -1771,7 +1771,7 @@ class Song extends database_object implements media, library_item
      * get_description
      * @return string
      */
-    public function get_description()
+    public function get_description(): string
     {
         if (!empty($this->comment)) {
             return $this->comment;

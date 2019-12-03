@@ -192,7 +192,7 @@ class Live_Stream extends database_object implements media, library_item
     /**
      * @return string
      */
-    public function get_default_art_kind()
+    public function get_default_art_kind(): string
     {
         return 'default';
     }

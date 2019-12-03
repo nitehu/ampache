@@ -207,12 +207,12 @@ class Podcast_Episode extends database_object implements media, library_item
         return null;
     }
 
-    public function get_default_art_kind()
+    public function get_default_art_kind(): string
     {
         return 'default';
     }
 
-    public function get_description()
+    public function get_description(): string
     {
         return $this->f_description;
     }

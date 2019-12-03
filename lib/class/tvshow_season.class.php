@@ -223,12 +223,12 @@ class TVShow_Season extends database_object implements library_item
         return null;
     }
 
-    public function get_default_art_kind()
+    public function get_default_art_kind(): string
     {
         return 'default';
     }
 
-    public function get_description()
+    public function get_description(): string
     {
         // No season description for now, always return tvshow description
         $tvshow = new TVShow($this->tvshow);
