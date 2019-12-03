@@ -489,8 +489,8 @@ class Session
         $cookie_life   = AmpConfig::get('cookie_life');
         $session_name  = AmpConfig::get('session_name');
         $cookie_path   = AmpConfig::get('cookie_path');
-        $cookie_domain = null;
-        $cookie_secure = AmpConfig::get('cookie_secure');
+        $cookie_domain = '';
+        $cookie_secure = make_bool(AmpConfig::get('cookie_secure'));
 
         setcookie($session_name . '_user', $username, $cookie_life, $cookie_path, $cookie_domain, $cookie_secure);
         setcookie($session_name . '_lang', AmpConfig::get('lang'), $cookie_life, $cookie_path, $cookie_domain, $cookie_secure);
