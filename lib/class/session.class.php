@@ -195,12 +195,12 @@ class Session
             case 'api':
                 $key = isset($data['apikey'])
                     ? md5(((string) $data['apikey'] . (string) time()))
-                    : md5(uniqid(rand(), true));
+                    : md5(uniqid((string) rand(), true));
                 break;
             case 'stream':
                 $key = isset($data['sid'])
                     ? $data['sid']
-                    : md5(uniqid(rand(), true));
+                    : md5(uniqid((string) rand(), true));
             break;
             case 'mysql':
             default:

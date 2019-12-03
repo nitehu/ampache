@@ -385,10 +385,10 @@ class Preference extends database_object
 
         foreach ($results as $key => $data) {
             if (!is_array($data)) {
-                if (strcasecmp($data, "true") == "0") {
+                if (strcasecmp((string) $data, "true") == "0") {
                     $results[$key] = 1;
                 }
-                if (strcasecmp($data, "false") == "0") {
+                if (strcasecmp((string) $data, "false") == "0") {
                     $results[$key] = 0;
                 }
             }
