@@ -246,7 +246,7 @@ class UI
             // Intentional break fall-through
         }
 
-        return $value;
+        return (string) $value;
     }
 
     /**
