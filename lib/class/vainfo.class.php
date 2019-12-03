@@ -472,7 +472,7 @@ class vainfo
                 }
             }
         } else {
-            $arr = $info[$field];
+            $arr[] = $info[$field];
         }
 
         return $arr;
