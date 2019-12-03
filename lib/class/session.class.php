@@ -97,7 +97,7 @@ class Session
         $session_name  = AmpConfig::get('session_name');
         $cookie_path   = AmpConfig::get('cookie_path');
         $cookie_domain = '';
-        $cookie_secure = AmpConfig::get('cookie_secure');
+        $cookie_secure = make_bool(AmpConfig::get('cookie_secure'));
 
         // Destroy our cookie!
         setcookie($session_name, '', -1, $cookie_path, $cookie_domain, $cookie_secure);
