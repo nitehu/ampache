@@ -121,6 +121,6 @@ class WebDAV_Directory extends DAV\Collection
      */
     public function getName(): string
     {
-        return $this->libitem->get_fullname();
+        return (string) $this->libitem->get_fullname();
     }
 }

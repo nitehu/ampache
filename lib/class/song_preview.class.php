@@ -237,7 +237,7 @@ class Song_Preview extends database_object implements media, playable_item
         return true;
     } // format
 
-    public function get_fullname()
+    public function get_fullname(): string
     {
         return $this->f_title;
     }

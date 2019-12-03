@@ -168,7 +168,7 @@ class Podcast_Episode extends database_object implements media, library_item
         return $keywords;
     }
 
-    public function get_fullname()
+    public function get_fullname(): string
     {
         return $this->f_title;
     }

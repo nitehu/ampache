@@ -121,7 +121,7 @@ abstract class playlist_object extends database_object implements library_item
         return array();
     }
 
-    public function get_fullname()
+    public function get_fullname(): string
     {
         return $this->f_name;
     }

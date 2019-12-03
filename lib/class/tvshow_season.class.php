@@ -166,7 +166,7 @@ class TVShow_Season extends database_object implements library_item
         return $keywords;
     }
 
-    public function get_fullname()
+    public function get_fullname(): string
     {
         return $this->f_name;
     }

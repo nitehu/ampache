@@ -847,7 +847,7 @@ class Tag extends database_object implements library_item
      */
     public function get_description(): string
     {
-        return null;
+        return '';
     }
 
     /**
