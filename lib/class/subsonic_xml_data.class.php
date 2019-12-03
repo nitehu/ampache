@@ -872,7 +872,7 @@ class Subsonic_XML_Data
         $valid_types   = Song::get_stream_types_for_type($video->type, 'api');
         if ($transcode_cfg == 'always' || ($transcode_cfg != 'never' && !in_array('native', $valid_types))) {
             $transcode_settings = $video->get_transcode_settings(null, 'api');
-            if ($transcode_settings) {
+            if (!empty($transcode_settings)) {
                 $transcode_type = $transcode_settings['format'];
                 $xvideo->addAttribute('transcodedSuffix', $transcode_type);
                 $xvideo->addAttribute('transcodedContentType', Video::type_to_mime($transcode_type));
