@@ -184,7 +184,7 @@ class UI
     public static function format_bytes($value, $precision = 2): string
     {
         $pass = 0;
-        while (strlen(floor($value)) > 3) {
+        while (strlen((string) floor($value)) > 3) {
             $value /= 1024;
             $pass++;
         }
