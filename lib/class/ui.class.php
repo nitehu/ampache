@@ -352,9 +352,9 @@ class UI
      * @param string $title
      * @param string $id_attrib
      * @param string $class_attrib
-     * @return string
+     * @return string|array
      */
-    public static function get_image($name, $title = null, $id_attrib = null, $class_attrib = null): string
+    public static function get_image($name, $title = null, $id_attrib = null, $class_attrib = null)
     {
         if (is_array($name)) {
             $hover_name = $name[1];
