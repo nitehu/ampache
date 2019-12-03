@@ -1232,7 +1232,7 @@ class Album extends database_object implements library_item
         $alphabet = range('A', 'Z');
         if ((int) $disk == 0) {
             // A is 0 but we want to start at disk 1
-            $disk = (int) array_search(strtoupper($disk), $alphabet) + 1;
+            $disk = (int) array_search(strtoupper((string) $disk), $alphabet) + 1;
         }
 
         return (int) $disk;

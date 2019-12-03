@@ -399,7 +399,7 @@ class Subsonic_XML_Data
         $xlastletter  = '';
         foreach ($artists as $artist) {
             if (strlen((string) $artist->name) > 0) {
-                $letter = strtoupper($artist->name[0]);
+                $letter = strtoupper((string) $artist->name[0]);
                 if ($letter == "X" || $letter == "Y" || $letter == "Z") {
                     $letter = "X-Z";
                 } else {

@@ -277,7 +277,7 @@ class Video extends database_object implements media, library_item
         }
 
         // Format the Bitrate
-        $this->f_bitrate       = (int) ($this->bitrate / 1000) . "-" . strtoupper($this->mode);
+        $this->f_bitrate       = (int) ($this->bitrate / 1000) . "-" . strtoupper((string) $this->mode);
         $this->f_video_bitrate = (string) (int) ($this->video_bitrate / 1000);
         if ($this->frame_rate) {
             $this->f_frame_rate = $this->frame_rate . ' fps';

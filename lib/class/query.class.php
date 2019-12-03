@@ -833,7 +833,7 @@ class Query
      */
     public function set_join($type, $table, $source, $dest, $priority)
     {
-        $this->_state['join'][$priority][$table] = strtoupper($type) . ' JOIN ' . $table . ' ON ' . $source . '=' . $dest;
+        $this->_state['join'][$priority][$table] = strtoupper((string) $type) . ' JOIN ' . $table . ' ON ' . $source . '=' . $dest;
     } // set_join
 
     /**
