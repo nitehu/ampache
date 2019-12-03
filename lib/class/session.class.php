@@ -101,8 +101,8 @@ class Session
 
         // Destroy our cookie!
         setcookie($session_name, '', -1, $cookie_path, $cookie_domain, $cookie_secure);
-        setcookie($session_name . '_user', null, -1, $cookie_path, $cookie_domain, $cookie_secure);
-        setcookie($session_name . '_lang', null, -1, $cookie_path, $cookie_domain, $cookie_secure);
+        setcookie($session_name . '_user', '', -1, $cookie_path, $cookie_domain, $cookie_secure);
+        setcookie($session_name . '_lang', '', -1, $cookie_path, $cookie_domain, $cookie_secure);
 
         return true;
     }
