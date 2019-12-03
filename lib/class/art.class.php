@@ -732,7 +732,7 @@ class Art extends database_object
      */
     public function generate_thumb($image, $size, $mime): array
     {
-        $data = explode("/", $mime);
+        $data = explode("/", (string) $mime);
         $type = strtolower($data['1']);
 
         if (!self::test_image($image)) {

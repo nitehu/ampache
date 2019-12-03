@@ -1609,7 +1609,7 @@ abstract class Catalog extends database_object
                 //do nothing
             } elseif ($info['change']) {
                 if ($info['element'][$type]) {
-                    $change = explode(' --> ', $info['element'][$type]);
+                    $change = explode(' --> ', (string) $info['element'][$type]);
                     $result = $change[1];
                 }
                 $file   = scrub_out($song->file);

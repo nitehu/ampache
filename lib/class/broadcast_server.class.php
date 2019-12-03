@@ -79,7 +79,7 @@ class Broadcast_Server implements MessageComponentInterface
      */
     public function onMessage(ConnectionInterface $from, $msg)
     {
-        $commands = explode(';', $msg);
+        $commands = explode(';', (string) $msg);
         foreach ($commands as $command) {
             $command = trim((string) $command);
             if (!empty($command)) {

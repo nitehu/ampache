@@ -125,7 +125,7 @@ function install_check_rewrite_rules($file, $web_path, $fix = false)
     $new_lines = array();
     $lines     = explode("\n", $htaccess);
     foreach ($lines as $line) {
-        $parts   = explode(' ', $line);
+        $parts   = explode(' ', (string) $line);
         $p_count = count($parts);
         for ($count = 0; $count < $p_count; $count++) {
             // Matching url rewriting rule syntax

@@ -387,7 +387,7 @@ function generate_config($current): string
     $dist     = fread($handle, filesize($distfile));
     fclose($handle);
 
-    $data = explode("\n", $dist);
+    $data = explode("\n", (string) $dist);
 
     $final = "";
     foreach ($data as $line) {

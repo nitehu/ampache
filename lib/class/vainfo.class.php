@@ -808,7 +808,7 @@ class vainfo
                     $parsed['track'] = $data[0];
                 break;
                 case 'discnumber':
-                    $elements             = explode('/', $data[0]);
+                    $elements             = explode('/', (string) $data[0]);
                     $parsed['disk']       = $elements[0];
                     $parsed['totaldisks'] = $elements[1];
                 break;
@@ -892,7 +892,7 @@ class vainfo
                     $parsed['genre'] = $this->parseGenres($data);
                     break;
                 case 'part_of_a_set':
-                    $elements             = explode('/', $data[0]);
+                    $elements             = explode('/', (string) $data[0]);
                     $parsed['disk']       = $elements[0];
                     $parsed['totaldisks'] = $elements[1];
                 break;
@@ -1226,7 +1226,7 @@ class vainfo
 
         // Remove first left directories from filename to match pattern
         $cntslash = substr_count($pattern, preg_quote(DIRECTORY_SEPARATOR)) + 1;
-        $filepart = explode(DIRECTORY_SEPARATOR, $filepath);
+        $filepart = explode(DIRECTORY_SEPARATOR, (string) $filepath);
         if (count($filepart) > $cntslash) {
             $filepath = implode(DIRECTORY_SEPARATOR, array_slice($filepart, count($filepart) - $cntslash));
         }

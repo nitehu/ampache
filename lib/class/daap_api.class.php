@@ -258,7 +258,7 @@ class Daap_Api
             $auth    = $headers['Authorization'];
             if (strpos(strtolower($auth), 'basic') === 0) {
                 $decauth  = base64_decode(substr($auth, 6));
-                $userpass = explode(':', $decauth);
+                $userpass = explode(':', (string) $decauth);
                 if (count($userpass) == 2) {
                     if ($userpass[1] == $pass) {
                         $authenticated = true;
@@ -390,7 +390,7 @@ class Daap_Api
         } elseif (count($input) == 3) {
             // Stream
             if ($input[1] == 'items') {
-                $finfo = explode('.', $input[2]);
+                $finfo = explode('.', (string) $input[2]);
                 if (count($finfo) == 2) {
                     $object_id = (int) ($finfo[0]);
                     $type      = $finfo[1];

@@ -45,7 +45,7 @@ class AutoUpdate
      */
     protected static function is_develop(): bool
     {
-        $version         = AmpConfig::get('version');
+        $version         = (string) AmpConfig::get('version');
         $vspart          = explode('-', $version);
         $git_branch      = self::is_force_git_branch();
 

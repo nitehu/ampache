@@ -395,7 +395,7 @@ class Browse extends Query
     {
         foreach ($request as $key => $value) {
             //reinterpret v as a list of int
-            $list = explode(',', $value);
+            $list = explode(',', (string) $value);
             $ok   = true;
             foreach ($list as $item) {
                 if (!is_numeric($item)) {

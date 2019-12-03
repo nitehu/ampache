@@ -79,12 +79,12 @@ function get_theme($name)
     if (file_exists($config_file)) {
         $results         = parse_ini_file($config_file);
         $results['path'] = $name;
-        $results['base'] = explode(',', $results['base']);
+        $results['base'] = explode(',', (string) $results['base']);
         $nbbases         = count($results['base']);
         for ($count = 0; $count < $nbbases; $count++) {
             $results['base'][$count] = explode('|', $results['base'][$count]);
         }
-        $results['colors'] = explode(',', $results['colors']);
+        $results['colors'] = explode(',', (string) $results['colors']);
     } else {
         $results = null;
     }

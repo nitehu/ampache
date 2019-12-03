@@ -228,7 +228,7 @@ class Core
     private static function getNamespacedPaths($class)
     {
         $possiblePaths   = array();
-        $namespaceParts  = explode('\\', $class);
+        $namespaceParts  = explode('\\', (string) $class);
         $possiblePaths[] = AmpConfig::get('prefix') . '/modules/' . implode('/', $namespaceParts) . '.php';
 
         $classedPath = array('path' => AmpConfig::get('prefix')) +

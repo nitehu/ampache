@@ -334,7 +334,7 @@ class Artist extends database_object implements library_item
                 }
                 $results[$rtype][] = $row['id'];
 
-                $sort = AmpConfig::get('album_release_type_sort');
+                $sort = (string) AmpConfig::get('album_release_type_sort');
                 if ($sort) {
                     $results_sort = array();
                     $asort        = explode(',', $sort);
