@@ -515,11 +515,11 @@ class Subsonic_XML_Data
         $rating      = new Rating($album->id, "album");
         $user_rating = $rating->get_user_rating();
         if ($user_rating > 0) {
-            $xalbum->addAttribute('userRating', ceil($user_rating));
+            $xalbum->addAttribute('userRating', (string) ceil($user_rating));
         }
         $avg_rating = $rating->get_average_rating();
         if ($avg_rating > 0) {
-            $xalbum->addAttribute('averageRating', ceil($avg_rating));
+            $xalbum->addAttribute('averageRating', (string) ceil($avg_rating));
         }
 
         self::setIfStarred($xalbum, 'album', $album->id);
@@ -684,11 +684,11 @@ class Subsonic_XML_Data
         $rating      = new Rating($songData['id'], "song");
         $user_rating = $rating->get_user_rating();
         if ($user_rating > 0) {
-            $xsong->addAttribute('userRating', ceil($user_rating));
+            $xsong->addAttribute('userRating', (string) ceil($user_rating));
         }
         $avg_rating = $rating->get_average_rating();
         if ($avg_rating > 0) {
-            $xsong->addAttribute('averageRating', ceil($avg_rating));
+            $xsong->addAttribute('averageRating', (string) ceil($avg_rating));
         }
         self::setIfStarred($xsong, 'song', $songData['id']);
         if ($songData['track'] > 0) {
@@ -703,7 +703,7 @@ class Subsonic_XML_Data
         }
         $xsong->addAttribute('size', (string) $songData['size']);
         if (Album::sanitize_disk($albumData['disk']) > 0) {
-            $xsong->addAttribute('discNumber', Album::sanitize_disk($albumData['disk']));
+            $xsong->addAttribute('discNumber', (string) Album::sanitize_disk($albumData['disk']));
         }
         $xsong->addAttribute('suffix', (string) $songData['type']);
         $xsong->addAttribute('contentType', (string) $songData['mime']);
