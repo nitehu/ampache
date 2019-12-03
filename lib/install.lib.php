@@ -189,7 +189,7 @@ function install_rewrite_rules($file, $web_path, $download): bool
  */
 function install_insert_db($db_user = null, $db_pass = null, $create_db = true, $overwrite = false, $create_tables = true, $mysql8 = false): bool
 {
-    $database = AmpConfig::get('database_name');
+    $database = (string) AmpConfig::get('database_name');
     // Make sure that the database name is valid
     preg_match('/([^\d\w\_\-])/', $database, $matches);
 

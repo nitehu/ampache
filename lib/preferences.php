@@ -29,13 +29,13 @@ declare(strict_types=1);
  * and then runs throught $_REQUEST looking for those
  * values and updates them for this user
  */
-function update_preferences($pref_id = 0)
+function update_preferences($user_id = 0)
 {
     /* Get current keys */
     $sql = "SELECT `id`, `name`, `type` FROM `preference`";
 
     /* If it isn't the System Account's preferences */
-    if ($pref_id != '-1') {
+    if ($user_id != '-1') {
         $sql .= " WHERE `catagory` != 'system'";
     }
 
@@ -50,10 +50,10 @@ function update_preferences($pref_id = 0)
     /* Foreach through possible keys and assign them */
     foreach ($results as $data) {
         /* Get the Value from POST/GET var called $data */
-        $name            = $data['name'];
+        $name            = (string) $data['name'];
         $apply_to_all    = 'check_' . $data['name'];
         $new_level       = 'level_' . $data['name'];
-        $id              = $data['id'];
+        $pref_id         = $data['id'];
         $value           = scrub_in($_REQUEST[$name]);
 
         /* Some preferences require some extra checks to be performed */
@@ -77,11 +77,11 @@ function update_preferences($pref_id = 0)
 
         /* Run the update for this preference only if it's set */
         if (isset($_REQUEST[$name])) {
-            Preference::update($id, $pref_id, $value, $_REQUEST[$apply_to_all]);
+            Preference::update($pref_id, $user_id, $value, $_REQUEST[$apply_to_all]);
         }
 
         if (Access::check('interface', '100') && $_REQUEST[$new_level]) {
-            Preference::update_level($id, $_REQUEST[$new_level]);
+            Preference::update_level($pref_id, $_REQUEST[$new_level]);
         }
     } // end foreach preferences
 
