@@ -154,12 +154,12 @@ class Wanted extends database_object
 
         $results = array();
         foreach ($martist->{'release-groups'} as $group) {
-            if (in_array(strtolower($group->{'primary-type'}), $types)) {
+            if (in_array(strtolower((string) $group->{'primary-type'}), $types)) {
                 $add     = true;
                 $g_count = count($group->{'secondary-types'});
 
                 for ($i = 0; $i < $g_count && $add; ++$i) {
-                    $add = in_array(strtolower($group->{'secondary-types'}[$i]), $types);
+                    $add = in_array(strtolower((string) $group->{'secondary-types'}[$i]), $types);
                 }
 
                 if ($add) {

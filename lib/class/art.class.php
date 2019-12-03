@@ -733,7 +733,7 @@ class Art extends database_object
     public function generate_thumb($image, $size, $mime): array
     {
         $data = explode("/", (string) $mime);
-        $type = strtolower($data['1']);
+        $type = strtolower((string) $data['1']);
 
         if (!self::test_image($image)) {
             debug_event('art.class', 'Not trying to generate thumbnail, invalid data passed', 1);

@@ -75,7 +75,7 @@ class XML_Data
             return false;
         }
 
-        if (strtolower($limit) == "none") {
+        if (strtolower((string) $limit) == "none") {
             self::$limit = null;
         } else {
             self::$limit = (int) ($limit);

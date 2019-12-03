@@ -247,7 +247,7 @@ class Core
     {
         $possiblePaths   = array();
         $possiblePaths[] = AmpConfig::get('prefix') . '/lib/class/' .
-                strtolower($class) . '.class.php';
+                strtolower((string) $class) . '.class.php';
 
         return $possiblePaths;
     }

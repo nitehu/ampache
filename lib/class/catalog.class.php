@@ -479,14 +479,14 @@ abstract class Catalog extends database_object
 
             // Populate the filecache
             while ($results = Dba::fetch_assoc($db_results)) {
-                $this->_filecache[strtolower($results['file'])] = $results['id'];
+                $this->_filecache[strtolower((string) $results['file'])] = $results['id'];
             }
 
             $sql        = 'SELECT `id`, `file` FROM `video` WHERE `catalog` = ?';
             $db_results = Dba::read($sql, array($this->id));
 
             while ($results = Dba::fetch_assoc($db_results)) {
-                $this->_filecache[strtolower($results['file'])] = 'v_' . $results['id'];
+                $this->_filecache[strtolower((string) $results['file'])] = 'v_' . $results['id'];
             }
         }
 

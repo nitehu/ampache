@@ -69,7 +69,7 @@ function get_theme($name)
         return false;
     }
 
-    $name = strtolower($name);
+    $name = strtolower((string) $name);
 
     if (isset($_mapcache[$name])) {
         return $_mapcache[$name];

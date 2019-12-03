@@ -333,10 +333,10 @@ function create_preference_input($name, $value)
                 echo "<select name=\"$name\">\n";
                 foreach ($theme_cfg['colors'] as $color) {
                     $is_selected = "";
-                    if ($value == strtolower($color)) {
+                    if ($value == strtolower((string) $color)) {
                         $is_selected = "selected=\"selected\"";
                     }
-                    echo "\t<option value=\"" . strtolower($color) . "\" $is_selected>" . $color . "</option>\n";
+                    echo "\t<option value=\"" . strtolower((string) $color) . "\" $is_selected>" . $color . "</option>\n";
                 } // foreach themes
                 echo "</select>\n";
             }

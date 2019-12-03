@@ -576,7 +576,7 @@ class Subsonic_XML_Data
             }
         }
         $extension       = pathinfo($results['file'], PATHINFO_EXTENSION);
-        $results['type'] = strtolower($extension);
+        $results['type'] = strtolower((string) $extension);
         $results['mime'] = Song::type_to_mime($results['type']);
 
         return $results;

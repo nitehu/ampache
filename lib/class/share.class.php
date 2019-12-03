@@ -448,7 +448,7 @@ class Share extends database_object
         echo "<li style='padding-top: 8px; text-align: right;'>";
         $plugins = Plugin::get_plugins('external_share');
         foreach ($plugins as $plugin_name) {
-            echo "<a onclick=\"handleShareAction('" . AmpConfig::get('web_path') . "/share.php?action=external_share&plugin=" . $plugin_name . "&type=" . $object_type . "&id=" . $object_id . "')\" target=\"_blank\">" . UI::get_icon('share_' . strtolower($plugin_name), $plugin_name) . "</a>&nbsp;";
+            echo "<a onclick=\"handleShareAction('" . AmpConfig::get('web_path') . "/share.php?action=external_share&plugin=" . $plugin_name . "&type=" . $object_type . "&id=" . $object_id . "')\" target=\"_blank\">" . UI::get_icon('share_' . strtolower((string) $plugin_name), $plugin_name) . "</a>&nbsp;";
         }
         echo "</li>";
         echo "</ul>";

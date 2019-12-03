@@ -78,7 +78,7 @@ class vainfo
         } else {
             $this->_pathinfo = pathinfo(str_replace('%2F', '/', urlencode($this->filename)));
         }
-        $this->_pathinfo['extension'] = strtolower($this->_pathinfo['extension']);
+        $this->_pathinfo['extension'] = strtolower((string) $this->_pathinfo['extension']);
 
         $enabled_sources = (array) $this->get_metadata_order();
 
@@ -674,7 +674,7 @@ class vainfo
         if (isset($tags['ape'])) {
             if (isset($tags['ape']['items'])) {
                 foreach ($tags['ape']['items'] as $key => $tag) {
-                    switch (strtolower($key)) {
+                    switch (strtolower((string) $key)) {
                         case 'replaygain_track_gain':
                         case 'replaygain_track_peak':
                         case 'replaygain_album_gain':
@@ -735,7 +735,7 @@ class vainfo
     {
         $parsed = array();
         foreach ($tags as $tagname => $data) {
-            switch (strtolower($tagname)) {
+            switch (strtolower((string) $tagname)) {
                 case 'genre':
                     // Pass the array through
                     $parsed[$tagname] = $this->parseGenres($data);
@@ -799,7 +799,7 @@ class vainfo
 
         foreach ($tags as $tag => $data) {
             //debug_event('vainfo.class', 'Vorbis tag: ' . $tag . ' value: ' . $data[0], 5);
-            switch (strtolower($tag)) {
+            switch (strtolower((string) $tag)) {
                 case 'genre':
                     // Pass the array through
                     $parsed[$tag] = $this->parseGenres($data);
@@ -886,7 +886,7 @@ class vainfo
         $parsed = array();
 
         foreach ($tags as $tag => $data) {
-            //debug_event('vainfo.class', 'id3v2 tag: ' . strtolower($tag) . ' value: ' . $data[0], 5);
+            //debug_event('vainfo.class', 'id3v2 tag: ' . strtolower((string) $tag) . ' value: ' . $data[0], 5);
             switch ($tag) {
                 case 'genre':
                     $parsed['genre'] = $this->parseGenres($data);
@@ -949,7 +949,7 @@ class vainfo
                 // not a bug those strings are UTF-16 encoded
                 // getID3 has copies of text properly converted to utf-8 encoding in comments/text
                 foreach ($id3v2['TXXX'] as $txxx) {
-                    switch (strtolower($this->trimAscii($txxx['description']))) {
+                    switch (strtolower((string) $this->trimAscii($txxx['description']))) {
                         case 'musicbrainz album id':
                             $parsed['mb_albumid'] = $id3v2['comments']['text'][$txxx['description']];
                         break;

@@ -212,7 +212,7 @@ class Video extends database_object implements media, library_item
         }
 
         $data       = pathinfo($this->file);
-        $this->type = strtolower($data['extension']);
+        $this->type = strtolower((string) $data['extension']);
 
         return true;
     } // Constructor
@@ -226,7 +226,7 @@ class Video extends database_object implements media, library_item
     {
         $dtypes = self::get_derived_types();
         foreach ($dtypes as $dtype) {
-            $sql        = "SELECT `id` FROM `" . strtolower($dtype) . "` WHERE `id` = ?";
+            $sql        = "SELECT `id` FROM `" . strtolower((string) $dtype) . "` WHERE `id` = ?";
             $db_results = Dba::read($sql, array($video_id));
             $results    = Dba::fetch_assoc($db_results);
             if ($results['id']) {
@@ -494,7 +494,7 @@ class Video extends database_object implements media, library_item
     {
         $dtypes = self::get_derived_types();
         foreach ($dtypes as $dtype) {
-            if (strtolower($type) == strtolower($dtype)) {
+            if (strtolower((string) $type) == strtolower((string) $dtype)) {
                 return $type;
             }
         }
@@ -1104,7 +1104,7 @@ class Video extends database_object implements media, library_item
     public static function get_item_count($type)
     {
         $type       = self::validate_type($type);
-        $sql        = 'SELECT COUNT(*) as count from `' . strtolower($type) . '`;';
+        $sql        = 'SELECT COUNT(*) as count from `' . strtolower((string) $type) . '`;';
         $db_results = Dba::read($sql,array());
         if ($results = Dba::fetch_assoc($db_results)) {
             if ($results['count']) {

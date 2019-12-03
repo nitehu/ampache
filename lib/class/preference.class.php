@@ -296,7 +296,7 @@ class Preference extends database_object
     public static function insert($name, $description, $default, $level, $type, $category, $subcategory = null)
     {
         if ($subcategory !== null) {
-            $subcategory = strtolower($subcategory);
+            $subcategory = strtolower((string) $subcategory);
         }
         $sql = "INSERT INTO `preference` (`name`, `description`, `value`, `level`, `type`, `catagory`, `subcatagory`) " .
             "VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -507,7 +507,7 @@ class Preference extends database_object
             unset($results['theme_color']);
         }
         if (!isset($results['theme_color'])) {
-            $results['theme_color'] = strtolower($themecfg['colors'][0]);
+            $results['theme_color'] = strtolower((string) $themecfg['colors'][0]);
         }
 
         AmpConfig::set_by_array($results, true);

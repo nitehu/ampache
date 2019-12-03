@@ -57,7 +57,7 @@ class Plugin
             if (is_dir($basedir . '/' . $cname)) {
                 $name = $cname;
             } else {
-                $name = 'ampache-' . strtolower($cname);
+                $name = 'ampache-' . strtolower((string) $cname);
             }
 
             /* Require the file we want */

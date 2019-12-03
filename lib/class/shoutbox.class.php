@@ -170,7 +170,7 @@ class Shoutbox
         $object = new $type($object_id);
 
         if ($object->id > 0) {
-            if (strtolower($type) === 'song') {
+            if (strtolower((string) $type) === 'song') {
                 if (!$object->enabled) {
                     $object = null;
                 }

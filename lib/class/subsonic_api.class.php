@@ -156,10 +156,10 @@ class Subsonic_Api
 
     public static function setHeader($filetype)
     {
-        if (strtolower($filetype) == "json") {
+        if (strtolower((string) $filetype) == "json") {
             header("Content-type: application/json; charset=" . AmpConfig::get('site_charset'));
             Subsonic_XML_Data::$enable_json_checks = true;
-        } elseif (strtolower($filetype) == "jsonp") {
+        } elseif (strtolower((string) $filetype) == "jsonp") {
             header("Content-type: text/javascript; charset=" . AmpConfig::get('site_charset'));
             Subsonic_XML_Data::$enable_json_checks = true;
         } else {
@@ -176,7 +176,7 @@ class Subsonic_Api
     {
         $type     = $input['f'];
         $callback = $input['callback'];
-        self::apiOutput2(strtolower($type), $xml, $callback, $alwaysArray);
+        self::apiOutput2(strtolower((string) $type), $xml, $callback, $alwaysArray);
     }
 
     /**

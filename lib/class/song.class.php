@@ -329,7 +329,7 @@ class Song extends database_object implements media, library_item
                 $this->$key = $value;
             }
             $data       = pathinfo($this->file);
-            $this->type = strtolower($data['extension']);
+            $this->type = strtolower((string) $data['extension']);
             $this->mime = self::type_to_mime($this->type);
         } else {
             $this->id = null;

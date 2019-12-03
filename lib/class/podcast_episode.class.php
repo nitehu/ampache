@@ -80,7 +80,7 @@ class Podcast_Episode extends database_object implements media, library_item
             }
             if (!empty($this->file)) {
                 $data          = pathinfo($this->file);
-                $this->type    = strtolower($data['extension']);
+                $this->type    = strtolower((string) $data['extension']);
                 $this->mime    = Song::type_to_mime($this->type);
                 $this->enabled = true;
             }
