@@ -283,7 +283,7 @@ class Subsonic_XML_Data
     public static function setError($xml, $code, $message = '')
     {
         $xerr = $xml->addChild('error');
-        $xerr->addAttribute('code', $code);
+        $xerr->addAttribute('code', (string) $code);
 
         if (empty($message)) {
             switch ($code) {

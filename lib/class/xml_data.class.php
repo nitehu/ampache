@@ -1169,8 +1169,8 @@ class XML_Data
             if ($media->mime) {
                 $surl  = $media_info['object_type']::play_url($media_info['object_id'], '', 'api', false, $user_id);
                 $xencl = $xitem->addChild("enclosure");
-                $xencl->addAttribute("type", $media->mime);
-                $xencl->addAttribute("length", $media->size);
+                $xencl->addAttribute("type", (string) $media->mime);
+                $xencl->addAttribute("length", (string) $media->size);
                 $xencl->addAttribute("url", $surl);
             }
         }
