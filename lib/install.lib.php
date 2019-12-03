@@ -19,13 +19,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 /**
  * split_sql
  * splits up a standard SQL dump file into distinct sql queries
  * @param string $sql
+ * @return array
  */
-function split_sql($sql)
+function split_sql($sql): array
 {
     $sql       = trim($sql);
     $sql       = preg_replace("/\n#[^\n]*\n/", "\n", $sql);
@@ -60,8 +62,9 @@ function split_sql($sql)
  * this function checks to see if we actually
  * still need to install ampache. This function is
  * very important, we don't want to reinstall over top of an existing install
+ * @return bool
  */
-function install_check_status($configfile)
+function install_check_status($configfile): bool
 {
     /**
      * Check and see if the config file exists
@@ -70,8 +73,6 @@ function install_check_status($configfile)
      */
     if (!file_exists($configfile)) {
         return true;
-    } else {
-        //AmpError::add('general', T_('Config file already exists, the install has probably completed'));
     }
 
     /**
@@ -158,8 +159,9 @@ function install_check_rewrite_rules($file, $web_path, $fix = false)
 /**
  * @param string $file
  * @param boolean $download
+ * @return bool
  */
-function install_rewrite_rules($file, $web_path, $download)
+function install_rewrite_rules($file, $web_path, $download): bool
 {
     $final = install_check_rewrite_rules($file, $web_path, true);
     if (!$download) {
@@ -183,8 +185,9 @@ function install_rewrite_rules($file, $web_path, $download)
  * install_insert_db
  *
  * Inserts the database using the values from Config.
+ * @return bool
  */
-function install_insert_db($db_user = null, $db_pass = null, $create_db = true, $overwrite = false, $create_tables = true, $mysql8 = false)
+function install_insert_db($db_user = null, $db_pass = null, $create_db = true, $overwrite = false, $create_tables = true, $mysql8 = false): bool
 {
     $database = AmpConfig::get('database_name');
     // Make sure that the database name is valid
@@ -300,8 +303,9 @@ function install_insert_db($db_user = null, $db_pass = null, $create_db = true, 
  * install_create_config
  *
  * Attempts to write out the config file or offer it as a download.
+ * @return bool
  */
-function install_create_config($download = false)
+function install_create_config($download = false): bool
 {
     $config_file = AmpConfig::get('prefix') . '/config/ampache.cfg.php';
 
@@ -352,8 +356,9 @@ function install_create_config($download = false)
 /**
  * install_create_account
  * this creates your initial account and sets up the preferences for the -1 user and you
+ * @return bool
  */
-function install_create_account($username, $password, $password2)
+function install_create_account($username, $password, $password2): bool
 {
     if (!strlen($username) || !strlen($password)) {
         AmpError::add('general', T_('No username or password was specified'));
@@ -401,8 +406,9 @@ function install_create_account($username, $password, $password2)
 
 /**
  * @param string $command
+ * @return bool
  */
-function command_exists($command)
+function command_exists($command): bool
 {
     if (!function_exists('proc_open')) {
         return false;
@@ -435,8 +441,9 @@ function command_exists($command)
 /**
  * install_get_transcode_modes
  * get transcode modes available on this machine.
+ * @return array
  */
-function install_get_transcode_modes()
+function install_get_transcode_modes(): array
 {
     $modes = array();
 

@@ -21,6 +21,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 /*
  * update_preferences
@@ -91,8 +92,9 @@ function update_preferences($pref_id = 0)
 /**
  * update_preference
  * This function updates a single preference and is called by the update_preferences function
+ * @return bool
  */
-function update_preference($user_id, $name, $pref_id, $value)
+function update_preference($user_id, $name, $pref_id, $value): bool
 {
     $apply_check = "check_" . $name;
     $level_check = "level_" . $name;
