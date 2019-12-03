@@ -451,7 +451,7 @@ class Query
      */
     private static function _unserialize($data)
     {
-        return json_decode($data, true);
+        return json_decode((string) $data, true);
     }
 
     /**

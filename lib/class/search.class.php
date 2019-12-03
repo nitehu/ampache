@@ -59,7 +59,7 @@ class Search extends playlist_object
             foreach ($info as $key => $value) {
                 $this->$key = $value;
             }
-            $this->rules = json_decode($this->rules, true);
+            $this->rules = json_decode((string) $this->rules, true);
         }
 
         // Define our basetypes
