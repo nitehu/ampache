@@ -19,6 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 /**
  * Userflag class
@@ -63,7 +64,7 @@ class Useractivity extends database_object
      * @param int[] $ids
      * @return bool
      */
-    public static function build_cache($ids)
+    public static function build_cache($ids): bool
     {
         if (!is_array($ids) || !count($ids)) {
             return false;

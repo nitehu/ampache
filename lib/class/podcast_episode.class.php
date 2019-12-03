@@ -19,6 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 class Podcast_Episode extends database_object implements media, library_item
 {
@@ -270,7 +271,7 @@ class Podcast_Episode extends database_object implements media, library_item
      * @param array $location
      * @return bool
      */
-    public function set_played($user, $agent, $location)
+    public function set_played($user, $agent, $location): bool
     {
         Stats::insert('podcast', $this->podcast, $user, $agent, $location);
         Stats::insert('podcast_episode', $this->id, $user, $agent, $location);
@@ -314,7 +315,7 @@ class Podcast_Episode extends database_object implements media, library_item
      * @param integer $level
      * @return bool
      */
-    private static function _update_item($field, $value, $song_id, $level)
+    private static function _update_item($field, $value, $song_id, $level): bool
     {
         /* Check them Rights! */
         if (!Access::check('interface', $level)) {
@@ -336,7 +337,7 @@ class Podcast_Episode extends database_object implements media, library_item
      * Get stream name.
      * @return string
      */
-    public function get_stream_name()
+    public function get_stream_name(): string
     {
         return $this->f_podcast . " - " . $this->f_title;
     }
@@ -363,7 +364,7 @@ class Podcast_Episode extends database_object implements media, library_item
      * @param boolean $local
      * @return string
      */
-    public static function play_url($oid, $additional_params = '', $player = '', $local = false, $uid = false, $original = false)
+    public static function play_url($oid, $additional_params = '', $player = '', $local = false, $uid = false, $original = false): string
     {
         return Song::generic_play_url('podcast_episode', $oid, $additional_params, $player, $local, $uid, $original);
     }
@@ -372,7 +373,7 @@ class Podcast_Episode extends database_object implements media, library_item
      * Get stream types.
      * @return array
      */
-    public function get_stream_types($player = null)
+    public function get_stream_types($player = null): array
     {
         return Song::get_stream_types_for_type($this->type, $player);
     }
@@ -449,7 +450,7 @@ class Podcast_Episode extends database_object implements media, library_item
      * @param string $type
      * @return string
      */
-    public static function type_to_mime($type)
+    public static function type_to_mime($type): string
     {
         return Song::type_to_mime($type);
     }

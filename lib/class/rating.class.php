@@ -20,6 +20,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 /**
  * Rating class
@@ -245,7 +246,7 @@ class Rating extends database_object
      * @param string $rating
      * @return bool
      */
-    public function set_rating($rating, $user_id = null)
+    public function set_rating($rating, $user_id = null): bool
     {
         if ($user_id === null) {
             $user_id = Core::get_global('user')->id;
@@ -299,7 +300,7 @@ class Rating extends database_object
      * @param string $rating
      * @return bool
      */
-    private static function set_rating_for_group($rating, $album, $user_id = null)
+    private static function set_rating_for_group($rating, $album, $user_id = null): bool
     {
         $sql = "SELECT `album`.`id` FROM `album`" .
                 " WHERE `album`.`name` = '" . Dba::escape($album['name']) . "'";

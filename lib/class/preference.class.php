@@ -19,6 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 /**
  * Preference Class
@@ -368,7 +369,7 @@ class Preference extends database_object
      * become an array and boolean everything
      * @return array
      */
-    public static function fix_preferences($results)
+    public static function fix_preferences($results): array
     {
         $arrays = array(
             'auth_methods', 'getid3_tag_order', 'metadata_order',

@@ -19,6 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 class TVShow extends database_object implements library_item
 {
@@ -187,7 +188,7 @@ class TVShow extends database_object implements library_item
      * get_keywords
      * @return array
      */
-    public function get_keywords()
+    public function get_keywords(): array
     {
         $keywords           = array();
         $keywords['tvshow'] = array('important' => true,

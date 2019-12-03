@@ -19,6 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 /**
  * Ampache_RSS Class
@@ -47,7 +48,7 @@ class Ampache_RSS
      * and then uses the xmlDATA class to build the document
      * @return string
      */
-    public function get_xml($params = null)
+    public function get_xml($params = null): string
     {
         if ($this->type === "podcast") {
             if ($params != null && is_array($params)) {
@@ -87,7 +88,7 @@ class Ampache_RSS
      * This returns the standardized title for the rss feed based on this->type
      * @return string
      */
-    public function get_title()
+    public function get_title(): string
     {
         $titles = array('now_playing' => T_('Now Playing'),
             'recently_played' => T_('Recently Played'),
@@ -104,7 +105,7 @@ class Ampache_RSS
      * This returns the standardized description for the rss feed based on this->type
      * @return string
      */
-    public function get_description()
+    public function get_description(): string
     {
         //FIXME: For now don't do any kind of translating
         return 'Ampache RSS Feeds';
@@ -116,7 +117,7 @@ class Ampache_RSS
      * @param string $type
      * @return string
      */
-    public static function validate_type($type)
+    public static function validate_type($type): string
     {
         $valid_types = array('now_playing', 'recently_played', 'latest_album', 'latest_artist', 'latest_shout', 'podcast');
 
@@ -135,7 +136,7 @@ class Ampache_RSS
      * @param array|null $params
      * @return string
      */
-    public static function get_display($type = 'now_playing', $title = '', $params = null)
+    public static function get_display($type = 'now_playing', $title = '', $params = null): string
     {
         // Default to Now Playing
         $type = self::validate_type($type);
@@ -164,7 +165,7 @@ class Ampache_RSS
      * into an xml document if we so wished
      * @return array
      */
-    public static function load_now_playing()
+    public static function load_now_playing(): array
     {
         $data = Stream::get_now_playing();
 
@@ -220,7 +221,7 @@ class Ampache_RSS
      * This loads in the Recently Played information and formats it up real nice like
      * @return array
      */
-    public static function load_recently_played()
+    public static function load_recently_played(): array
     {
         //FIXME: The time stuff should be centralized, it's currently in two places, lame
 
@@ -280,7 +281,7 @@ class Ampache_RSS
      * This loads in the latest added albums
      * @return array
      */
-    public static function load_latest_album()
+    public static function load_latest_album(): array
     {
         $ids = Stats::get_newest('album', 10);
 
@@ -308,7 +309,7 @@ class Ampache_RSS
      * This loads in the latest added artists
      * @return array
      */
-    public static function load_latest_artist()
+    public static function load_latest_artist(): array
     {
         $ids = Stats::get_newest('artist', 10);
 
@@ -336,7 +337,7 @@ class Ampache_RSS
      * This loads in the latest added shouts
      * @return array
      */
-    public static function load_latest_shout()
+    public static function load_latest_shout(): array
     {
         $ids = Shoutbox::get_top(10);
 

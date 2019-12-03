@@ -19,6 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 namespace Lib;
 
@@ -66,7 +67,7 @@ abstract class DatabaseObject
      * TODO: we get all properties for now...need more logic here...
      * @return array
      */
-    public function getDirtyProperties()
+    public function getDirtyProperties(): array
     {
         $properties = get_object_vars($this);
         unset($properties['id']);

@@ -19,7 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
-
+declare(strict_types=1);
 
 /**
  *
@@ -90,7 +90,7 @@ class Auth
      * @param boolean $allow_ui
      * @return array
      */
-    public static function login($username, $password, $allow_ui = false, $token = null, $salt = null)
+    public static function login($username, $password, $allow_ui = false, $token = null, $salt = null): array
     {
         // Check for token auth with apikey
         $token_check = self::token_check($username, $token, $salt);
@@ -125,7 +125,7 @@ class Auth
      * @param string $auth_mod
      * @return array
      */
-    public static function login_step2($auth_mod)
+    public static function login_step2($auth_mod): array
     {
         $results = null;
         if (in_array($auth_mod, AmpConfig::get('auth_methods'))) {
@@ -146,7 +146,7 @@ class Auth
      * @param string $password
      * @return array
      */
-    private static function mysql_auth($username, $password)
+    private static function mysql_auth($username, $password): array
     {
         if (strlen($password) && strlen($username)) {
             $sql        = 'SELECT `password` FROM `user` WHERE `username` = ?';
@@ -207,7 +207,7 @@ class Auth
      * @param string $password
      * @return array
      */
-    private static function pam_auth($username, $password)
+    private static function pam_auth($username, $password): array
     {
         $results = array();
         if (!function_exists('pam_auth')) {
@@ -240,7 +240,7 @@ class Auth
      * @param string $password
      * @return array
      */
-    private static function external_auth($username, $password)
+    private static function external_auth($username, $password): array
     {
         $authenticator = AmpConfig::get('external_authenticator');
         if (!$authenticator) {
@@ -293,7 +293,7 @@ class Auth
      * @param string $password
      * @return array
      */
-    private static function ldap_auth($username, $password)
+    private static function ldap_auth($username, $password): array
     {
         return LDAP::auth($username, $password);
     }
@@ -307,7 +307,7 @@ class Auth
      * @return array
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    private static function http_auth($username, $password)
+    private static function http_auth($username, $password): array
     {
         unset($password);
         $results = array();
@@ -335,7 +335,7 @@ class Auth
      * @return array
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    private static function openid_auth($username, $password)
+    private static function openid_auth($username, $password): array
     {
         unset($password);
         $results = array();
@@ -414,7 +414,7 @@ class Auth
      * Authenticate user with OpenID, step 2
      * @return array
      */
-    private static function openid_auth_2()
+    private static function openid_auth_2(): array
     {
         $results         = array();
         $results['type'] = 'openid';
@@ -493,7 +493,7 @@ class Auth
      * @param string $salt
      * @return array
      */
-    public static function token_check($username, $token, $salt)
+    public static function token_check($username, $token, $salt): array
     {
         // subsonic token auth with apikey
         if (strlen($token) && strlen($salt) && strlen($username)) {

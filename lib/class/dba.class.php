@@ -19,6 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 /* Make sure they aren't directly accessing it */
 if (!defined('INIT_LOADED') || INIT_LOADED != '1') {
@@ -140,7 +141,7 @@ class Dba
      * into the sql
      * @return string
      */
-    public static function escape($var)
+    public static function escape($var): string
     {
         $dbh = self::dbh();
         if (!$dbh) {
@@ -162,7 +163,7 @@ class Dba
      * up the result set after the last row is read.
      * @return array
      */
-    public static function fetch_assoc($resource, $finish = true)
+    public static function fetch_assoc($resource, $finish = true): array
     {
         if (!$resource) {
             return array();
@@ -345,7 +346,7 @@ class Dba
      * Make sure that we can connect to the database
      * @return bool
      */
-    public static function check_database()
+    public static function check_database(): bool
     {
         $dbh = self::_connect();
 
@@ -367,7 +368,7 @@ class Dba
      * and that the user you are using has access to it.
      * @return bool
      */
-    public static function check_database_inserted()
+    public static function check_database_inserted(): bool
     {
         $sql        = "DESCRIBE session";
         $db_results = self::read($sql);

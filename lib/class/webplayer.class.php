@@ -19,6 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 class WebPlayer
 {
@@ -27,7 +28,7 @@ class WebPlayer
      * @param \Stream_Playlist $playlist
      * @return bool
      */
-    public static function is_playlist_radio($playlist)
+    public static function is_playlist_radio($playlist): bool
     {
         $radios = array();
 
@@ -45,7 +46,7 @@ class WebPlayer
      * @param \Stream_Playlist $playlist
      * @return bool
      */
-    public static function is_playlist_video($playlist)
+    public static function is_playlist_video($playlist): bool
     {
         return (count($playlist->urls) > 0 && $playlist->urls[0]->type == "video");
     }
@@ -56,7 +57,7 @@ class WebPlayer
      * @param string $force_type
      * @return array
      */
-    protected static function get_types($item, $force_type= '')
+    protected static function get_types($item, $force_type= ''): array
     {
         $types = array('real' => 'mp3', 'player' => '');
 
@@ -168,7 +169,7 @@ class WebPlayer
      * @param \Stream_Playlist $playlist
      * @return array
      */
-    public static function get_supplied_types($playlist)
+    public static function get_supplied_types($playlist): array
     {
         $jptypes = array();
         foreach ($playlist->urls as $item) {
@@ -191,7 +192,7 @@ class WebPlayer
      * @param string $callback_container
      * @return string
      */
-    public static function add_media_js($playlist, $callback_container = '')
+    public static function add_media_js($playlist, $callback_container = ''): string
     {
         $addjs = "";
         foreach ($playlist->urls as $item) {
@@ -212,7 +213,7 @@ class WebPlayer
      * @param string $callback_container
      * @return string
      */
-    public static function play_next_js($playlist, $callback_container = '')
+    public static function play_next_js($playlist, $callback_container = ''): string
     {
         $addjs = "";
         foreach ($playlist->urls as $item) {
@@ -233,7 +234,7 @@ class WebPlayer
      * @param string $force_type
      * @return string
      */
-    public static function get_media_js_param($item, $force_type = '')
+    public static function get_media_js_param($item, $force_type = ''): string
     {
         $js = array();
         foreach (array('title', 'author') as $member) {

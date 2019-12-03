@@ -18,6 +18,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 /**
  * array_filter_key
@@ -85,7 +86,7 @@ class LDAP
      * @param array $searchresult
      * @return array
      */
-    private static function clean_search_results($searchresult)
+    private static function clean_search_results($searchresult): array
     {
         $sr_clean = [];
 
@@ -192,7 +193,7 @@ class LDAP
      * @param boolean $only_one_result
      * @return array
      */
-    private static function search($link, $base_dn, $filter, $only_one_result = true)
+    private static function search($link, $base_dn, $filter, $only_one_result = true): array
     {
         debug_event('ldap.class', "searching in `$base_dn` for `$filter`", 5);
 
@@ -229,7 +230,7 @@ class LDAP
      * @param string $password
      * @return array
      */
-    public static function auth($username, $password)
+    public static function auth($username, $password): array
     {
         try {
             $link = self::connect();

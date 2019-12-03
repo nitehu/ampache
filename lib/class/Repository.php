@@ -19,6 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 namespace Lib;
 
@@ -203,7 +204,7 @@ class Repository
      * @param array $properties
      * @return array
      */
-    protected function resolveObjects(array $properties)
+    protected function resolveObjects(array $properties): array
     {
         foreach ($properties as $property => $value) {
             if (is_object($value)) {
@@ -220,7 +221,7 @@ class Repository
      * @param array $fields
      * @return string
      */
-    public function assembleQuery($table, $fields)
+    public function assembleQuery($table, $fields): string
     {
         $sql = 'SELECT * FROM ' . $table;
         if (!empty($fields)) {

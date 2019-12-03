@@ -19,6 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 /**
  * Label class
@@ -148,7 +149,7 @@ class Label extends database_object implements library_item
      * get_keywords
      * @return array
      */
-    public function get_keywords()
+    public function get_keywords(): array
     {
         $keywords          = array();
         $keywords['label'] = array('important' => true,
@@ -188,7 +189,7 @@ class Label extends database_object implements library_item
      * search_childrens
      * @return array
      */
-    public function search_childrens($name)
+    public function search_childrens($name): array
     {
         $search                    = array();
         $search['type']            = "artist";
@@ -212,7 +213,7 @@ class Label extends database_object implements library_item
      * can_edit
      * @return bool
      */
-    public function can_edit($user = null)
+    public function can_edit($user = null): bool
     {
         if (!$user) {
             $user = Core::get_global('user')->id;
@@ -265,7 +266,7 @@ class Label extends database_object implements library_item
      * create
      * @return string
      */
-    public static function create(array $data)
+    public static function create(array $data): string
     {
         if (self::lookup($data) !== 0) {
             return false;
@@ -409,7 +410,7 @@ class Label extends database_object implements library_item
      * @param integer $artist_id
      * @return array
      */
-    public static function get_labels($artist_id)
+    public static function get_labels($artist_id): array
     {
         $sql = "SELECT `label`.`id`, `label`.`name` FROM `label` " .
                "LEFT JOIN `label_asso` ON `label_asso`.`label` = `label`.`id` " .

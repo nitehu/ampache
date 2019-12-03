@@ -19,6 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 /**
  * Search Class
@@ -926,7 +927,7 @@ class Search extends playlist_object
      * @param array $data
      * @return array
      */
-    public static function clean_request($data)
+    public static function clean_request($data): array
     {
         $request = array();
         foreach ($data as $key => $value) {
@@ -974,7 +975,7 @@ class Search extends playlist_object
      * @param string $search_id
      * @return string
      */
-    public static function get_name_byid($search_id)
+    public static function get_name_byid($search_id): string
     {
         $sql        = "SELECT `name` FROM `search` WHERE `id` = '$search_id'";
         $db_results = Dba::read($sql);
@@ -989,7 +990,7 @@ class Search extends playlist_object
      * Return the IDs of all saved searches accessible by the current user.
      * @return array
      */
-    public static function get_searches()
+    public static function get_searches(): array
     {
         $sql = "SELECT `id` from `search` WHERE `type`='public' OR " .
             "`user`='" . Core::get_global('user')->id . "' ORDER BY `name`";
@@ -1013,7 +1014,7 @@ class Search extends playlist_object
      * @param User $user
      * @return array
      */
-    public static function run($data, $user = null)
+    public static function run($data, $user = null): array
     {
         $limit  = (int) ($data['limit']);
         $offset = (int) ($data['offset']);
@@ -1063,7 +1064,7 @@ class Search extends playlist_object
      * Does what it says on the tin.
      * @return bool
      */
-    public function delete()
+    public function delete(): bool
     {
         $search_id  = Dba::escape($this->id);
         $sql        = "DELETE FROM `search` WHERE `id` = ?";
@@ -1091,7 +1092,7 @@ class Search extends playlist_object
      * playlist interface).
      * @return array
      */
-    public function get_items()
+    public function get_items(): array
     {
         $results = array();
 
@@ -1134,7 +1135,7 @@ class Search extends playlist_object
      * @param integer $limit
      * @return array
      */
-    public function get_random_items($limit = null)
+    public function get_random_items($limit = null): array
     {
         $results = array();
 
@@ -1234,7 +1235,7 @@ class Search extends playlist_object
      * Save this search to the database for use as a smart playlist
      * @return string
      */
-    public function save()
+    public function save(): string
     {
         // Make sure we have a unique name
         if (! $this->name) {
@@ -1260,7 +1261,7 @@ class Search extends playlist_object
      * Outputs the javascript necessary to re-show the current set of rules.
      * @return string
      */
-    public function to_js()
+    public function to_js(): string
     {
         $js = "";
         foreach ($this->rules as $rule) {
@@ -1278,7 +1279,7 @@ class Search extends playlist_object
      * Call the appropriate real function.
      * @return array
      */
-    public function to_sql()
+    public function to_sql(): array
     {
         return call_user_func(array($this, $this->searchtype . "_to_sql"));
     }
@@ -1350,7 +1351,7 @@ class Search extends playlist_object
      * Handles the generation of the SQL for album searches.
      * @return array
      */
-    private function album_to_sql()
+    private function album_to_sql(): array
     {
         $sql_logic_operator = $this->logic_operator;
         $userid             = $this->search_user->id;
@@ -1558,7 +1559,7 @@ class Search extends playlist_object
      * Handles the generation of the SQL for artist searches.
      * @return array
      */
-    private function artist_to_sql()
+    private function artist_to_sql(): array
     {
         $sql_logic_operator = $this->logic_operator;
         $userid             = $this->search_user->id;
@@ -1731,7 +1732,7 @@ class Search extends playlist_object
      * Handles the generation of the SQL for song searches.
      * @return array
      */
-    private function song_to_sql()
+    private function song_to_sql(): array
     {
         $sql_logic_operator = $this->logic_operator;
         $userid             = $this->search_user->id;
@@ -2086,7 +2087,7 @@ class Search extends playlist_object
      * Handles the generation of the SQL for video searches.
      * @return array
      */
-    private function video_to_sql()
+    private function video_to_sql(): array
     {
         $sql_logic_operator = $this->logic_operator;
 
@@ -2153,7 +2154,7 @@ class Search extends playlist_object
      * Handles the generation of the SQL for playlist searches.
      * @return array
      */
-    private function playlist_to_sql()
+    private function playlist_to_sql(): array
     {
         $sql_logic_operator = $this->logic_operator;
         $where              = array();
@@ -2234,7 +2235,7 @@ class Search extends playlist_object
      * Handles the generation of the SQL for label searches.
      * @return array
      */
-    private function label_to_sql()
+    private function label_to_sql(): array
     {
         $sql_logic_operator = $this->logic_operator;
         $where              = array();
@@ -2288,7 +2289,7 @@ class Search extends playlist_object
      * Handles the generation of the SQL for user searches.
      * @return array
      */
-    private function user_to_sql()
+    private function user_to_sql(): array
     {
         $sql_logic_operator = $this->logic_operator;
         $where              = array();
@@ -2338,7 +2339,7 @@ class Search extends playlist_object
      * Build search rules for year -> year searching.
      * @return array
      */
-    public static function year_search($fromYear, $toYear, $size, $offset)
+    public static function year_search($fromYear, $toYear, $size, $offset): array
     {
         $search           = array();
         $search['limit']  = $size;

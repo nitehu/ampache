@@ -19,6 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 // A class for passing around an URL and associated data
 
@@ -33,7 +34,7 @@ class Stream_URL extends memory_object
      * @param string $url
      * @return array
      */
-    public static function parse($url)
+    public static function parse($url): array
     {
         if (AmpConfig::get('stream_beautiful_url')) {
             $posargs = strpos($url, '/play/');
@@ -86,7 +87,7 @@ class Stream_URL extends memory_object
      * @param string $options
      * @return string
      */
-    public static function add_options($url, $options)
+    public static function add_options($url, $options): string
     {
         if (AmpConfig::get('stream_beautiful_url')) {
             // We probably want beautiful url to have a real mp3 filename at the end.
@@ -117,7 +118,7 @@ class Stream_URL extends memory_object
      * @param string $url
      * @return string
      */
-    public static function format($url)
+    public static function format($url): string
     {
         if (AmpConfig::get('stream_beautiful_url')) {
             $url = str_replace('index.php?&', '', $url);

@@ -19,6 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 /**
  * User Class
@@ -594,7 +595,7 @@ class User extends database_object
      * Check if the user is registered
      * @return bool
      */
-    public static function is_registered()
+    public static function is_registered(): bool
     {
         if (!Core::get_global('user')->id) {
             return false;
@@ -1134,7 +1135,7 @@ class User extends database_object
      * @param string $name
      * @return string
      */
-    public static function access_name_to_level($name)
+    public static function access_name_to_level($name): string
     {
         switch ($name) {
             case 'admin':
@@ -1159,7 +1160,7 @@ class User extends database_object
      * @param string $level
      * @return string
      */
-    public static function access_level_to_name($level)
+    public static function access_level_to_name($level): string
     {
         switch ($level) {
             case '100':
@@ -1251,7 +1252,7 @@ class User extends database_object
      * ratings and total stats
      * @return bool
      */
-    public function delete()
+    public function delete(): bool
     {
         /*
           Before we do anything make sure that they aren't the last
@@ -1389,7 +1390,7 @@ class User extends database_object
      * Get item fullname.
      * @return string
      */
-    public function get_fullname()
+    public function get_fullname(): string
     {
         return $this->f_name;
     }
@@ -1445,7 +1446,7 @@ class User extends database_object
      * @param string $data
      * @return bool
      */
-    public function update_avatar($data, $mime = '')
+    public function update_avatar($data, $mime = ''): bool
     {
         debug_event('user.class', 'Updating avatar', 4);
 
@@ -1458,7 +1459,7 @@ class User extends database_object
      *
      * @return bool
      */
-    public function upload_avatar()
+    public function upload_avatar(): bool
     {
         $upload = array();
         if (!empty($_FILES['avatar']['tmp_name']) && $_FILES['avatar']['size'] <= AmpConfig::get('max_upload_size')) {
@@ -1498,7 +1499,7 @@ class User extends database_object
      * Get artists associated with the user
      * @return array
      */
-    public function get_artists()
+    public function get_artists(): array
     {
         $sql        = "SELECT `id` FROM `artist` WHERE `user` = ?";
         $db_results = Dba::read($sql, array($this->id));
@@ -1516,7 +1517,7 @@ class User extends database_object
      * checks to see if this is a valid xmlrpc user
      * @return bool
      */
-    public function is_xmlrpc()
+    public function is_xmlrpc(): bool
     {
         /* If we aren't using XML-RPC return true */
         if (!AmpConfig::get('xml_rpc')) {
@@ -1569,7 +1570,7 @@ class User extends database_object
      * @param integer $user_id
      * @return bool
      */
-    public function is_followed_by($user_id)
+    public function is_followed_by($user_id): bool
     {
         $sql        = "SELECT `id` FROM `user_follower` WHERE `user` = ? AND `follow_user` = ?";
         $db_results = Dba::read($sql, array($user_id, $this->id));
@@ -1583,7 +1584,7 @@ class User extends database_object
      * @param integer $user_id
      * @return bool
      */
-    public function is_following($user_id)
+    public function is_following($user_id): bool
     {
         $sql        = "SELECT `id` FROM `user_follower` WHERE `user` = ? AND `follow_user` = ?";
         $db_results = Dba::read($sql, array($this->id, $user_id));
@@ -1596,7 +1597,7 @@ class User extends database_object
      * @param integer $user_id
      * @return bool
      */
-    public function toggle_follow($user_id)
+    public function toggle_follow($user_id): bool
     {
         if (!$user_id || $user_id === $this->id) {
             return false;
@@ -1620,7 +1621,7 @@ class User extends database_object
      * Get html code to display the follow/unfollow link
      * @return string
      */
-    public function get_display_follow($user_id = null)
+    public function get_display_follow($user_id = null): string
     {
         if ($user_id === null) {
             $user_id = Core::get_global('user')->id;
@@ -1647,7 +1648,7 @@ class User extends database_object
      * @param string $username
      * @return bool
      */
-    public static function check_username($username)
+    public static function check_username($username): bool
     {
         $user = Dba::escape($username);
 
@@ -1693,7 +1694,7 @@ class User extends database_object
      * @param User $user
      * @return bool
      */
-    public static function stream_control($media_ids, User $user = null)
+    public static function stream_control($media_ids, User $user = null): bool
     {
         if ($user === null) {
             $user = Core::get_global('user');

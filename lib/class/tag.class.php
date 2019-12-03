@@ -19,6 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 /**
  * Tag Class
@@ -751,7 +752,7 @@ class Tag extends database_object implements library_item
      * get_keywords
      * @return array
      */
-    public function get_keywords()
+    public function get_keywords(): array
     {
         $keywords        = array();
         $keywords['tag'] = array('important' => true,
@@ -765,7 +766,7 @@ class Tag extends database_object implements library_item
      * get_fullname
      * @return string
      */
-    public function get_fullname()
+    public function get_fullname(): string
     {
         return $this->name;
     }
@@ -785,7 +786,7 @@ class Tag extends database_object implements library_item
      * @param string $name
      * @return array
      */
-    public function search_childrens($name)
+    public function search_childrens($name): array
     {
         debug_event('tag.class', 'search_childrens ' . $name, 5);
 
@@ -797,7 +798,7 @@ class Tag extends database_object implements library_item
      * @param string $filter_type
      * @return array
      */
-    public function get_medias($filter_type = null)
+    public function get_medias($filter_type = null): array
     {
         $medias = array();
         if ($filter_type) {
@@ -835,7 +836,7 @@ class Tag extends database_object implements library_item
      * get_default_art_kind
      * @return string
      */
-    public function get_default_art_kind()
+    public function get_default_art_kind(): string
     {
         return 'default';
     }
@@ -844,7 +845,7 @@ class Tag extends database_object implements library_item
      * get_description
      * @return string
      */
-    public function get_description()
+    public function get_description(): string
     {
         return null;
     }
@@ -868,7 +869,7 @@ class Tag extends database_object implements library_item
      * @param string|boolean $user
      * @return bool
      */
-    public static function can_edit_tag_map($object_type, $object_id, $user = true)
+    public static function can_edit_tag_map($object_type, $object_id, $user = true): bool
     {
         if ($user === true) {
             $uid = (int) (Core::get_global('user')->id);

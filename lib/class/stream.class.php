@@ -19,6 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 class Stream
 {
@@ -222,7 +223,7 @@ class Stream
      * @param Video $media
      * @return string
      */
-    public static function get_image_preview($media)
+    public static function get_image_preview($media): string
     {
         $image = null;
         $sec   = ($media->time >= 30) ? 30 : (int) ($media->time / 2);
@@ -260,7 +261,7 @@ class Stream
      * start_process
      * @return array
      */
-    private static function start_process($command, $settings = array())
+    private static function start_process($command, $settings = array()): array
     {
         debug_event('stream.class', "Transcode command: " . $command, 3);
 
@@ -380,7 +381,7 @@ class Stream
      * This returns the Now Playing information
      * @return array
      */
-    public static function get_now_playing()
+    public static function get_now_playing(): array
     {
         $sql = 'SELECT `session`.`agent`, `np`.* FROM `now_playing` AS `np` ';
         $sql .= 'LEFT JOIN `session` ON `session`.`id` = `np`.`id` ';
@@ -435,7 +436,7 @@ class Stream
      * @param string $type
      * @return bool
      */
-    public static function check_lock_media($media_id, $type)
+    public static function check_lock_media($media_id, $type): bool
     {
         $sql = 'SELECT `object_id` FROM `now_playing` WHERE ' .
             '`object_id` = ? AND `object_type` = ?';

@@ -19,6 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 class Artist extends database_object implements library_item
 {
@@ -221,7 +222,7 @@ class Artist extends database_object implements library_item
      * @param boolean $extra
      * @return bool
      */
-    public static function build_cache($ids, $extra = false, $limit_threshold = '')
+    public static function build_cache($ids, $extra = false, $limit_threshold = ''): bool
     {
         if (!is_array($ids) || !count($ids)) {
             return false;
@@ -497,7 +498,7 @@ class Artist extends database_object implements library_item
      * @param integer $catalog
      * @return array
      */
-    private function _get_extra_info($catalog = 0, $limit_threshold = '')
+    private function _get_extra_info($catalog = 0, $limit_threshold = ''): array
     {
         // Try to find it in the cache and save ourselves the trouble
         if (parent::is_cached('artist_extra', $this->id)) {
@@ -557,7 +558,7 @@ class Artist extends database_object implements library_item
      * it changes the title into a full link.
      * @return bool
       */
-    public function format($details = true, $limit_threshold = '')
+    public function format($details = true, $limit_threshold = ''): bool
     {
         /* Combine prefix and name, trim then add ... if needed */
         $name              = trim($this->prefix . " " . $this->name);
@@ -607,7 +608,7 @@ class Artist extends database_object implements library_item
      * Get item keywords for metadata searches.
      * @return array
      */
-    public function get_keywords()
+    public function get_keywords(): array
     {
         $keywords                = array();
         $keywords['mb_artistid'] = array('important' => false,
@@ -624,7 +625,7 @@ class Artist extends database_object implements library_item
      * Get item fullname.
      * @return string
      */
-    public function get_fullname()
+    public function get_fullname(): string
     {
         return $this->f_full_name;
     }
@@ -642,7 +643,7 @@ class Artist extends database_object implements library_item
      * Get item childrens.
      * @return array
      */
-    public function get_childrens()
+    public function get_childrens(): array
     {
         $medias = array();
         $albums = $this->get_albums();
@@ -661,7 +662,7 @@ class Artist extends database_object implements library_item
      * @param string $name
      * @return array
      */
-    public function search_childrens($name)
+    public function search_childrens($name): array
     {
         $search                    = array();
         $search['type']            = "album";
@@ -689,7 +690,7 @@ class Artist extends database_object implements library_item
      * @param string $filter_type
      * @return array
      */
-    public function get_medias($filter_type = null)
+    public function get_medias($filter_type = null): array
     {
         $medias = array();
         if ($filter_type === null || $filter_type == 'song') {
@@ -729,7 +730,7 @@ class Artist extends database_object implements library_item
      * Get default art kind for this item.
      * @return string
      */
-    public function get_default_art_kind()
+    public function get_default_art_kind(): string
     {
         return 'default';
     }
@@ -738,7 +739,7 @@ class Artist extends database_object implements library_item
      * get_description
      * @return string
      */
-    public function get_description()
+    public function get_description(): string
     {
         return $this->summary;
     }

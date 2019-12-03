@@ -20,6 +20,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 /**
  * PrivateMsg class
@@ -261,7 +262,7 @@ class PrivateMsg extends database_object
      * @param integer $since
      * @return array
      */
-    public static function get_chat_msgs($since = 0)
+    public static function get_chat_msgs($since = 0): array
     {
         if (!AmpConfig::get('sociable')) {
             return array();

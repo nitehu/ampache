@@ -19,6 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 /**
  * This class is a derived work from UMSP project (http://wiki.wdlxtv.com/UMSP).
@@ -1183,7 +1184,7 @@ class Upnp_Api
      * @param string $parent
      * @return array
      */
-    private static function _itemPodcast($podcast, $parent)
+    private static function _itemPodcast($podcast, $parent): array
     {
         return array(
             'id' => 'amp://music/podcasts/' . $podcast->id,
@@ -1200,7 +1201,7 @@ class Upnp_Api
      * @param string $parent
      * @return array
      */
-    private static function _itemPodcastEpisode($episode, $parent)
+    private static function _itemPodcastEpisode($episode, $parent): array
     {
         $api_session = (AmpConfig::get('require_session')) ? Stream::get_session() : false;
         $art_url     = Art::url($episode->podcast, 'podcast', $api_session);

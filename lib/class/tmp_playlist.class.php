@@ -19,6 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 /**
  * TempPlaylist Class
@@ -68,7 +69,7 @@ class Tmp_Playlist extends database_object
      * for this object from the playlist_id that was passed in.
      * @return array
      */
-    private function has_info()
+    private function has_info(): array
     {
         $sql        = "SELECT * FROM `tmp_playlist` WHERE `id`='" . Dba::escape($this->id) . "'";
         $db_results = Dba::read($sql);
@@ -137,7 +138,7 @@ class Tmp_Playlist extends database_object
      * Returns an array of all object_ids currently in this Tmp_Playlist.
      * @return array
      */
-    public function get_items()
+    public function get_items(): array
     {
         /* Select all objects from this playlist */
         $sql = "SELECT `object_type`, `id`, `object_id` " .
@@ -331,7 +332,7 @@ class Tmp_Playlist extends database_object
      * and if it is active
      * @return bool
      */
-    public function vote_active()
+    public function vote_active(): bool
     {
         /* Going to do a little more here later */
         if ($this->type == 'vote') {

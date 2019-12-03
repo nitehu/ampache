@@ -19,6 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 class TVShow_Episode extends Video
 {
@@ -170,7 +171,7 @@ class TVShow_Episode extends Video
      * get_keywords
      * @return array
      */
-    public function get_keywords()
+    public function get_keywords(): array
     {
         $keywords           = parent::get_keywords();
         $keywords['tvshow'] = array('important' => true,
@@ -196,7 +197,7 @@ class TVShow_Episode extends Video
      * get_parent
      * @return array
      */
-    public function get_parent()
+    public function get_parent(): array
     {
         return array('object_type' => 'tvshow_season', 'object_id' => $this->season);
     }
@@ -205,7 +206,7 @@ class TVShow_Episode extends Video
      * get_release_item_art
      * @return array
      */
-    public function get_release_item_art()
+    public function get_release_item_art(): array
     {
         return array('object_type' => 'tvshow_season',
             'object_id' => $this->season

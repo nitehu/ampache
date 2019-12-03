@@ -19,6 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 /**
  * Radio Class
@@ -115,7 +116,7 @@ class Live_Stream extends database_object implements media, library_item
     /**
      * @return array
      */
-    public function get_keywords()
+    public function get_keywords(): array
     {
         return array();
     }
@@ -123,7 +124,7 @@ class Live_Stream extends database_object implements media, library_item
     /**
      * @return string
      */
-    public function get_fullname()
+    public function get_fullname(): string
     {
         return $this->name;
     }
@@ -139,7 +140,7 @@ class Live_Stream extends database_object implements media, library_item
     /**
      * @return array
      */
-    public function get_childrens()
+    public function get_childrens(): array
     {
         return array();
     }
@@ -147,7 +148,7 @@ class Live_Stream extends database_object implements media, library_item
     /**
      * @return array
      */
-    public function search_childrens($name)
+    public function search_childrens($name): array
     {
         debug_event('live_stream.class', 'search_childrens ' . $name, 5);
 
@@ -157,7 +158,7 @@ class Live_Stream extends database_object implements media, library_item
     /**
      * @return array
      */
-    public function get_medias($filter_type = null)
+    public function get_medias($filter_type = null): array
     {
         $medias = array();
         if ($filter_type === null || $filter_type == 'live_stream') {
@@ -192,7 +193,7 @@ class Live_Stream extends database_object implements media, library_item
     /**
      * @return string
      */
-    public function get_default_art_kind()
+    public function get_default_art_kind(): string
     {
         return 'default';
     }
@@ -315,7 +316,7 @@ class Live_Stream extends database_object implements media, library_item
      * This is needed by the media interface
      * @return array
      */
-    public function get_stream_types($player = null)
+    public function get_stream_types($player = null): array
     {
         return array('foreign');
     } // native_stream
@@ -325,7 +326,7 @@ class Live_Stream extends database_object implements media, library_item
      * This is needed by the media interface
      * @return string
      */
-    public static function play_url($oid, $additional_params = '', $player = null, $local = false, $sid = '', $force_http = '')
+    public static function play_url($oid, $additional_params = '', $player = null, $local = false, $sid = '', $force_http = ''): string
     {
         $radio = new Live_Stream($oid);
 
@@ -335,7 +336,7 @@ class Live_Stream extends database_object implements media, library_item
     /**
      * @return string
      */
-    public function get_stream_name()
+    public function get_stream_name(): string
     {
         return $this->get_fullname();
     }

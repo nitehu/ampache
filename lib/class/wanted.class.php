@@ -19,6 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 use MusicBrainz\MusicBrainz;
 use MusicBrainz\HttpAdapters\RequestsHttpAdapter;
@@ -111,7 +112,7 @@ class Wanted extends database_object
      * @param string $mbid
      * @return array
      */
-    public static function get_missing_albums($artist, $mbid = '')
+    public static function get_missing_albums($artist, $mbid = ''): array
     {
         $mb       = new MusicBrainz(new RequestsHttpAdapter());
         $includes = array('release-groups');
@@ -208,7 +209,7 @@ class Wanted extends database_object
      * @param string $mbid
      * @return array
      */
-    public static function get_missing_artist($mbid)
+    public static function get_missing_artist($mbid): array
     {
         $wartist = array();
 
@@ -238,7 +239,7 @@ class Wanted extends database_object
      * search_missing_artists
      * @return array
      */
-    public static function search_missing_artists($name)
+    public static function search_missing_artists($name): array
     {
         $args = array(
             'artist' => $name
@@ -518,7 +519,7 @@ class Wanted extends database_object
      * Get wanted list sql.
      * @return string
      */
-    public static function get_wanted_list_sql()
+    public static function get_wanted_list_sql(): string
     {
         $sql = "SELECT `id` FROM `wanted` ";
 

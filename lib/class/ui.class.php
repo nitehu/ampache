@@ -21,6 +21,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 // A collection of methods related to the user interface
 
 class UI
@@ -43,7 +44,7 @@ class UI
      * allow_php_themes is set to true.
      * @return string
      */
-    public static function find_template($template)
+    public static function find_template($template): string
     {
         $path      = AmpConfig::get('theme_path') . '/templates/' . $template;
         $realpath  = AmpConfig::get('prefix') . $path;
@@ -78,7 +79,7 @@ class UI
      * template.
      * @return string
      */
-    public static function ajax_include($template)
+    public static function ajax_include($template): string
     {
         ob_start();
         require AmpConfig::get('prefix') . self::find_template('') . $template;
@@ -94,7 +95,7 @@ class UI
      * Checks to see whether iconv is available;
      * @return bool
      */
-    public static function check_iconv()
+    public static function check_iconv(): bool
     {
         if (function_exists('iconv') && function_exists('iconv_substr')) {
             return true;
@@ -110,7 +111,7 @@ class UI
      * operations.
      * @return bool
      */
-    public static function check_ticker()
+    public static function check_ticker(): bool
     {
         if (!isset(self::$_ticker) || (time() > self::$_ticker + 1)) {
             self::$_ticker = time();
@@ -129,7 +130,7 @@ class UI
      * See http://www.w3.org/TR/2006/REC-xml-20060816/#charsets
      * @return string
      */
-    public static function clean_utf8($string)
+    public static function clean_utf8($string): string
     {
         if ($string) {
             $clean = preg_replace('/[^\x{9}\x{a}\x{d}\x{20}-\x{d7ff}\x{e000}-\x{fffd}\x{10000}-\x{10ffff}]|[\x{7f}-\x{84}\x{86}-\x{9f}\x{fdd0}-\x{fddf}\x{1fffe}-\x{1ffff}\x{2fffe}-\x{2ffff}\x{3fffe}-\x{3ffff}\x{4fffe}-\x{4ffff}\x{5fffe}-\x{5ffff}\x{6fffe}-\x{6ffff}\x{7fffe}-\x{7ffff}\x{8fffe}-\x{8ffff}\x{9fffe}-\x{9ffff}\x{afffe}-\x{affff}\x{bfffe}-\x{bffff}\x{cfffe}-\x{cffff}\x{dfffe}-\x{dffff}\x{efffe}-\x{effff}\x{ffffe}-\x{fffff}\x{10fffe}-\x{10ffff}]/u', '', $string);
@@ -180,7 +181,7 @@ class UI
      * Turns a size in bytes into the best human-readable value
      * @return string
      */
-    public static function format_bytes($value, $precision = 2)
+    public static function format_bytes($value, $precision = 2): string
     {
         $pass = 0;
         while (strlen(floor($value)) > 3) {
@@ -218,7 +219,7 @@ class UI
      * Parses a human-readable size
      * @return string
      */
-    public static function unformat_bytes($value)
+    public static function unformat_bytes($value): string
     {
         if (preg_match('/^([0-9]+) *([[:alpha:]]+)$/', $value, $matches)) {
             $value = $matches[1];
@@ -258,7 +259,7 @@ class UI
      * @param string $class_attrib
      * @return string
      */
-    public static function get_icon($name, $title = null, $id_attrib = null, $class_attrib = null)
+    public static function get_icon($name, $title = null, $id_attrib = null, $class_attrib = null): string
     {
         if (is_array($name)) {
             $hover_name = $name[1];
@@ -321,7 +322,7 @@ class UI
      * Does the finding icon thing. match svg first over png
      * @return string
      */
-    private static function _find_icon($name)
+    private static function _find_icon($name): string
     {
         if (isset(self::$_icon_cache[$name])) {
             return self::$_icon_cache[$name];
@@ -353,7 +354,7 @@ class UI
      * @param string $class_attrib
      * @return string
      */
-    public static function get_image($name, $title = null, $id_attrib = null, $class_attrib = null)
+    public static function get_image($name, $title = null, $id_attrib = null, $class_attrib = null): string
     {
         if (is_array($name)) {
             $hover_name = $name[1];
@@ -419,7 +420,7 @@ class UI
      * Does the finding image thing. match svg first over png
      * @return string
      */
-    private static function _find_image($name)
+    private static function _find_image($name): string
     {
         if (isset(self::$_image_cache[$name])) {
             return self::$_image_cache[$name];
@@ -566,7 +567,7 @@ class UI
      * @param string $color
      * @return string
      */
-    public static function get_logo_url($color = null)
+    public static function get_logo_url($color = null): string
     {
         if (AmpConfig::get('custom_logo')) {
             return AmpConfig::get('custom_logo');

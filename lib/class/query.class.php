@@ -19,6 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 /**
  * Query Class
@@ -108,7 +109,7 @@ class Query
      * Populate static arrays if necessary
      * @return bool
      */
-    public static function _auto_init()
+    public static function _auto_init(): bool
     {
         if (is_array(self::$allowed_filters)) {
             return true;
@@ -436,7 +437,7 @@ class Query
      * @param array $data
      * @return string
      */
-    private static function _serialize($data)
+    private static function _serialize($data): string
     {
         return json_encode($data);
     }
@@ -460,7 +461,7 @@ class Query
      * @param mixed $value
      * @return bool
      */
-    public function set_filter($key, $value)
+    public function set_filter($key, $value): bool
     {
         switch ($key) {
             case 'tag':
@@ -688,7 +689,7 @@ class Query
      * @param string $type
      * @return array
      */
-    public static function get_allowed_filters($type)
+    public static function get_allowed_filters($type): array
     {
         return isset(self::$allowed_filters[$type])
             ? self::$allowed_filters[$type]
@@ -752,7 +753,7 @@ class Query
      * This returns the type of the browse we currently are using
      * @return string
      */
-    public function get_type()
+    public function get_type(): string
     {
         return $this->_state['type'];
     } // get_type
@@ -889,7 +890,7 @@ class Query
      *
      * @return bool
      */
-    public function is_static_content()
+    public function is_static_content(): bool
     {
         return $this->_state['static'];
     }
@@ -899,7 +900,7 @@ class Query
      * This returns whether or not the current browse type is set to static.
      * @return bool
      */
-    public function is_simple()
+    public function is_simple(): bool
     {
         return $this->_state['simple'];
     } // is_simple
@@ -910,7 +911,7 @@ class Query
      * finds.
      * @return array
      */
-    public function get_saved()
+    public function get_saved(): array
     {
         // See if we have it in the local cache first
         if (is_array($this->_cache)) {
@@ -941,7 +942,7 @@ class Query
      * filters
      * @return array
      */
-    public function get_objects()
+    public function get_objects(): array
     {
         // First we need to get the SQL statement we are going to run
         // This has to run against any possible filters (dependent on type)
@@ -1112,7 +1113,7 @@ class Query
      * statement.
      * @return string
      */
-    private function get_select()
+    private function get_select(): string
     {
         $select_string = implode(", ", $this->_state['select']);
 
@@ -1125,7 +1126,7 @@ class Query
      * called after all set operations.
      * @return string
      */
-    private function get_base_sql()
+    private function get_base_sql(): string
     {
         $sql = str_replace("%%SELECT%%", $this->get_select(), $this->_state['base']);
 
@@ -1137,7 +1138,7 @@ class Query
      * This returns the filter part of the sql statement
      * @return string
      */
-    private function get_filter_sql()
+    private function get_filter_sql(): string
     {
         if (!is_array($this->_state['filter'])) {
             return '';
@@ -1177,7 +1178,7 @@ class Query
      * Returns the sort sql part
      * @return string
      */
-    private function get_sort_sql()
+    private function get_sort_sql(): string
     {
         if (!is_array($this->_state['sort'])) {
             return '';
@@ -1201,7 +1202,7 @@ class Query
      * This returns the limit part of the sql statement
      * @return string
      */
-    private function get_limit_sql()
+    private function get_limit_sql(): string
     {
         if (!$this->is_simple() || $this->get_start() < 0) {
             return '';
@@ -1217,7 +1218,7 @@ class Query
      * This returns the joins that this browse may need to work correctly
      * @return string
      */
-    private function get_join_sql()
+    private function get_join_sql(): string
     {
         if (!isset($this->_state['join']) || !is_array($this->_state['join'])) {
             return '';
@@ -1239,7 +1240,7 @@ class Query
      * this returns the having sql stuff, if we've got anything
      * @return string
      */
-    public function get_having_sql()
+    public function get_having_sql(): string
     {
         $sql = isset($this->_state['having']) ? $this->_state['having'] : '';
 
@@ -1254,7 +1255,7 @@ class Query
      * @param boolean $limit
      * @return string
      */
-    public function get_sql($limit = true)
+    public function get_sql($limit = true): string
     {
         $sql = $this->get_base_sql();
 
@@ -1290,7 +1291,7 @@ class Query
      * @param array $data
      * @return array
      */
-    private function post_process($data)
+    private function post_process($data): array
     {
         $tags = isset($this->_state['filter']['tag']) ? $this->_state['filter']['tag'] : '';
 
@@ -1325,7 +1326,7 @@ class Query
      * @param mixed $value
      * @return string
      */
-    private function sql_filter($filter, $value)
+    private function sql_filter($filter, $value): string
     {
         $filter_sql = '';
         switch ($this->get_type()) {
@@ -1879,7 +1880,7 @@ class Query
      * @return bool
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    private function logic_filter($object_id)
+    private function logic_filter($object_id): bool
     {
         return true;
     } // logic_filter
@@ -1894,7 +1895,7 @@ class Query
      * @param string $order
      * @return string
      */
-    private function sql_sort($field, $order)
+    private function sql_sort($field, $order): string
     {
         if ($order != 'DESC') {
             $order == 'ASC';
@@ -2282,7 +2283,7 @@ class Query
      * @param string $table
      * @return string
      */
-    private function sql_sort_video($field, $table = 'video')
+    private function sql_sort_video($field, $table = 'video'): string
     {
         $sql = "";
         switch ($field) {
@@ -2319,7 +2320,7 @@ class Query
      * called by the set_sort() function
      * @return bool
      */
-    private function resort_objects()
+    private function resort_objects(): bool
     {
         // There are two ways to do this.. the easy way...
         // and the vollmer way, hopefully we don't have to
@@ -2396,7 +2397,7 @@ class Query
      * @param int[] $object_ids
      * @return bool
      */
-    public function save_objects($object_ids)
+    public function save_objects($object_ids): bool
     {
         // Saving these objects has two operations, one holds it in
         // a local variable and then second holds it in a row in the
@@ -2424,7 +2425,7 @@ class Query
      * This is a debug only function
      * @return array
      */
-    public function get_state()
+    public function get_state(): array
     {
         return $this->_state;
     } // get_state
@@ -2433,7 +2434,7 @@ class Query
      * Get content div name
      * @return string
      */
-    public function get_content_div()
+    public function get_content_div(): string
     {
         $key = 'browse_content_' . $this->get_type();
         if ($this->_state['ak']) {

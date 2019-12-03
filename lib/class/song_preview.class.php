@@ -19,6 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 class Song_Preview extends database_object implements media, playable_item
 {
@@ -119,7 +120,7 @@ class Song_Preview extends database_object implements media, playable_item
      * db connection is the slow point.
      * @return bool
      */
-    public static function build_cache($song_ids)
+    public static function build_cache($song_ids): bool
     {
         if (!is_array($song_ids) || !count($song_ids)) {
             return false;
@@ -188,7 +189,7 @@ class Song_Preview extends database_object implements media, playable_item
      * gets the name of $this->artist, allows passing of id
      * @return string
      */
-    public function get_artist_name($artist_id = 0)
+    public function get_artist_name($artist_id = 0): string
     {
         if (!$artist_id) {
             $artist_id = $this->artist;
@@ -208,7 +209,7 @@ class Song_Preview extends database_object implements media, playable_item
      * object
      * @return bool
      */
-    public function format($details = true)
+    public function format($details = true): bool
     {
         unset($details); //dead code but called from other format calls
         // Format the artist name

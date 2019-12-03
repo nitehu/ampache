@@ -19,6 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 class Movie extends Video
 {
@@ -128,7 +129,7 @@ class Movie extends Video
      * Get item keywords for metadata searches.
      * @return array
      */
-    public function get_keywords()
+    public function get_keywords(): array
     {
         $keywords         = parent::get_keywords();
         $keywords['type'] = array('important' => false,

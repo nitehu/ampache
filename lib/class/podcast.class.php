@@ -19,6 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 class Podcast extends database_object implements library_item
 {
@@ -171,7 +172,7 @@ class Podcast extends database_object implements library_item
      * get_keywords
      * @return array
      */
-    public function get_keywords()
+    public function get_keywords(): array
     {
         $keywords            = array();
         $keywords['podcast'] = array('important' => true,
@@ -233,7 +234,7 @@ class Podcast extends database_object implements library_item
      * get_description
      * @return string
      */
-    public function get_description()
+    public function get_description(): string
     {
         return $this->f_description;
     }
@@ -526,7 +527,7 @@ class Podcast extends database_object implements library_item
      * get_root_path
      * @return string
      */
-    public function get_root_path()
+    public function get_root_path(): string
     {
         $catalog = Catalog::create_from_id($this->catalog);
         if (!$catalog->get_type() == 'local') {

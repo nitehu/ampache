@@ -20,6 +20,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 use Sabre\DAV;
 
@@ -42,7 +43,7 @@ class WebDAV_Catalog extends DAV\Collection
      * getChildren
      * @return array
      */
-    public function getChildren()
+    public function getChildren(): array
     {
         $children = array();
         $catalogs = null;
@@ -80,7 +81,7 @@ class WebDAV_Catalog extends DAV\Collection
      * childExists
      * @return bool
      */
-    public function childExists($name)
+    public function childExists($name): bool
     {
         $matches = Catalog::search_childrens($name, $this->catalog_id);
 
@@ -91,7 +92,7 @@ class WebDAV_Catalog extends DAV\Collection
      * getName
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         if ($this->catalog_id > 0) {
             $catalog = Catalog::create_from_id($this->catalog_id);

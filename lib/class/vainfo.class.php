@@ -19,6 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 /**
  *
@@ -156,7 +157,7 @@ class vainfo
      * encoding.
      * @return string
      */
-    private static function _detect_encoding($tags, $mb_order)
+    private static function _detect_encoding($tags, $mb_order): string
     {
         if (!function_exists('mb_detect_encoding')) {
             return 'ISO-8859-1';
@@ -286,7 +287,7 @@ class vainfo
      * This function runs the various steps to gathering the metadata
      * @return array
      */
-    public function read_id3()
+    public function read_id3(): array
     {
         // Get the Raw file information
         try {
@@ -307,7 +308,7 @@ class vainfo
      * everything in random order.
      * @return array
      */
-    public static function get_tag_type($results, $config_key = 'metadata_order')
+    public static function get_tag_type($results, $config_key = 'metadata_order'): array
     {
         $order = (array) AmpConfig::get($config_key);
 
@@ -343,7 +344,7 @@ class vainfo
      * sanitized format that Ampache can actually use
      * @return array
      */
-    public static function clean_tag_info($results, $keys, $filename = null)
+    public static function clean_tag_info($results, $keys, $filename = null): array
     {
         $info = array();
 
@@ -458,7 +459,7 @@ class vainfo
      * @param string $field
      * @return array
      */
-    private static function clean_array_tag($field, $info, $tags)
+    private static function clean_array_tag($field, $info, $tags): array
     {
         $arr = array();
         if ((!$info[$field] || count($info[$field]) == 0) && $tags[$field]) {
@@ -515,7 +516,7 @@ class vainfo
      * This processes the raw getID3 output and bakes it.
      * @return array
      */
-    private function _get_tags()
+    private function _get_tags(): array
     {
         $results = array();
 
@@ -589,7 +590,7 @@ class vainfo
      * get_metadata_order_key
      * @return string
      */
-    private function get_metadata_order_key()
+    private function get_metadata_order_key(): string
     {
         if (!in_array('music', $this->gather_types)) {
             return 'metadata_order_video';
@@ -602,7 +603,7 @@ class vainfo
      * get_metadata_order
      * @return array
      */
-    private function get_metadata_order()
+    private function get_metadata_order(): array
     {
         return (array) AmpConfig::get($this->get_metadata_order_key());
     }
@@ -640,7 +641,7 @@ class vainfo
      * sample rate, channels, etc.)
      * @return array
      */
-    private function _parse_general($tags)
+    private function _parse_general($tags): array
     {
         $parsed = array();
 
@@ -698,7 +699,7 @@ class vainfo
      * This standardizes the type that we are given into a recognized type.
      * @return string
      */
-    private function _clean_type($type)
+    private function _clean_type($type): string
     {
         switch ($type) {
             case 'mp3':
@@ -730,7 +731,7 @@ class vainfo
      * This does generic cleanup.
      * @return array
      */
-    private function _cleanup_generic($tags)
+    private function _cleanup_generic($tags): array
     {
         $parsed = array();
         foreach ($tags as $tagname => $data) {
@@ -772,7 +773,7 @@ class vainfo
      * This is supposed to handle lyrics3. FIXME: does it?
      * @return array
      */
-    private function _cleanup_lyrics($tags)
+    private function _cleanup_lyrics($tags): array
     {
         $parsed = array();
 
@@ -792,7 +793,7 @@ class vainfo
      * Standardizes tag names from vorbis.
      * @return array
      */
-    private function _cleanup_vorbiscomment($tags)
+    private function _cleanup_vorbiscomment($tags): array
     {
         $parsed = array();
 
@@ -861,7 +862,7 @@ class vainfo
      * Doesn't do much.
      * @return array
      */
-    private function _cleanup_id3v1($tags)
+    private function _cleanup_id3v1($tags): array
     {
         $parsed = array();
 
@@ -880,7 +881,7 @@ class vainfo
      * Whee, v2!
      * @return array
      */
-    private function _cleanup_id3v2($tags)
+    private function _cleanup_id3v2($tags): array
     {
         $parsed = array();
 
@@ -1014,7 +1015,7 @@ class vainfo
      * _cleanup_riff
      * @return array
      */
-    private function _cleanup_riff($tags)
+    private function _cleanup_riff($tags): array
     {
         $parsed = array();
 
@@ -1036,7 +1037,7 @@ class vainfo
      * _cleanup_quicktime
      * @return array
      */
-    private function _cleanup_quicktime($tags)
+    private function _cleanup_quicktime($tags): array
     {
         $parsed = array();
 
@@ -1110,7 +1111,7 @@ class vainfo
      * @param string $filepath
      * @return array
      */
-    private function _parse_filename($filepath)
+    private function _parse_filename($filepath): array
     {
         $origin  = $filepath;
         $results = array();
@@ -1213,7 +1214,7 @@ class vainfo
      * @param string $file_pattern
      * @return array
      */
-    public static function parse_pattern($filepath, $dir_pattern, $file_pattern)
+    public static function parse_pattern($filepath, $dir_pattern, $file_pattern): array
     {
         $results         = array();
         $slash_type_preg = DIRECTORY_SEPARATOR;
@@ -1265,7 +1266,7 @@ class vainfo
      * removeCommonAbbreviations
      * @return string
      */
-    private function removeCommonAbbreviations($name)
+    private function removeCommonAbbreviations($name): string
     {
         $abbr         = explode(",", AmpConfig::get('common_abbr'));
         $commonabbr   = preg_replace("~\n~", '', $abbr);
@@ -1285,7 +1286,7 @@ class vainfo
      * formatVideoName
      * @return string
      */
-    private function formatVideoName($name)
+    private function formatVideoName($name): string
     {
         return ucwords(trim($this->removeCommonAbbreviations(str_replace(['.', '_', '-'], ' ', $name)), "\s\t\n\r\0\x0B\.\_\-"));
     }
@@ -1297,7 +1298,7 @@ class vainfo
      *
      * @return array Return broken title, album, artist
      */
-    public function set_broken()
+    public function set_broken(): array
     {
         /* Pull In the config option */
         $order = AmpConfig::get('tag_order');
@@ -1324,7 +1325,7 @@ class vainfo
      * @return array
      * @throws Exception
      */
-    private function parseGenres($data)
+    private function parseGenres($data): array
     {
         // read additional id3v2 delimiters from config
         $delimiters = AmpConfig::get('additional_genre_delimiters');

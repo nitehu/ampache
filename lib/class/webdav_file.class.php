@@ -20,6 +20,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 use Sabre\DAV;
 
@@ -43,7 +44,7 @@ class WebDAV_File extends DAV\File
      * getName
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->libitem->f_file;
     }
@@ -83,7 +84,7 @@ class WebDAV_File extends DAV\File
      * getETag
      * @return string
      */
-    public function getETag()
+    public function getETag(): string
     {
         return md5(get_class($this->libitem) . "_" . $this->libitem->id . "_" . $this->libitem->update_time);
     }

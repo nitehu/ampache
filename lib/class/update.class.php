@@ -19,6 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 /**
  * Update Class
@@ -55,7 +56,7 @@ class Update
      * for its existence first.
      * @return string
      */
-    public static function get_version()
+    public static function get_version(): string
     {
         $version = "";
         /* Make sure that update_info exits */
@@ -88,7 +89,7 @@ class Update
      * Make the version number pretty.
      * @return string
      */
-    public static function format_version($data)
+    public static function format_version($data): string
     {
         $new_version =
             substr($data, 0, strlen($data) - 5) . '.' .
@@ -104,7 +105,7 @@ class Update
      * Checks to see if we need to update ampache at all.
      * @return bool
      */
-    public static function need_update()
+    public static function need_update(): bool
     {
         $current_version = self::get_version();
 
@@ -128,7 +129,7 @@ class Update
      * that require an update
      * @return array
      */
-    public static function populate_version()
+    public static function populate_version(): array
     {
         /* Define the array */
         $version = array();

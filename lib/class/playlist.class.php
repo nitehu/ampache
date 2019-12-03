@@ -19,6 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 /**
  * Playlist Class
@@ -96,7 +97,7 @@ class Playlist extends playlist_object
      * @param boolean $like
      * @return array
      */
-    public static function get_playlists($incl_public = true, $user_id = -1, $playlist_name = '', $like = true)
+    public static function get_playlists($incl_public = true, $user_id = -1, $playlist_name = '', $like = true): array
     {
         if (!$user_id) {
             $user_id = Core::get_global('user')->id;
@@ -148,7 +149,7 @@ class Playlist extends playlist_object
      * @param boolean $like
      * @return array
      */
-    public static function get_smartlists($incl_public = true, $user_id = -1, $playlist_name = '', $like = true)
+    public static function get_smartlists($incl_public = true, $user_id = -1, $playlist_name = '', $like = true): array
     {
         if (!$user_id) {
             $user_id = Core::get_global('user')->id;
@@ -577,7 +578,7 @@ class Playlist extends playlist_object
     * @param integer $track
     * @return bool
     */
-    public function has_item($object = null, $track = null)
+    public function has_item($object = null, $track = null): bool
     {
         $results = array();
         if ($object) {

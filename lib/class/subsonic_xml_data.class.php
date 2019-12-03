@@ -19,6 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 /**
  * XML_Data Class
@@ -557,7 +558,7 @@ class Subsonic_XML_Data
      * @param integer $songId
      * @return array
      */
-    public static function getSongData($songId)
+    public static function getSongData($songId): array
     {
         $sql = 'SELECT `song`.`id`, `song`.`file`, `song`.`catalog`, `song`.`album`, `album`.`album_artist` AS `albumartist`, `song`.`year`, `song`.`artist`, ' .
             '`song`.`title`, `song`.`bitrate`, `song`.`rate`, `song`.`mode`, `song`.`size`, `song`.`time`, `song`.`track`, ' .
@@ -586,7 +587,7 @@ class Subsonic_XML_Data
      * @param integer $albumId
      * @return array
      */
-    public static function getAlbumData($albumId)
+    public static function getAlbumData($albumId): array
     {
         $sql        = "SELECT * FROM `album` WHERE `id`='$albumId'";
         $db_results = Dba::read($sql);
@@ -605,7 +606,7 @@ class Subsonic_XML_Data
      * @param integer $artistId
      * @return array
      */
-    public static function getArtistData($artistId)
+    public static function getArtistData($artistId): array
     {
         $sql        = "SELECT * FROM `artist` WHERE `id`='$artistId'";
         $db_results = Dba::read($sql);
@@ -628,7 +629,7 @@ class Subsonic_XML_Data
      * @param string $file_Path
      * @return array
      */
-    public static function getCatalogData($catalogId, $file_Path)
+    public static function getCatalogData($catalogId, $file_Path): array
     {
         $results         = array();
         $sqllook         = 'SELECT `catalog_type` FROM `catalog` WHERE `id` = ?';

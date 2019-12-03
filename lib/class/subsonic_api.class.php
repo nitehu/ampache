@@ -20,6 +20,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 /**
  * Subsonic Class
@@ -315,7 +316,7 @@ class Subsonic_Api
      * Used for xml2json to detect a sub-array
      * @return bool
      */
-    private static function has_Nested_Array($properties)
+    private static function has_Nested_Array($properties): bool
     {
         foreach ($properties as $property) {
             if (is_array($property)) {

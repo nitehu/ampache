@@ -19,6 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 /**
  * playlist_object
@@ -81,9 +82,9 @@ abstract class playlist_object extends database_object implements library_item
      * This function returns true or false if the current user
      * has access to this playlist
      * @param integer $user_id
-     * @return boolean
+     * @return bool
      */
-    public function has_access($user_id = null)
+    public function has_access($user_id = null): bool
     {
         if (!Access::check('interface', 25)) {
             return false;

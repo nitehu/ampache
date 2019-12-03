@@ -19,6 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 class Video extends database_object implements media, library_item
 {
@@ -307,7 +308,7 @@ class Video extends database_object implements media, library_item
      * Get item keywords for metadata searches.
      * @return array
      */
-    public function get_keywords()
+    public function get_keywords(): array
     {
         $keywords          = array();
         $keywords['title'] = array('important' => true,
@@ -321,7 +322,7 @@ class Video extends database_object implements media, library_item
      * Get item fullname.
      * @return string
      */
-    public function get_fullname()
+    public function get_fullname(): string
     {
         return $this->f_title;
     }
@@ -339,7 +340,7 @@ class Video extends database_object implements media, library_item
      * Get item childrens.
      * @return array
      */
-    public function get_childrens()
+    public function get_childrens(): array
     {
         return array();
     }
@@ -349,7 +350,7 @@ class Video extends database_object implements media, library_item
      * @param string $name
      * @return array
      */
-    public function search_childrens($name)
+    public function search_childrens($name): array
     {
         debug_event('video.class', 'search_childrens ' . $name, 5);
 
@@ -361,7 +362,7 @@ class Video extends database_object implements media, library_item
      * @param string $filter_type
      * @return array
      */
-    public function get_medias($filter_type = null)
+    public function get_medias($filter_type = null): array
     {
         $medias = array();
         if ($filter_type === null || $filter_type == 'video') {
@@ -398,7 +399,7 @@ class Video extends database_object implements media, library_item
      * Get default art kind for this item.
      * @return string
      */
-    public function get_default_art_kind()
+    public function get_default_art_kind(): string
     {
         return 'preview';
     }
@@ -434,7 +435,7 @@ class Video extends database_object implements media, library_item
      * Get stream types.
      * @return array
      */
-    public function get_stream_types($player = null)
+    public function get_stream_types($player = null): array
     {
         return Song::get_stream_types_for_type($this->type, $player);
     }
@@ -449,7 +450,7 @@ class Video extends database_object implements media, library_item
      * @param boolean $local
      * @return string
      */
-    public static function play_url($oid, $additional_params = '', $player = '', $local = false, $uid = false)
+    public static function play_url($oid, $additional_params = '', $player = '', $local = false, $uid = false): string
     {
         return Song::generic_play_url('video', $oid, $additional_params, $player, $local, $uid);
     }
@@ -458,7 +459,7 @@ class Video extends database_object implements media, library_item
      * Get stream name.
      * @return string
      */
-    public function get_stream_name()
+    public function get_stream_name(): string
     {
         return $this->title;
     }
@@ -470,7 +471,7 @@ class Video extends database_object implements media, library_item
      * @param string $player
      * @return array
      */
-    public function get_transcode_settings($target = null, $player = null, $options = array())
+    public function get_transcode_settings($target = null, $player = null, $options = array()): array
     {
         return Song::get_transcode_settings_for_media($this->type, $target, $player, 'video', $options);
     }
@@ -479,7 +480,7 @@ class Video extends database_object implements media, library_item
      * Get derived video types.
      * @return string[]
      */
-    private static function get_derived_types()
+    private static function get_derived_types(): array
     {
         return array('TVShow_Episode', 'Movie', 'Clip', 'Personal_Video');
     }
@@ -489,7 +490,7 @@ class Video extends database_object implements media, library_item
      * @param string $type
      * @return string
      */
-    public static function validate_type($type)
+    public static function validate_type($type): string
     {
         $dtypes = self::get_derived_types();
         foreach ($dtypes as $dtype) {
@@ -508,7 +509,7 @@ class Video extends database_object implements media, library_item
      * @param string $type
      * @return string
      */
-    public static function type_to_mime($type)
+    public static function type_to_mime($type): string
     {
         // FIXME: This should really be done the other way around.
         // Store the mime type in the database, and provide a function
@@ -674,7 +675,7 @@ class Video extends database_object implements media, library_item
      * Get release item art.
      * @return array
      */
-    public function get_release_item_art()
+    public function get_release_item_art(): array
     {
         return array('object_type' => 'video',
             'object_id' => $this->id
@@ -739,7 +740,7 @@ class Video extends database_object implements media, library_item
      * @param array $location
      * @return bool
      */
-    public function set_played($user, $agent, $location)
+    public function set_played($user, $agent, $location): bool
     {
         Stats::insert('video', $this->id, $user, $agent, $location);
 
@@ -769,7 +770,7 @@ class Video extends database_object implements media, library_item
      * @param \Video $new_video
      * @return array
      */
-    public static function compare_video_information(Video $video, Video $new_video)
+    public static function compare_video_information(Video $video, Video $new_video): array
     {
         // Remove some stuff we don't care about
         unset($video->catalog, $video->played, $video->enabled, $video->addition_time, $video->update_time, $video->type);
@@ -784,7 +785,7 @@ class Video extends database_object implements media, library_item
      * Get existing subtitles list for this video
      * @return array
      */
-    public function get_subtitles()
+    public function get_subtitles(): array
     {
         $subtitles = array();
         $pinfo     = pathinfo($this->file);
@@ -815,7 +816,7 @@ class Video extends database_object implements media, library_item
      * @param string $code
      * @return string
      */
-    protected function get_language_name($code)
+    protected function get_language_name($code): string
     {
         $languageCodes = array(
          "aa" => T_("Afar"),
@@ -1012,7 +1013,7 @@ class Video extends database_object implements media, library_item
      * @param string $lang_code
      * @return string
      */
-    public function get_subtitle_file($lang_code)
+    public function get_subtitle_file($lang_code): string
     {
         $subtitle = '';
         if ($lang_code == '__' || $this->get_language_name($lang_code)) {
@@ -1077,7 +1078,7 @@ class Video extends database_object implements media, library_item
      * @param integer $level
      * @return bool
      */
-    private static function _update_item($field, $value, $song_id, $level)
+    private static function _update_item($field, $value, $song_id, $level): bool
     {
         /* Check them Rights! */
         if (!Access::check('interface', $level)) {

@@ -19,6 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 /**
  * Mailer Class
@@ -52,7 +53,7 @@ class Mailer
      * Check that the mail feature is enabled
      * @return bool
      */
-    public static function is_mail_enabled()
+    public static function is_mail_enabled(): bool
     {
         if (AmpConfig::get('mail_enable') && !AmpConfig::get('demo_mode')) {
             return true;

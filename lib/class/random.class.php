@@ -20,6 +20,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 /**
  * Random Class
@@ -288,7 +289,7 @@ class Random
      * @param array $data
      * @return array
      */
-    public static function advanced($type, $data)
+    public static function advanced($type, $data): array
     {
         /* Figure out our object limit */
         $limit     = (int) ($data['random']);
@@ -334,7 +335,7 @@ class Random
      * @param array $data
      * @return array
      */
-    private static function advanced_results($sql, $data)
+    private static function advanced_results($sql, $data): array
     {
         // Run the query generated above so we can while it
         $db_results = Dba::read($sql, $data);
@@ -410,7 +411,7 @@ class Random
      * @param string $limit_sql
      * @return string
      */
-    private static function advanced_sql($data, $type, $limit_sql)
+    private static function advanced_sql($data, $type, $limit_sql): string
     {
         $catalog_disable = AmpConfig::get('catalog_disable');
         $search_data     = Search::clean_request($data);

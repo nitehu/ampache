@@ -19,6 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 /**
  *
@@ -165,7 +166,7 @@ class Session
      * This returns the username associated with a session ID, if any
      * @return string
      */
-    public static function username($key)
+    public static function username($key): string
     {
         return self::_read($key, 'username');
     }
@@ -187,7 +188,7 @@ class Session
      * chunk of data, nifty ain't it!
      * @return string
      */
-    public static function create($data)
+    public static function create($data): string
     {
         // Regenerate the session ID to prevent fixation
         switch ($data['type']) {
@@ -402,7 +403,7 @@ class Session
      * @param string $sid
      * @return array
      */
-    public static function get_geolocation($sid)
+    public static function get_geolocation($sid): array
     {
         $location = array();
 
@@ -519,9 +520,9 @@ class Session
      * Generate a random token.
      * @return string
      */
-    public static function generateRandomToken()
+    public static function generateRandomToken(): string
     {
-        return md5(uniqid(mt_rand(), true));
+        return md5(uniqid((string) mt_rand(), true));
     }
 
     /**
@@ -540,7 +541,7 @@ class Session
      * auth_remember
      * @return bool
      */
-    public static function auth_remember()
+    public static function auth_remember(): bool
     {
         $auth  = false;
         $cname = AmpConfig::get('session_name') . '_remember';

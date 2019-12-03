@@ -20,6 +20,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 /**
  * XML_Data Class
@@ -170,7 +171,7 @@ class XML_Data
      * @input array $tags
      * @return string
      */
-    private static function tags_string($tags)
+    private static function tags_string($tags): string
     {
         $string = '';
 
@@ -205,7 +206,7 @@ class XML_Data
      * @param int[] $playlist_data
      * @return string
      */
-    private static function playlist_song_tracks_string($song, $playlist_data)
+    private static function playlist_song_tracks_string($song, $playlist_data): string
     {
         if (empty($playlist_data)) {
             return "";
@@ -226,7 +227,7 @@ class XML_Data
      * use primarily by the ajax mojo.
      * @return string
      */
-    public static function output_xml_from_array($array, $callback = false, $type = '')
+    public static function output_xml_from_array($array, $callback = false, $type = ''): string
     {
         $string = '';
 
@@ -705,7 +706,7 @@ class XML_Data
      * @param  integer[] $songs
      * @return string    return xml
      */
-    public static function songs($songs, $playlist_data = array(), $full_xml = true, $user_id = false)
+    public static function songs($songs, $playlist_data = array(), $full_xml = true, $user_id = false): string
     {
         $string = "<total_count>" . count($songs) . "</total_count>\n";
 

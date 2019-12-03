@@ -19,6 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 class License
 {
@@ -64,7 +65,7 @@ class License
      * @param integer $id
      * @return bool
      */
-    private function has_info($id)
+    private function has_info($id): bool
     {
         $sql        = "SELECT * FROM `license` WHERE `id` = ?";
         $db_results = Dba::read($sql, array($id));

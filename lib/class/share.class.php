@@ -19,6 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 class Share extends database_object
 {
@@ -113,7 +114,7 @@ class Share extends database_object
      * @param string $type
      * @return string
      */
-    public static function format_type($type)
+    public static function format_type($type): string
     {
         switch ($type) {
             case 'album':
@@ -200,7 +201,7 @@ class Share extends database_object
      * get_share_list_sql
      * @return string
      */
-    public static function get_share_list_sql()
+    public static function get_share_list_sql(): string
     {
         $sql = "SELECT `id` FROM `share` ";
 
@@ -215,7 +216,7 @@ class Share extends database_object
      * get_share_list
      * @return array
      */
-    public static function get_share_list()
+    public static function get_share_list(): array
     {
         $sql        = self::get_share_list_sql();
         $db_results = Dba::read($sql);
@@ -232,7 +233,7 @@ class Share extends database_object
      * get_shares
      * @return array
      */
-    public static function get_shares($object_type, $object_id)
+    public static function get_shares($object_type, $object_id): array
     {
         $sql        = "SELECT `id` FROM `share` WHERE `object_type` = ? AND `object_id` = ?";
         $db_results = Dba::read($sql, array($object_type, $object_id));
@@ -312,7 +313,7 @@ class Share extends database_object
      * is_valid
      * @return bool
      */
-    public function is_valid($secret, $action)
+    public function is_valid($secret, $action): bool
     {
         if (!$this->id) {
             debug_event('share.class', 'Access Denied: Invalid share.', 3);

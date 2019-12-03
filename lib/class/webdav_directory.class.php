@@ -20,6 +20,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 use Sabre\DAV;
 
@@ -43,7 +44,7 @@ class WebDAV_Directory extends DAV\Collection
      * getChildren
      * @return array
      */
-    public function getChildren()
+    public function getChildren(): array
     {
         debug_event('webdav_directory.class', 'Directory getChildren', 5);
         $children = array();
@@ -107,7 +108,7 @@ class WebDAV_Directory extends DAV\Collection
      * childExists
      * @return bool
      */
-    public function childExists($name)
+    public function childExists($name): bool
     {
         $matches = $this->libitem->search_childrens($name);
 
@@ -118,7 +119,7 @@ class WebDAV_Directory extends DAV\Collection
      * getName
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return $this->libitem->get_fullname();
     }

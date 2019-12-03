@@ -19,6 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 /**
  * Catalog Class
@@ -170,7 +171,7 @@ abstract class Catalog extends database_object
      * Check if the catalog is ready to perform actions (configuration completed, ...)
      * @return bool
      */
-    public function isReady()
+    public function isReady(): bool
     {
         return true;
     }
@@ -196,7 +197,7 @@ abstract class Catalog extends database_object
      * This removes the remote catalog
      * @return bool
      */
-    public function uninstall()
+    public function uninstall(): bool
     {
         $sql = "DELETE FROM `catalog` WHERE `catalog_type` = ?";
         Dba::query($sql, array($this->get_type()));
@@ -324,7 +325,7 @@ abstract class Catalog extends database_object
      * @param string $path
      * @return bool
      */
-    public static function create_catalog_path($path)
+    public static function create_catalog_path($path): bool
     {
         if (!is_dir($path)) {
             if (mkdir($path) === false) {
@@ -342,7 +343,7 @@ abstract class Catalog extends database_object
      * This returns the catalog types that are available
      * @return string[]
      */
-    public static function get_catalog_types()
+    public static function get_catalog_types(): array
     {
         /* First open the dir */
         $basedir = AmpConfig::get('prefix') . '/modules/catalog';
@@ -383,7 +384,7 @@ abstract class Catalog extends database_object
      * @param string $file
      * @return bool
      */
-    public static function is_audio_file($file)
+    public static function is_audio_file($file): bool
     {
         $pattern = "/\.(" . AmpConfig::get('catalog_file_pattern') . ")$/i";
 
@@ -395,7 +396,7 @@ abstract class Catalog extends database_object
      * @param string $file
      * @return bool
      */
-    public static function is_video_file($file)
+    public static function is_video_file($file): bool
     {
         $video_pattern = "/\.(" . AmpConfig::get('catalog_video_pattern') . ")$/i";
 
@@ -420,7 +421,7 @@ abstract class Catalog extends database_object
      * @param string $table
      * @return array
      */
-    public function get_info($catalog_id, $table = 'catalog')
+    public function get_info($catalog_id, $table = 'catalog'): array
     {
         $info = parent::get_info($catalog_id, $table);
 
@@ -446,7 +447,7 @@ abstract class Catalog extends database_object
      * @param string $id
      * @return string
      */
-    public static function get_enable_filter($type, $id)
+    public static function get_enable_filter($type, $id): string
     {
         $sql = "";
         if ($type == "song" || $type == "album" || $type == "artist") {
@@ -469,7 +470,7 @@ abstract class Catalog extends database_object
      * This populates an array which is used to speed up the add process.
      * @return bool
      */
-    protected function _create_filecache()
+    protected function _create_filecache(): bool
     {
         if (count($this->_filecache) == 0) {
             // Get _EVERYTHING_
@@ -619,7 +620,7 @@ abstract class Catalog extends database_object
      * @param integer|null $catalog_id
      * @return array
      */
-    public static function get_stats($catalog_id = null)
+    public static function get_stats($catalog_id = null): array
     {
         $results         = self::count_medias($catalog_id);
         $results         = array_merge(User::count(), $results);
@@ -722,7 +723,7 @@ abstract class Catalog extends database_object
      * @param integer|null $catalog_id
      * @return array
      */
-    public static function count_medias($catalog_id = null)
+    public static function count_medias($catalog_id = null): array
     {
         $where_sql = $catalog_id ? 'WHERE `catalog` = ?' : '';
         $params    = $catalog_id ? array($catalog_id) : null;
@@ -794,7 +795,7 @@ abstract class Catalog extends database_object
      * @param integer|null $user_id
      * @return string
      */
-    public static function get_uploads_sql($type, $user_id = null)
+    public static function get_uploads_sql($type, $user_id = null): string
     {
         if ($user_id === null) {
             $user_id = Core::get_global('user')->id;
@@ -1556,7 +1557,7 @@ abstract class Catalog extends database_object
      * @param array $data
      * @return bool
      */
-    public static function update_settings($data)
+    public static function update_settings($data): bool
     {
         $sql    = "UPDATE `catalog` SET `name` = ?, `rename_pattern` = ?, `sort_pattern` = ? WHERE `id` = ?";
         $params = array($data['name'], $data['rename_pattern'], $data['sort_pattern'], $data['catalog_id']);
@@ -1638,7 +1639,7 @@ abstract class Catalog extends database_object
      * @param string $rename_pattern
      * @return array
      */
-    public static function update_media_from_tags($media, $gather_types = array('music'), $sort_pattern = '', $rename_pattern = '')
+    public static function update_media_from_tags($media, $gather_types = array('music'), $sort_pattern = '', $rename_pattern = ''): array
     {
         debug_event('catalog.class', 'Reading tags from ' . $media->file, 4);
 
@@ -1676,7 +1677,7 @@ abstract class Catalog extends database_object
      * @param \Song $song
      * @return array
      */
-    public static function update_song_from_tags($results, Song $song)
+    public static function update_song_from_tags($results, Song $song): array
     {
         /* Setup the vars */
         $new_song              = new Song();
@@ -1865,7 +1866,7 @@ abstract class Catalog extends database_object
      * @param array $metadata
      * @return array
      */
-    private static function get_clean_metadata(library_item $libraryItem, $metadata)
+    private static function get_clean_metadata(library_item $libraryItem, $metadata): array
     {
         $tags = array_diff_key(
             $metadata,
@@ -1920,7 +1921,7 @@ abstract class Catalog extends database_object
      * @param string $media_type
      * @return array
      */
-    public function get_gather_types($media_type = '')
+    public function get_gather_types($media_type = ''): array
     {
         $gtypes = $this->gather_types;
         if (empty($gtypes)) {
@@ -2048,7 +2049,7 @@ abstract class Catalog extends database_object
      * @param string $string
      * @return array
      */
-    public static function trim_prefix($string)
+    public static function trim_prefix($string): array
     {
         $prefix_pattern = '/^(' . implode('\\s|', explode('|', AmpConfig::get('catalog_prefix_pattern'))) . '\\s)(.*)/i';
         preg_match($prefix_pattern, $string, $matches);
@@ -2083,7 +2084,7 @@ abstract class Catalog extends database_object
      * @param string $string
      * @return string
      */
-    public static function trim_slashed_list($string)
+    public static function trim_slashed_list($string): string
     {
         $first = '';
         if ($string) {
@@ -2110,7 +2111,7 @@ abstract class Catalog extends database_object
      * @param string $string
      * @return array
      */
-    public static function trim_featuring($string)
+    public static function trim_featuring($string): array
     {
         $trimmed = array_map('trim', explode(' feat. ', $string));
 
@@ -2140,7 +2141,7 @@ abstract class Catalog extends database_object
      * @param string $playlist
      * @return array
      */
-    public static function import_playlist($playlist)
+    public static function import_playlist($playlist): array
     {
         $data = file_get_contents($playlist);
         if (substr($playlist, -3, 3) == 'm3u' || substr($playlist, -4, 4) == 'm3u8') {
@@ -2261,7 +2262,7 @@ abstract class Catalog extends database_object
      * @param string $data
      * @return array
      */
-    public static function parse_m3u($data)
+    public static function parse_m3u($data): array
     {
         $files   = array();
         $results = explode("\n", $data);
@@ -2282,7 +2283,7 @@ abstract class Catalog extends database_object
      * @param string $data
      * @return array
      */
-    public static function parse_pls($data)
+    public static function parse_pls($data): array
     {
         $files   = array();
         $results = explode("\n", $data);
@@ -2306,7 +2307,7 @@ abstract class Catalog extends database_object
      * @param string $data
      * @return array
      */
-    public static function parse_asx($data)
+    public static function parse_asx($data): array
     {
         $files = array();
         $xml   = simplexml_load_string($data);
@@ -2329,7 +2330,7 @@ abstract class Catalog extends database_object
      * @param string $data
      * @return array
      */
-    public static function parse_xspf($data)
+    public static function parse_xspf($data): array
     {
         $files = array();
         $xml   = simplexml_load_string($data);
@@ -2488,7 +2489,7 @@ abstract class Catalog extends database_object
      * @param integer $id
      * @return array
      */
-    protected static function getSongTags($type, $id)
+    protected static function getSongTags($type, $id): array
     {
         $tags       = array();
         $db_results = Dba::read('SELECT `tag`.`name` FROM `tag`'
@@ -2641,7 +2642,7 @@ abstract class Catalog extends database_object
      * @param integer $new_object_id
      * @return bool
      */
-    public static function migrate($object_type, $old_object_id, $new_object_id)
+    public static function migrate($object_type, $old_object_id, $new_object_id): bool
     {
         if ($old_object_id != $new_object_id) {
             debug_event('catalog.class', 'migrate ' . $object_type . ' from ' . $old_object_id . ' to ' . $new_object_id, 4);

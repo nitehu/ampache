@@ -19,6 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 /**
  * AutoUpdate Class
@@ -42,7 +43,7 @@ class AutoUpdate
      * Check if current version is a development version.
      * @return bool
      */
-    protected static function is_develop()
+    protected static function is_develop(): bool
     {
         $version         = AmpConfig::get('version');
         $vspart          = explode('-', $version);
@@ -63,7 +64,7 @@ class AutoUpdate
      * Check if current version is a git repository.
      * @return bool
      */
-    protected static function is_git_repository()
+    protected static function is_git_repository(): bool
     {
         return is_dir(AmpConfig::get('prefix') . '/.git');
     }
@@ -72,7 +73,7 @@ class AutoUpdate
      * Check if there is a default branch set in the config file.
      * @return string
      */
-    protected static function is_force_git_branch()
+    protected static function is_force_git_branch(): string
     {
         $git_branch = (string) AmpConfig::get('github_force_branch');
 
@@ -83,7 +84,7 @@ class AutoUpdate
      * Check if branch develop exists in git repository.
      * @return bool
      */
-    protected static function is_branch_develop_exists()
+    protected static function is_branch_develop_exists(): bool
     {
         return is_readable(AmpConfig::get('prefix') . '/.git/refs/heads/develop');
     }
@@ -119,7 +120,7 @@ class AutoUpdate
      * Check if last github check expired.
      * @return bool
      */
-    protected static function lastcheck_expired()
+    protected static function lastcheck_expired(): bool
     {
         $lastcheck = AmpConfig::get('autoupdate_lastcheck');
         if (!$lastcheck) {
@@ -135,7 +136,7 @@ class AutoUpdate
      * @param boolean $force
      * @return string
      */
-    public static function get_latest_version($force = false)
+    public static function get_latest_version($force = false): string
     {
         $lastversion = '';
         // Forced or last check expired, check latest version from Github
@@ -188,7 +189,7 @@ class AutoUpdate
      * Get current local version.
      * @return string
      */
-    public static function get_current_version()
+    public static function get_current_version(): string
     {
         $git_branch = self::is_force_git_branch();
         if (self::is_develop() || $git_branch !== '') {
@@ -206,7 +207,7 @@ class AutoUpdate
      * Get current local git commit.
      * @return string
      */
-    public static function get_current_commit()
+    public static function get_current_commit(): string
     {
         $git_branch = self::is_force_git_branch();
         if ($git_branch !== '' && is_readable(AmpConfig::get('prefix') . '/.git/refs/heads/' . $git_branch)) {
@@ -224,7 +225,7 @@ class AutoUpdate
      * @param boolean $force
      * @return bool
      */
-    public static function is_update_available($force = false)
+    public static function is_update_available($force = false): bool
     {
         if (!$force && (!self::lastcheck_expired() || !AmpConfig::get('autoupdate'))) {
             return AmpConfig::get('autoupdate_lastversion_new');

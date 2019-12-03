@@ -19,6 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 class TVShow_Season extends database_object implements library_item
 {
@@ -72,7 +73,7 @@ class TVShow_Season extends database_object implements library_item
      * gets all episodes for this tv show season
      * @return array
      */
-    public function get_episodes()
+    public function get_episodes(): array
     {
         $sql = "SELECT `tvshow_episode`.`id` FROM `tvshow_episode` ";
         if (AmpConfig::get('catalog_disable')) {
@@ -99,7 +100,7 @@ class TVShow_Season extends database_object implements library_item
      * This returns the extra information for the tv show season, this means totals etc
      * @return array
      */
-    private function _get_extra_info()
+    private function _get_extra_info(): array
     {
         // Try to find it in the cache and save ourselves the trouble
         if (parent::is_cached('tvshow_extra', $this->id)) {
@@ -148,7 +149,7 @@ class TVShow_Season extends database_object implements library_item
      * get_keywords
      * @return array
      */
-    public function get_keywords()
+    public function get_keywords(): array
     {
         $keywords           = array();
         $keywords['tvshow'] = array('important' => true,
@@ -191,7 +192,7 @@ class TVShow_Season extends database_object implements library_item
      * get_medias
      * @return array
      */
-    public function get_medias($filter_type = null)
+    public function get_medias($filter_type = null): array
     {
         $medias = array();
         if ($filter_type === null || $filter_type == 'video') {

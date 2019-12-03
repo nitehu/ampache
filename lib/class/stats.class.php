@@ -20,6 +20,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 /**
  * Stats Class
@@ -152,7 +153,7 @@ class Stats
      * @param integer $date
      * @return bool
      */
-    public static function is_already_inserted($type, $oid, $user, $count_type = 'stream', $date = null, $song_time = 0)
+    public static function is_already_inserted($type, $oid, $user, $count_type = 'stream', $date = null, $song_time = 0): bool
     {
         // We look 10 + song time seconds in the past
         $delay = time() - ($song_time - 5);
@@ -293,7 +294,7 @@ class Stats
      * @param boolean $random
      * @return string
      */
-    public static function get_top_sql($input_type, $threshold = '', $count_type = 'stream', $user_id = null, $random = false)
+    public static function get_top_sql($input_type, $threshold = '', $count_type = 'stream', $user_id = null, $random = false): string
     {
         $type = self::validate_type($input_type);
         $sql  = "";
@@ -366,7 +367,7 @@ class Stats
      * @param boolean $random
      * @return array
      */
-    public static function get_top($type, $count = null, $threshold = '', $offset = '', $user_id = null, $random = false)
+    public static function get_top($type, $count = null, $threshold = '', $offset = '', $user_id = null, $random = false): array
     {
         if (!$count) {
             $count = AmpConfig::get('popular_threshold');
@@ -515,7 +516,7 @@ class Stats
      * @param string $type
      * @return string
      */
-    public static function validate_type($type)
+    public static function validate_type($type): string
     {
         switch ($type) {
             case 'artist':

@@ -19,6 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
@@ -123,7 +124,7 @@ class Broadcast_Server implements MessageComponentInterface
      * @param integer $song_id
      * @return string
      */
-    protected function getSongJS($song_id)
+    protected function getSongJS($song_id): string
     {
         $media   = array();
         $media[] = array(
@@ -357,7 +358,7 @@ class Broadcast_Server implements MessageComponentInterface
      * @param \Ratchet\ConnectionInterface $conn
      * @return bool
      */
-    protected function isBroadcaster(ConnectionInterface $conn)
+    protected function isBroadcaster(ConnectionInterface $conn): bool
     {
         return array_key_exists($conn->resourceId, $this->broadcasters);
     }
@@ -410,7 +411,7 @@ class Broadcast_Server implements MessageComponentInterface
      * get_address
      * @return string
      */
-    public static function get_address()
+    public static function get_address(): string
     {
         $websocket_address = AmpConfig::get('websocket_address');
         if (empty($websocket_address)) {

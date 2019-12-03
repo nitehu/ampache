@@ -19,6 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 /**
  * Bookmark class
@@ -120,7 +121,7 @@ class Bookmark extends database_object
      * get_bookmarks
      * @return array
      */
-    public static function get_bookmarks($user = null)
+    public static function get_bookmarks($user = null): array
     {
         $bookmarks = array();
         $ids       = self::get_bookmarks_ids($user);

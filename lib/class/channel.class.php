@@ -19,6 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 class Channel extends database_object implements media, library_item
 {
@@ -117,7 +118,7 @@ class Channel extends database_object implements media, library_item
      * get_genre
      * @return string
      */
-    public function get_genre()
+    public function get_genre(): string
     {
         $tags  = Tag::get_object_tags('channel', $this->id);
         $genre = "";
@@ -215,7 +216,7 @@ class Channel extends database_object implements media, library_item
      * @param string $type
      * @return string
      */
-    public static function format_type($type)
+    public static function format_type($type): string
     {
         switch ($type) {
             case 'playlist':
@@ -260,7 +261,7 @@ class Channel extends database_object implements media, library_item
      * get_keywords
      * @return array
      */
-    public function get_keywords()
+    public function get_keywords(): array
     {
         return array();
     }
@@ -269,7 +270,7 @@ class Channel extends database_object implements media, library_item
      * get_fullname
      * @return string
      */
-    public function get_fullname()
+    public function get_fullname(): string
     {
         return $this->name;
     }
@@ -287,7 +288,7 @@ class Channel extends database_object implements media, library_item
      * get_childrens
      * @return array
      */
-    public function get_childrens()
+    public function get_childrens(): array
     {
         return array();
     }
@@ -297,7 +298,7 @@ class Channel extends database_object implements media, library_item
      * @param string $name
      * @return array
      */
-    public function search_childrens($name)
+    public function search_childrens($name): array
     {
         debug_event('channel.class', 'search_childrens ' . $name, 5);
 
@@ -309,7 +310,7 @@ class Channel extends database_object implements media, library_item
      * @param string $filter_type
      * @return array
      */
-    public function get_medias($filter_type = null)
+    public function get_medias($filter_type = null): array
     {
         $medias = array();
         if ($filter_type === null || $filter_type == 'channel') {
@@ -335,7 +336,7 @@ class Channel extends database_object implements media, library_item
      * get_default_art_kind
      * @return string
      */
-    public function get_default_art_kind()
+    public function get_default_art_kind(): string
     {
         return 'default';
     }
@@ -344,7 +345,7 @@ class Channel extends database_object implements media, library_item
      * get_description
      * @return string
      */
-    public function get_description()
+    public function get_description(): string
     {
         return $this->description;
     }
@@ -380,7 +381,7 @@ class Channel extends database_object implements media, library_item
      * get_stream_url
      * @return string
      */
-    public function get_stream_url()
+    public function get_stream_url(): string
     {
         return "http://" . $this->interface . ":" . $this->port . "/stream." . $this->stream_type;
     }
@@ -394,7 +395,7 @@ class Channel extends database_object implements media, library_item
      * get_channel_list_sql
      * @return string
      */
-    public static function get_channel_list_sql()
+    public static function get_channel_list_sql(): string
     {
         $sql = "SELECT `id` FROM `channel` ";
 
@@ -405,7 +406,7 @@ class Channel extends database_object implements media, library_item
      * get_channel_list
      * @return array
      */
-    public static function get_channel_list()
+    public static function get_channel_list(): array
     {
         $sql        = self::get_channel_list_sql();
         $db_results = Dba::read($sql);
@@ -449,7 +450,7 @@ class Channel extends database_object implements media, library_item
      * check_channel
      * @return bool
      */
-    public function check_channel()
+    public function check_channel(): bool
     {
         $check = false;
         if ($this->interface && $this->port) {
@@ -467,7 +468,7 @@ class Channel extends database_object implements media, library_item
      * get_channel_state
      * @return string
      */
-    public function get_channel_state()
+    public function get_channel_state(): string
     {
         if ($this->check_channel()) {
             $state = T_("Running");
@@ -655,7 +656,7 @@ class Channel extends database_object implements media, library_item
      * @param string $additional_params
      * @return string
      */
-    public static function play_url($oid, $additional_params = '', $player = null, $local = false)
+    public static function play_url($oid, $additional_params = '', $player = null, $local = false): string
     {
         $channel = new Channel($oid);
 
@@ -666,7 +667,7 @@ class Channel extends database_object implements media, library_item
      * get_stream_types
      * @return string[]
      */
-    public function get_stream_types($player = null)
+    public function get_stream_types($player = null): array
     {
         // Transcode is mandatory to keep a consistant stream
         return array('transcode');
@@ -676,7 +677,7 @@ class Channel extends database_object implements media, library_item
      * get_stream_name
      * @return string
      */
-    public function get_stream_name()
+    public function get_stream_name(): string
     {
         return $this->get_fullname();
     }
@@ -707,7 +708,7 @@ class Channel extends database_object implements media, library_item
      * @param string $source
      * @return string
      */
-    private function strtohex($source)
+    private function strtohex($source): string
     {
         $string= '';
         foreach (str_split($source) as $char) {

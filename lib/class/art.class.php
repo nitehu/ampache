@@ -19,6 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 use MusicBrainz\MusicBrainz;
 use MusicBrainz\HttpAdapters\RequestsHttpAdapter;
@@ -105,7 +106,7 @@ class Art extends database_object
      * @param int[] $object_ids
      * @return bool
      */
-    public static function build_cache($object_ids)
+    public static function build_cache($object_ids): bool
     {
         if (!count($object_ids)) {
             return false;
@@ -141,7 +142,7 @@ class Art extends database_object
      * Checks whether the user currently wants art
      * @return bool
      */
-    public static function is_enabled()
+    public static function is_enabled(): bool
     {
         if (self::$enabled) {
             return true;
@@ -173,7 +174,7 @@ class Art extends database_object
      * @param string $mime
      * @return string
      */
-    public static function extension($mime)
+    public static function extension($mime): string
     {
         $data      = explode("/", $mime);
         $extension = $data['1'];
@@ -191,7 +192,7 @@ class Art extends database_object
      * @param string $source
      * @return bool
      */
-    public static function test_image($source)
+    public static function test_image($source): bool
     {
         if (strlen($source) < 10) {
             debug_event('art.class', 'Invalid image passed', 1);
@@ -235,7 +236,7 @@ class Art extends database_object
      * @param boolean $raw
      * @return string
      */
-    public function get($raw = false)
+    public function get($raw = false): string
     {
         // Get the data either way
         if (!$this->has_db_info()) {
@@ -257,7 +258,7 @@ class Art extends database_object
      * ahead and try to resize
      * @return bool
      */
-    public function has_db_info()
+    public function has_db_info(): bool
     {
         $sql        = "SELECT `id`, `image`, `mime`, `size` FROM `image` WHERE `object_type` = ? AND `object_id` = ? AND `kind` = ?";
         $db_results = Dba::read($sql, array($this->type, $this->uid, $this->kind));
@@ -311,7 +312,7 @@ class Art extends database_object
      * @param string $kind
      * @return bool
      */
-    public static function has_db($object_id, $object_type, $kind = 'default')
+    public static function has_db($object_id, $object_type, $kind = 'default'): bool
     {
         $sql        = "SELECT COUNT(`id`) AS `nb_img` FROM `image` WHERE `object_type` = ? AND `object_id` = ? AND `kind` = ?";
         $db_results = Dba::read($sql, array($object_type, $object_id, $kind));
@@ -357,7 +358,7 @@ class Art extends database_object
      * @param string $mime
      * @return bool
      */
-    public function insert($source, $mime = '')
+    public function insert($source, $mime = ''): bool
     {
         // Disabled in demo mode cause people suck and upload porn
         if (AmpConfig::get('demo_mode')) {
@@ -430,7 +431,7 @@ class Art extends database_object
      * @param array $dimensions
      * @return bool
      */
-    public static function check_dimensions($dimensions)
+    public static function check_dimensions($dimensions): bool
     {
         $width  = (int) ($dimensions['width']);
         $height = (int) ($dimensions['height']);
@@ -473,7 +474,7 @@ class Art extends database_object
      * look for art in the image table that doesn't fit min or max dimensions and delete it
      * @return bool
      */
-    public static function clean_art_by_dimension()
+    public static function clean_art_by_dimension(): bool
     {
         $minw = (AmpConfig::get('album_art_min_width')) ? AmpConfig::get('album_art_min_width') : null;
         $maxw = (AmpConfig::get('album_art_max_width')) ? AmpConfig::get('album_art_max_width') : null;
@@ -687,7 +688,7 @@ class Art extends database_object
      * @param array $size
      * @return array
      */
-    public function get_thumb($size)
+    public function get_thumb($size): array
     {
         $sizetext   = $size['width'] . 'x' . $size['height'];
         $sql        = "SELECT `image`, `mime` FROM `image` WHERE `size` = ? AND `object_type` = ? AND `object_id` = ? AND `kind` = ?";
@@ -729,7 +730,7 @@ class Art extends database_object
      * @param string $mime
      * @return array
      */
-    public function generate_thumb($image, $size, $mime)
+    public function generate_thumb($image, $size, $mime): array
     {
         $data = explode("/", $mime);
         $type = strtolower($data['1']);
@@ -845,7 +846,7 @@ class Art extends database_object
      * @param string $type
      * @return string
      */
-    public static function get_from_source($data, $type = 'album')
+    public static function get_from_source($data, $type = 'album'): string
     {
         // Already have the data, this often comes from id3tags
         if (isset($data['raw'])) {
@@ -913,7 +914,7 @@ class Art extends database_object
      * @param integer|null $thumb
      * @return string
      */
-    public static function url($uid, $type, $sid = null, $thumb = null)
+    public static function url($uid, $type, $sid = null, $thumb = null): string
     {
         if (!self::is_valid_type($type)) {
             return null;
@@ -1067,7 +1068,7 @@ class Art extends database_object
      * @param integer $limit
      * @return array
      */
-    public function gather($options = array(), $limit = 0)
+    public function gather($options = array(), $limit = 0): array
     {
         // Define vars
         $results = array();
@@ -1153,7 +1154,7 @@ class Art extends database_object
      * @return array
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function gather_db()
+    public function gather_db(): array
     {
         if ($this->has_db_info()) {
             return array('db' => true);
@@ -1170,7 +1171,7 @@ class Art extends database_object
      * @param array $data
      * @return array
      */
-    public function gather_musicbrainz($limit = 5, $data = array())
+    public function gather_musicbrainz($limit = 5, $data = array()): array
     {
         $images    = array();
         $num_found = 0;
@@ -1322,7 +1323,7 @@ class Art extends database_object
      * @param integer $limit
      * @return array
      */
-    public function gather_folder($limit = 5)
+    public function gather_folder($limit = 5): array
     {
         if (!$limit) {
             $limit = 5;
@@ -1449,7 +1450,7 @@ class Art extends database_object
      * @param integer $limit
      * @return array
      */
-    public function gather_tags($limit = 5)
+    public function gather_tags($limit = 5): array
     {
         if (!$limit) {
             $limit = 5;
@@ -1470,7 +1471,7 @@ class Art extends database_object
      * Gather tags from video files.
      * @return array
      */
-    public function gather_video_tags()
+    public function gather_video_tags(): array
     {
         $video = new Video($this->uid);
 
@@ -1482,7 +1483,7 @@ class Art extends database_object
      * @param integer $limit
      * @return array
      */
-    public function gather_song_tags($limit = 5)
+    public function gather_song_tags($limit = 5): array
     {
         // We need the filenames
         $album = new Album($this->uid);
@@ -1509,7 +1510,7 @@ class Art extends database_object
      * @param media $media
      * @return array
      */
-    protected function gather_media_tags($media)
+    protected function gather_media_tags($media): array
     {
         $mtype  = strtolower(get_class($media));
         $data   = array();
@@ -1563,7 +1564,7 @@ class Art extends database_object
      * @return array
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public function gather_google($limit = 5, $data = array())
+    public function gather_google($limit = 5, $data = array()): array
     {
         if (!$limit) {
             $limit = 5;
@@ -1626,7 +1627,7 @@ class Art extends database_object
      * @param array $data
      * @return array
      */
-    public function gather_lastfm($limit = 5, $data = array())
+    public function gather_lastfm($limit = 5, $data = array()): array
     {
         if (!$limit) {
             $limit = 5;
@@ -1684,7 +1685,7 @@ class Art extends database_object
      * @param array $options
      * @return array
      */
-    public static function gather_metadata_plugin($plugin, $type, $options)
+    public static function gather_metadata_plugin($plugin, $type, $options): array
     {
         $gtypes     = array();
         $media_info = array();
@@ -1751,7 +1752,7 @@ class Art extends database_object
      * @param integer $thumb
      * @return array
      */
-    public static function get_thumb_size($thumb)
+    public static function get_thumb_size($thumb): array
     {
         $size = array();
 
@@ -1825,7 +1826,7 @@ class Art extends database_object
      * @param string $link
      * @return bool
      */
-    public static function display_item($item, $thumb, $link = null)
+    public static function display_item($item, $thumb, $link = null): bool
     {
         return self::display($item->type ?: strtolower(get_class($item)), $item->id, $item->get_fullname(), $thumb, $link);
     }
@@ -1841,7 +1842,7 @@ class Art extends database_object
      * @param string $kind
      * @return bool
      */
-    public static function display($object_type, $object_id, $name, $thumb, $link = null, $show_default = true, $kind = 'default')
+    public static function display($object_type, $object_id, $name, $thumb, $link = null, $show_default = true, $kind = 'default'): bool
     {
         if (!self::is_valid_type($object_type)) {
             return false;

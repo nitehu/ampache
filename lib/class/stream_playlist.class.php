@@ -19,6 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 /**
  * Stream_Playlist Class
@@ -110,7 +111,7 @@ class Stream_Playlist
      * Formats the URL and media information and adds it to the object
      * @return array
      */
-    public static function media_to_urlarray($media, $additional_params = '')
+    public static function media_to_urlarray($media, $additional_params = ''): array
     {
         $urls = array();
         foreach ($media as $medium) {
@@ -236,7 +237,7 @@ class Stream_Playlist
      * check_autoplay_append
      * @return bool
      */
-    public static function check_autoplay_append()
+    public static function check_autoplay_append(): bool
     {
         // For now, only iframed web player support media append in the currently played playlist
         return ((AmpConfig::get('ajax_load') && AmpConfig::get('play_type') == 'web_player') ||
@@ -248,7 +249,7 @@ class Stream_Playlist
      * check_autoplay_next
      * @return bool
      */
-    public static function check_autoplay_next()
+    public static function check_autoplay_next(): bool
     {
         // Currently only supported for web player
         return (AmpConfig::get('ajax_load') && AmpConfig::get('play_type') == 'web_player');
@@ -370,7 +371,7 @@ class Stream_Playlist
      * large with very long playlists
      * @return string
      */
-    public function get_m3u_string()
+    public function get_m3u_string(): string
     {
         $ret = "#EXTM3U\n";
 
@@ -393,7 +394,7 @@ class Stream_Playlist
       * get_pls_string
      * @return string
      */
-    public function get_pls_string()
+    public function get_pls_string(): string
     {
         $ret = "[playlist]\n";
         $ret .= 'NumberOfEntries=' . count($this->urls) . "\n";
@@ -421,7 +422,7 @@ class Stream_Playlist
      * This should really only be used if all of the content is ASF files.
      * @return string
      */
-    public function get_asx_string()
+    public function get_asx_string(): string
     {
         $ret = '<ASX VERSION="3.0" BANNERBAR="auto">' . "\n";
         $ret .= "<TITLE>" . ($this->title ?: T_("Ampache ASX Playlist")) . "</TITLE>\n";
@@ -454,7 +455,7 @@ class Stream_Playlist
      * get_xspf_string
      * @return string
      */
-    public function get_xspf_string()
+    public function get_xspf_string(): string
     {
         $result = "";
         foreach ($this->urls as $url) {
@@ -507,7 +508,7 @@ class Stream_Playlist
      * get_hls_string
      * @return string
      */
-    public function get_hls_string()
+    public function get_hls_string(): string
     {
         $ssize = 10;
         $ret   = "#EXTM3U\n";

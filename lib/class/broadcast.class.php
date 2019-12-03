@@ -19,6 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 class Broadcast extends database_object implements library_item
 {
@@ -190,7 +191,7 @@ class Broadcast extends database_object implements library_item
      * Get item keywords for metadata searches.
      * @return array
      */
-    public function get_keywords()
+    public function get_keywords(): array
     {
         return array();
     }
@@ -199,7 +200,7 @@ class Broadcast extends database_object implements library_item
      * Get item fullname.
      * @return string
      */
-    public function get_fullname()
+    public function get_fullname(): string
     {
         return $this->f_name;
     }
@@ -217,7 +218,7 @@ class Broadcast extends database_object implements library_item
      * Get item childrens.
      * @return array
      */
-    public function get_childrens()
+    public function get_childrens(): array
     {
         return array();
     }
@@ -227,7 +228,7 @@ class Broadcast extends database_object implements library_item
      * @param string $name
      * @return array
      */
-    public function search_childrens($name)
+    public function search_childrens($name): array
     {
         debug_event('broadcast.class', 'search_childrens ' . $name, 5);
 
@@ -239,7 +240,7 @@ class Broadcast extends database_object implements library_item
      * @param string $filter_type
      * @return array
      */
-    public function get_medias($filter_type = null)
+    public function get_medias($filter_type = null): array
     {
         // Not a media, shouldn't be that
         $medias = array();
@@ -277,7 +278,7 @@ class Broadcast extends database_object implements library_item
      * Get default art kind for this item.
      * @return string
      */
-    public function get_default_art_kind()
+    public function get_default_art_kind(): string
     {
         return 'default';
     }
@@ -298,7 +299,7 @@ class Broadcast extends database_object implements library_item
      * Get all broadcasts sql query.
      * @return string
      */
-    public static function get_broadcast_list_sql()
+    public static function get_broadcast_list_sql(): string
     {
         $sql = "SELECT `id` FROM `broadcast` WHERE `started` = '1' ";
 
@@ -326,10 +327,10 @@ class Broadcast extends database_object implements library_item
      * Generate a new broadcast key.
      * @return string
      */
-    public static function generate_key()
+    public static function generate_key(): string
     {
         // Should be improved for security reasons!
-        return md5(uniqid(rand(), true));
+        return md5(uniqid((string) rand(), true));
     }
 
     /**
@@ -366,7 +367,7 @@ class Broadcast extends database_object implements library_item
      * Get broadcast link.
      * @return string
      */
-    public static function get_broadcast_link()
+    public static function get_broadcast_link(): string
     {
         $link = "<div class=\"broadcast-action\">";
         $link .= "<a href=\"#\" onclick=\"showBroadcastsDialog(event);\">" . UI::get_icon('broadcast', T_('Broadcast')) . "</a>";
@@ -380,7 +381,7 @@ class Broadcast extends database_object implements library_item
      * @param integer $broadcast_id
      * @return string
      */
-    public static function get_unbroadcast_link($broadcast_id)
+    public static function get_unbroadcast_link($broadcast_id): string
     {
         $link = "<div class=\"broadcast-action\">";
         $link .= Ajax::button('?page=player&action=unbroadcast&broadcast_id=' . $broadcast_id, 'broadcast', T_('Unbroadcast'), 'broadcast_action');
@@ -422,7 +423,7 @@ class Broadcast extends database_object implements library_item
      * @return string
      * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
-    public static function play_url($oid, $additional_params = '', $player = null, $local = false)
+    public static function play_url($oid, $additional_params = '', $player = null, $local = false): string
     {
         return $oid;
     }

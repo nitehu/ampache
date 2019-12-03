@@ -19,6 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 /**
  * Userflag class
@@ -52,7 +53,7 @@ class Userflag extends database_object
      * @param string $type
      * @return bool
      */
-    public static function build_cache($type, $ids, $user_id = null)
+    public static function build_cache($type, $ids, $user_id = null): bool
     {
         if (!is_array($ids) || !count($ids)) {
             return false;
@@ -272,7 +273,7 @@ class Userflag extends database_object
      * @param string $user_id
      * @return string
      */
-    public static function get_latest_sql($type, $user_id = null)
+    public static function get_latest_sql($type, $user_id = null): string
     {
         if ($user_id === null) {
             $user_id = Core::get_global('user')->id;
@@ -311,7 +312,7 @@ class Userflag extends database_object
      * @param string $user_id
      * @return array
      */
-    public static function get_latest($type = null, $user_id = null, $count = '', $offset = '')
+    public static function get_latest($type = null, $user_id = null, $count = '', $offset = ''): array
     {
         if (!$count) {
             $count = AmpConfig::get('popular_threshold');

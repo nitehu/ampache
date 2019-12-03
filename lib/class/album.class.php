@@ -20,6 +20,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
  */
+declare(strict_types=1);
 
 /**
  * Album Class
@@ -295,7 +296,7 @@ class Album extends database_object implements library_item
      * @param array $ids
      * @return bool
      */
-    public static function build_cache(array $ids)
+    public static function build_cache(array $ids): bool
     {
         // Nothing to do if they pass us nothing
         if (!is_array($ids) || !count($ids)) {
@@ -320,7 +321,7 @@ class Album extends database_object implements library_item
      * do it
      * @return array
      */
-    private function _get_extra_info($limit_threshold = '')
+    private function _get_extra_info($limit_threshold = ''): array
     {
         if (!$this->id) {
             return array();
@@ -436,7 +437,7 @@ class Album extends database_object implements library_item
      * @param integer $user
      * @return bool
      */
-    public function can_edit($user = null)
+    public function can_edit($user = null): bool
     {
         if ($user === null) {
             $user = Core::get_global('user')->id;
@@ -607,7 +608,7 @@ class Album extends database_object implements library_item
      * @param string $url_param_name
      * @return string
      */
-    public function get_http_album_query_ids($url_param_name)
+    public function get_http_album_query_ids($url_param_name): string
     {
         if ($this->allow_group_disks) {
             $suite_array = $this->get_group_disks_ids();
@@ -686,7 +687,7 @@ class Album extends database_object implements library_item
      * @param string $title
      * @return array
      */
-    public function has_track($title)
+    public function has_track($title): array
     {
         $sql        = "SELECT `id` FROM `song` WHERE `album` = ? AND `title` = ?";
         $db_results = Dba::read($sql, array($this->id, $title));
@@ -782,7 +783,7 @@ class Album extends database_object implements library_item
      * Get item keywords for metadata searches.
      * @return array
      */
-    public function get_keywords()
+    public function get_keywords(): array
     {
         $keywords               = array();
         $keywords['mb_albumid'] = array('important' => false,
@@ -805,7 +806,7 @@ class Album extends database_object implements library_item
      * Get item fullname.
      * @return string
      */
-    public function get_fullname()
+    public function get_fullname(): string
     {
         return $this->f_name;
     }
@@ -827,7 +828,7 @@ class Album extends database_object implements library_item
      * Get item children.
      * @return array
      */
-    public function get_childrens()
+    public function get_childrens(): array
     {
         return $this->get_medias();
     }
@@ -837,7 +838,7 @@ class Album extends database_object implements library_item
      * @param string $name
      * @return array
      */
-    public function search_childrens($name)
+    public function search_childrens($name): array
     {
         $search                    = array();
         $search['type']            = "song";
@@ -868,7 +869,7 @@ class Album extends database_object implements library_item
      * @param string $filter_type
      * @return array
      */
-    public function get_medias($filter_type = null)
+    public function get_medias($filter_type = null): array
     {
         $medias = array();
         if (!$filter_type || $filter_type == 'song') {
@@ -914,7 +915,7 @@ class Album extends database_object implements library_item
      * Get default art kind for this item.
      * @return string
      */
-    public function get_default_art_kind()
+    public function get_default_art_kind(): string
     {
         return 'default';
     }
@@ -923,7 +924,7 @@ class Album extends database_object implements library_item
      * get_description
      * @return string
      */
-    public function get_description()
+    public function get_description(): string
     {
         // Album description is not supported yet, always return artist description
         $artist = new Artist($this->artist_id);
