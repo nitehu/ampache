@@ -220,7 +220,7 @@ class UI
      */
     public static function unformat_bytes($value)
     {
-        if (preg_match('/^([0-9]+) *([[:alpha:]]+)$/', $value, $matches)) {
+        if (preg_match('/^([0-9]+) *([[:alpha:]]+)$/', (string) $value, $matches)) {
             $value = $matches[1];
             $unit  = strtolower(substr($matches[2], 0, 1));
         } else {

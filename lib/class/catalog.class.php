@@ -387,7 +387,7 @@ abstract class Catalog extends database_object
     {
         $pattern = "/\.(" . AmpConfig::get('catalog_file_pattern') . ")$/i";
 
-        return (preg_match($pattern, $file) === 1);
+        return (preg_match($pattern, (string) $file) === 1);
     }
 
     /**
@@ -399,7 +399,7 @@ abstract class Catalog extends database_object
     {
         $video_pattern = "/\.(" . AmpConfig::get('catalog_video_pattern') . ")$/i";
 
-        return (preg_match($video_pattern, $file) === 1);
+        return (preg_match($video_pattern, (string) $file) === 1);
     }
 
     /**
@@ -411,7 +411,7 @@ abstract class Catalog extends database_object
     {
         $playlist_pattern = "/\.(" . AmpConfig::get('catalog_playlist_pattern') . ")$/i";
 
-        return preg_match($playlist_pattern, $file);
+        return preg_match($playlist_pattern, (string) $file);
     }
 
     /**
@@ -2051,7 +2051,7 @@ abstract class Catalog extends database_object
     public static function trim_prefix($string)
     {
         $prefix_pattern = '/^(' . implode('\\s|', explode('|', AmpConfig::get('catalog_prefix_pattern'))) . '\\s)(.*)/i';
-        preg_match($prefix_pattern, $string, $matches);
+        preg_match($prefix_pattern, (string) $string, $matches);
 
         if (count($matches)) {
             $string = trim($matches[2]);
@@ -2289,7 +2289,7 @@ abstract class Catalog extends database_object
 
         foreach ($results as $value) {
             $value = trim($value);
-            if (preg_match("/file[0-9]+[\s]*\=(.*)/i", $value, $matches)) {
+            if (preg_match("/file[0-9]+[\s]*\=(.*)/i", (string) $value, $matches)) {
                 $file = trim($matches[1]);
                 if (!empty($file)) {
                     $files[] = $file;
