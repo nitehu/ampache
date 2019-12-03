@@ -312,7 +312,7 @@ function check_php_gd(): bool
  */
 function return_bytes($val): string
 {
-    $val  = trim($val);
+    $val  = trim((string) $val);
     $last = strtolower($val[strlen($val) - 1]);
     switch ($last) {
         // The 'G' modifier is available since PHP 5.1.0

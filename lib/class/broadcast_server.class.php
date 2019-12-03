@@ -81,7 +81,7 @@ class Broadcast_Server implements MessageComponentInterface
     {
         $commands = explode(';', $msg);
         foreach ($commands as $command) {
-            $command = trim($command);
+            $command = trim((string) $command);
             if (!empty($command)) {
                 $cmdinfo = explode(':', $command, 2);
 

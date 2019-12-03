@@ -87,7 +87,7 @@ class Subsonic_Api
 
     public static function output_header($curl, $header)
     {
-        $rheader = trim($header);
+        $rheader = trim((string) $header);
         $rhpart  = explode(':', $rheader);
         if (!empty($rheader) && count($rhpart) > 1) {
             if ($rhpart[0] != "Transfer-Encoding") {

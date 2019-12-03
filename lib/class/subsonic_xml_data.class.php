@@ -548,7 +548,7 @@ class Subsonic_XML_Data
         $albumData    = self::getAlbumData($songData['album']);
         $artistData   = self::getArtistData($songData['artist']);
         $catalogData  = self::getCatalogData($songData['catalog'], $songData['file']);
-        //$catalog_path = rtrim($catalogData[0], "/");
+        //$catalog_path = rtrim((string) $catalogData[0], "/");
 
         return self::createSong($xml, $songData, $albumData, $artistData, $catalogData, $addAmpacheInfo, $elementName);
     }
@@ -617,8 +617,8 @@ class Subsonic_XML_Data
 
         $row = Dba::fetch_assoc($db_results);
 
-        $row['f_name']      = trim($row['prefix'] . ' ' . $row['name']);
-        $row['f_full_name'] = trim(trim($row['prefix']) . ' ' . trim($row['name']));
+        $row['f_name']      = trim((string) $row['prefix'] . ' ' . $row['name']);
+        $row['f_full_name'] = trim(trim((string) $row['prefix']) . ' ' . trim((string) $row['name']));
 
         return $row;
     }
@@ -639,7 +639,7 @@ class Subsonic_XML_Data
             $sql             = 'SELECT `path` FROM ' . 'catalog_' . $resultcheck['catalog_type'] . ' WHERE `catalog_id` = ?';
             $db_results      = Dba::read($sql, [$catalogId]);
             $result          = Dba::fetch_assoc($db_results);
-            $catalog_path    = rtrim($result['path'], "/");
+            $catalog_path    = rtrim((string) $result['path'], "/");
             $results['path'] = str_replace($catalog_path . "/", "", $file_Path);
 
             return $results;
@@ -668,7 +668,7 @@ class Subsonic_XML_Data
         $xsong->addAttribute('type', 'music');
         // $album = new Album(songData->album);
         $xsong->addAttribute('albumId', (string) self::getAlbumId($albumData['id']));
-        $albumData['full_name'] = trim(trim($albumData['prefix']) . ' ' . trim($albumData['name']));
+        $albumData['full_name'] = trim(trim((string) $albumData['prefix']) . ' ' . trim((string) $albumData['name']));
 
         $xsong->addAttribute('album', self::checkName($albumData['full_name']));
         // $artist = new Artist($song->artist);
@@ -1251,7 +1251,7 @@ class Subsonic_XML_Data
         $artist = new Artist($info['id']);
 
         $xartist = $xml->addChild('artistInfo');
-        $xartist->addChild('biography', htmlspecialchars(trim($info['summary'])));
+        $xartist->addChild('biography', htmlspecialchars(trim((string) $info['summary'])));
         $xartist->addChild('musicBrainzId', $artist->mbid);
         //$xartist->addChild('lastFmUrl', "");
         $xartist->addChild('smallImageUrl', htmlentities($info['smallphoto']));

@@ -580,7 +580,7 @@ class Video extends database_object implements media, library_item
 
         if (is_array($tags)) {
             foreach ($tags as $tag) {
-                $tag = trim($tag);
+                $tag = trim((string) $tag);
                 if (!empty($tag)) {
                     Tag::add('video', $vid, $tag, false);
                 }
@@ -1086,7 +1086,7 @@ class Video extends database_object implements media, library_item
         }
 
         /* Can't update to blank */
-        if (!strlen(trim($value))) {
+        if (!strlen(trim((string) $value))) {
             return false;
         }
 

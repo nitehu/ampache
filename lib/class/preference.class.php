@@ -378,7 +378,7 @@ class Preference extends database_object
         );
 
         foreach ($arrays as $item) {
-            $results[$item] = trim($results[$item])
+            $results[$item] = trim((string) $results[$item])
                 ? explode(',', $results[$item])
                 : array();
         }

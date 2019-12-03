@@ -29,7 +29,7 @@ declare(strict_types=1);
  */
 function split_sql($sql): array
 {
-    $sql       = trim($sql);
+    $sql       = trim((string) $sql);
     $sql       = preg_replace("/\n#[^\n]*\n/", "\n", $sql);
     $buffer    = array();
     $ret       = array();
@@ -273,7 +273,7 @@ function install_insert_db($db_user = null, $db_pass = null, $create_db = true, 
         $p_count  = count($pieces);
         $errors   = array();
         for ($count = 0; $count < $p_count; $count++) {
-            $pieces[$count] = trim($pieces[$count]);
+            $pieces[$count] = trim((string) $pieces[$count]);
             if (!empty($pieces[$count]) && $pieces[$count] != '#') {
                 if (!Dba::write($pieces[$count])) {
                     $errors[] = array(Dba::error(), $pieces[$count]);

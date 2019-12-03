@@ -171,7 +171,7 @@ class TVShow extends database_object implements library_item
      */
     public function format($details = true)
     {
-        $this->f_name = trim($this->prefix . " " . $this->name);
+        $this->f_name = trim((string) $this->prefix . " " . $this->name);
         $this->link   = AmpConfig::get('web_path') . '/tvshows.php?action=show&tvshow=' . $this->id;
         $this->f_link = '<a href="' . $this->link . '" title="' . $this->f_name . '">' . $this->f_name . '</a>';
 
@@ -287,7 +287,7 @@ class TVShow extends database_object implements library_item
 
         $id         = 0;
         $exists     = false;
-        $trimmed    = Catalog::trim_prefix(trim($name));
+        $trimmed    = Catalog::trim_prefix(trim((string) $name));
         $name       = $trimmed['string'];
         $prefix     = $trimmed['prefix'];
         $sql        = 'SELECT `id` FROM `tvshow` WHERE `name` LIKE ? AND `year` = ?';
@@ -361,7 +361,7 @@ class TVShow extends database_object implements library_item
             } // end if it changed
         }
 
-        $trimmed = Catalog::trim_prefix(trim($name));
+        $trimmed = Catalog::trim_prefix(trim((string) $name));
         $name    = $trimmed['string'];
         $prefix  = $trimmed['prefix'];
 

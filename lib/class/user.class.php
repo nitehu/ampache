@@ -282,7 +282,7 @@ class User extends database_object
      */
     public static function get_from_apikey($apikey)
     {
-        $apikey    = trim($apikey);
+        $apikey    = trim((string) $apikey);
         if (!empty($apikey)) {
             // check for legacy unencrypted apikey
             $sql        = "SELECT `id` FROM `user` WHERE `apikey` = ?";
@@ -339,7 +339,7 @@ class User extends database_object
      */
     public static function get_from_website($website)
     {
-        $website    = rtrim($website, "/");
+        $website    = rtrim((string) $website, "/");
         $sql        = "SELECT `id` FROM `user` WHERE `website` = ? LIMIT 1";
         $db_results = Dba::read($sql, array($website));
         $users      = array();
@@ -741,7 +741,7 @@ class User extends database_object
      */
     public function update_website($new_website)
     {
-        $new_website = rtrim($new_website, "/");
+        $new_website = rtrim((string) $new_website, "/");
         $sql         = "UPDATE `user` SET `website` = ? WHERE `id` = ?";
 
         debug_event('user.class', 'Updating website', 4);
@@ -962,7 +962,7 @@ class User extends database_object
             $sip   = $sipar['host'];
         }
 
-        $uip     = (!empty($sip)) ? Dba::escape(inet_pton(trim($sip, "[]"))) : '';
+        $uip     = (!empty($sip)) ? Dba::escape(inet_pton(trim((string) $sip, "[]"))) : '';
         $date    = time();
         $user_id = $this->id;
         $agent   = Dba::escape(Core::get_server('HTTP_USER_AGENT'));
@@ -988,7 +988,7 @@ class User extends database_object
      */
     public static function create($username, $fullname, $email, $website, $password, $access, $state = '', $city = '', $disabled = false, $encrypted = false)
     {
-        $website = rtrim($website, "/");
+        $website = rtrim((string) $website, "/");
         if (!$encrypted) {
             $password = hash('sha256', $password);
         }

@@ -323,7 +323,7 @@ class Podcast_Episode extends database_object implements media, library_item
         }
 
         /* Can't update to blank */
-        if (!strlen(trim($value))) {
+        if (!strlen(trim((string) $value))) {
             return false;
         }
 

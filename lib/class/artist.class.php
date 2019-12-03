@@ -561,9 +561,9 @@ class Artist extends database_object implements library_item
     public function format($details = true, $limit_threshold = ''): bool
     {
         /* Combine prefix and name, trim then add ... if needed */
-        $name              = trim($this->prefix . " " . $this->name);
+        $name              = trim((string) $this->prefix . " " . $this->name);
         $this->f_name      = $name;
-        $this->f_full_name = trim(trim($this->prefix) . ' ' . trim($this->name));
+        $this->f_full_name = trim(trim((string) $this->prefix) . ' ' . trim((string) $this->name));
 
         // If this is a memory-only object, we're done here
         if (!$this->id) {
@@ -588,7 +588,7 @@ class Artist extends database_object implements library_item
             $sec   = sprintf("%02d", ($extra_info['time'] % 60));
             $hours = floor($extra_info['time'] / 3600);
 
-            $this->f_time = ltrim($hours . ':' . $min . ':' . $sec, '0:');
+            $this->f_time = ltrim((string) $hours . ':' . $min . ':' . $sec, '0:');
 
             $this->tags   = Tag::get_top_tags('artist', $this->id);
             $this->f_tags = Tag::get_display($this->tags, true, 'artist');
@@ -794,7 +794,7 @@ class Artist extends database_object implements library_item
      */
     public static function check($name, $mbid = '', $readonly = false)
     {
-        $trimmed = Catalog::trim_prefix(trim($name));
+        $trimmed = Catalog::trim_prefix(trim((string) $name));
         $name    = $trimmed['string'];
         $prefix  = $trimmed['prefix'];
         // If Ampache support multiple artists per song one day, we should also handle other artists here
@@ -940,7 +940,7 @@ class Artist extends database_object implements library_item
         }
 
         // Update artist name (if we don't want to use the MusicBrainz name)
-        $trimmed = Catalog::trim_prefix(trim($name));
+        $trimmed = Catalog::trim_prefix(trim((string) $name));
         $name    = $trimmed['string'];
         if ($name != '' && $name != $this->name) {
             $sql = 'UPDATE `artist` SET `name` = ? WHERE `id` = ?';

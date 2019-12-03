@@ -602,7 +602,7 @@ class Tag extends database_object implements library_item
             $results .= ', ';
         }
 
-        $results = rtrim($results, ', ');
+        $results = rtrim((string) $results, ', ');
 
         return $results;
     } // get_display
@@ -677,7 +677,7 @@ class Tag extends database_object implements library_item
 
         $ret = array();
         foreach ($taglist as $tag) {
-            $tag = trim($tag);
+            $tag = trim((string) $tag);
             if (!empty($tag)) {
                 if (self::tag_exists($tag)) {
                     $ret[] = $tag;

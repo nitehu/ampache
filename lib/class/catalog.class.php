@@ -524,7 +524,7 @@ abstract class Catalog extends database_object
         }
 
         /* Can't update to blank */
-        if (!strlen(trim($value))) {
+        if (!strlen(trim((string) $value))) {
             return false;
         }
 
@@ -2055,8 +2055,8 @@ abstract class Catalog extends database_object
         preg_match($prefix_pattern, $string, $matches);
 
         if (count($matches)) {
-            $string = trim($matches[2]);
-            $prefix = trim($matches[1]);
+            $string = trim((string) $matches[2]);
+            $prefix = trim((string) $matches[1]);
         } else {
             $prefix = null;
         }
@@ -2089,15 +2089,15 @@ abstract class Catalog extends database_object
         $first = '';
         if ($string) {
             $items = explode("\x00", $string);
-            $first = trim($items[0]);
+            $first = trim((string) $items[0]);
             //if first is the same as string, nothing was exploded, try other delimiters
             if ($first === $string) {
                 //try splitting with ; and then /
                 $items = explode(";", $string);
-                $first = trim($items[0]);
+                $first = trim((string) $items[0]);
                 if ($first === $string) {
                     $items = explode("/", $string);
-                    $first = trim($items[0]);
+                    $first = trim((string) $items[0]);
                 }
             }
         }
@@ -2128,7 +2128,7 @@ abstract class Catalog extends database_object
      */
     public static function check_title($title, $file = '')
     {
-        if (strlen(trim($title)) < 1) {
+        if (strlen(trim((string) $title)) < 1) {
             $title = Dba::escape($file);
         }
 
@@ -2158,7 +2158,7 @@ abstract class Catalog extends database_object
         $pinfo = pathinfo($playlist);
         if (isset($files)) {
             foreach ($files as $file) {
-                $file = trim($file);
+                $file = trim((string) $file);
                 // Check to see if it's a url from this ampache instance
                 if (substr($file, 0, strlen(AmpConfig::get('web_path'))) == AmpConfig::get('web_path')) {
                     $data       = Stream_URL::parse($file);
@@ -2268,7 +2268,7 @@ abstract class Catalog extends database_object
         $results = explode("\n", $data);
 
         foreach ($results as $value) {
-            $value = trim($value);
+            $value = trim((string) $value);
             if (!empty($value) && substr($value, 0, 1) != '#') {
                 $files[] = $value;
             }
@@ -2289,9 +2289,9 @@ abstract class Catalog extends database_object
         $results = explode("\n", $data);
 
         foreach ($results as $value) {
-            $value = trim($value);
+            $value = trim((string) $value);
             if (preg_match("/file[0-9]+[\s]*\=(.*)/i", $value, $matches)) {
-                $file = trim($matches[1]);
+                $file = trim((string) $matches[1]);
                 if (!empty($file)) {
                     $files[] = $file;
                 }
@@ -2314,7 +2314,7 @@ abstract class Catalog extends database_object
 
         if ($xml) {
             foreach ($xml->entry as $entry) {
-                $file = trim($entry->ref['href']);
+                $file = trim((string) $entry->ref['href']);
                 if (!empty($file)) {
                     $files[] = $file;
                 }
@@ -2336,7 +2336,7 @@ abstract class Catalog extends database_object
         $xml   = simplexml_load_string($data);
         if ($xml) {
             foreach ($xml->trackList->track as $track) {
-                $file = trim($track->location);
+                $file = trim((string) $track->location);
                 if (!empty($file)) {
                     $files[] = $file;
                 }

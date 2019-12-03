@@ -249,7 +249,7 @@ class Album extends database_object implements library_item
         }
 
         // Little bit of formatting here
-        $this->full_name = trim(trim($info['prefix']) . ' ' . trim($info['name']));
+        $this->full_name = trim(trim((string) $info['prefix']) . ' ' . trim((string) $info['name']));
 
         // Looking for other albums with same mbid, ordering by disk ascending
         if (AmpConfig::get('album_group')) {
@@ -480,7 +480,7 @@ class Album extends database_object implements library_item
      */
     public static function check($name, $year = 0, $disk = 1, $mbid = null, $mbid_group = null, $album_artist = null, $release_type = null, $readonly = false, $original_year = 0, $barcode = null, $catalog_number = null)
     {
-        $trimmed        = Catalog::trim_prefix(trim($name));
+        $trimmed        = Catalog::trim_prefix(trim((string) $name));
         $name           = $trimmed['string'];
         $prefix         = $trimmed['prefix'];
         $album_artist   = (int) $album_artist;
@@ -761,7 +761,7 @@ class Album extends database_object implements library_item
 
         $this->f_title = $this->full_name;
         if ($this->artist_count == '1') {
-            $artist              = trim(trim($this->artist_prefix) . ' ' . trim($this->artist_name));
+            $artist              = trim(trim((string) $this->artist_prefix) . ' ' . trim((string) $this->artist_name));
             $this->f_artist_name = $artist;
             $this->f_artist_link = "<a href=\"$web_path/artists.php?action=show&artist=" . $this->artist_id . "\" title=\"" . scrub_out($this->artist_name) . "\">" . $artist . "</a>";
             $this->f_artist      = $artist;

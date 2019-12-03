@@ -168,7 +168,7 @@ class Api
         if (empty($passphrase)) {
             $passphrase = Core::get_post('auth');
         }
-        $username = trim($input['user']);
+        $username = trim((string) $input['user']);
         $user_ip  = filter_var(Core::get_server('REMOTE_ADDR'), FILTER_VALIDATE_IP);
         if (isset($input['version'])) {
             // If version is provided, use it
@@ -1255,7 +1255,7 @@ class Api
         if ((array_key_exists('artist', $input)) && ($artist->id == $input['artist'])) {
             // set rule
             $array['rule_' . $rule_count]               = 'artist';
-            $array['rule_' . $rule_count . '_input']    = trim(trim($artist->prefix) . ' ' . trim($artist->name));
+            $array['rule_' . $rule_count . '_input']    = trim(trim((string) $artist->prefix) . ' ' . trim((string) $artist->name));
             $array['rule_' . $rule_count . '_operator'] = 4;
             $rule_count++;
         }

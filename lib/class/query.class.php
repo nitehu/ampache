@@ -1168,7 +1168,7 @@ class Query
             $sql .= $dis . " AND ";
         }
 
-        $sql = rtrim($sql, 'AND ') . ' ';
+        $sql = rtrim((string) $sql, 'AND ') . ' ';
 
         return $sql;
     } // get_filter_sql
@@ -1191,8 +1191,8 @@ class Query
             $sql .= $this->sql_sort($key, $value);
         }
 
-        $sql = rtrim($sql, 'ORDER BY ');
-        $sql = rtrim($sql, ', ');
+        $sql = rtrim((string) $sql, 'ORDER BY ');
+        $sql = rtrim((string) $sql, ', ');
 
         return $sql;
     } // get_sort_sql
@@ -1340,7 +1340,7 @@ class Query
                     foreach ($value as $tag_id) {
                         $filter_sql .= "  `tag_map`.`tag_id`='" . Dba::escape($tag_id) . "' AND";
                     }
-                    $filter_sql = rtrim($filter_sql, 'AND') . ") AND ";
+                    $filter_sql = rtrim((string) $filter_sql, 'AND') . ") AND ";
                 break;
                 case 'exact_match':
                     $filter_sql = " `song`.`title` = '" . Dba::escape($value) . "' AND ";
@@ -1411,7 +1411,7 @@ class Query
                     foreach ($value as $tag_id) {
                         $filter_sql .= "  `tag_map`.`tag_id`='" . Dba::escape($tag_id) . "' AND";
                     }
-                    $filter_sql = rtrim($filter_sql, 'AND') . ") AND ";
+                    $filter_sql = rtrim((string) $filter_sql, 'AND') . ") AND ";
                 break;
                 case 'exact_match':
                     $filter_sql = " `album`.`name` = '" . Dba::escape($value) . "' AND ";
@@ -1481,7 +1481,7 @@ class Query
                     foreach ($value as $tag_id) {
                         $filter_sql .= "  `tag_map`.`tag_id`='" . Dba::escape($tag_id) . "' AND";
                     }
-                    $filter_sql = rtrim($filter_sql, 'AND') . ') AND ';
+                    $filter_sql = rtrim((string) $filter_sql, 'AND') . ') AND ';
                 break;
                 case 'catalog':
                 if ($value != 0) {
@@ -1652,7 +1652,7 @@ class Query
                     foreach ($value as $tag_id) {
                         $filter_sql .= "  `tag_map`.`tag_id`='" . Dba::escape($tag_id) . "' AND";
                     }
-                    $filter_sql = rtrim($filter_sql, 'AND') . ') AND ';
+                    $filter_sql = rtrim((string) $filter_sql, 'AND') . ') AND ';
                 break;
                 case 'alpha_match':
                     $filter_sql = " `video`.`title` LIKE '%" . Dba::escape($value) . "%' AND ";
@@ -2343,7 +2343,7 @@ class Query
                 $object_id = Dba::escape($object_id);
                 $where_sql .= "'$object_id',";
             }
-            $where_sql = rtrim($where_sql, ', ');
+            $where_sql = rtrim((string) $where_sql, ', ');
 
             $where_sql .= ")";
 
@@ -2356,8 +2356,8 @@ class Query
                 $order_sql .= $this->sql_sort($key, $value);
             }
             // Clean her up
-            $order_sql = rtrim($order_sql, "ORDER BY ");
-            $order_sql = rtrim($order_sql, ",");
+            $order_sql = rtrim((string) $order_sql, "ORDER BY ");
+            $order_sql = rtrim((string) $order_sql, ",");
 
             $sql = $sql . $this->get_join_sql() . $where_sql . $group_sql . $order_sql;
         } // if not simple

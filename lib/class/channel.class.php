@@ -126,7 +126,7 @@ class Channel extends database_object implements media, library_item
             foreach ($tags as $tag) {
                 $genre .= $tag['name'] . ' ';
             }
-            $genre = trim($genre);
+            $genre = trim((string) $genre);
         }
 
         return $genre;

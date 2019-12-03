@@ -932,7 +932,7 @@ class Search extends playlist_object
         $request = array();
         foreach ($data as $key => $value) {
             $prefix = substr($key, 0, 4);
-            $value  = trim($value);
+            $value  = trim((string) $value);
 
             if ($prefix == 'rule' && strlen($value)) {
                 $request[$key] = Dba::escape(filter_var($value, FILTER_SANITIZE_STRING, FILTER_FLAG_NO_ENCODE_QUOTES));
@@ -1046,7 +1046,7 @@ class Search extends playlist_object
             }
         }
         $sql .= ' ' . $limit_sql;
-        $sql = trim($sql);
+        $sql = trim((string) $sql);
 
         //debug_event('search.class', 'SQL get_items: ' . $sql, 5);
         $db_results = Dba::read($sql);

@@ -293,7 +293,7 @@ class Label extends database_object implements library_item
     public static function lookup(array $data, $id = 0)
     {
         $ret  = -1;
-        $name = trim($data['name']);
+        $name = trim((string) $data['name']);
         if (!empty($name)) {
             $ret    = 0;
             $sql    = "SELECT `id` FROM `label` WHERE `name` = ?";
@@ -448,7 +448,7 @@ class Label extends database_object implements library_item
             $results .= ', ';
         }
 
-        $results = rtrim($results, ', ');
+        $results = rtrim((string) $results, ', ');
 
         return $results;
     } // get_display
@@ -528,7 +528,7 @@ class Label extends database_object implements library_item
 
         $ret = array();
         foreach ($array as $label) {
-            $label = trim($label);
+            $label = trim((string) $label);
             if (!empty($label)) {
                 if (Label::lookup(array('name' => $label)) > 0) {
                     $ret[] = $label;

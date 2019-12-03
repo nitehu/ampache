@@ -239,7 +239,7 @@ function show_album_select($name, $album_id = 0, $allow_add = false, $song_id = 
 
     while ($row = Dba::fetch_assoc($db_results)) {
         $selected   = '';
-        $album_name = trim($row['prefix'] . " " . $row['name']);
+        $album_name = trim((string) $row['prefix'] . " " . $row['name']);
         if (!AmpConfig::get('album_group') && (int) $count > 1) {
             $album_name .= " [" . T_('Disk') . " " . $row['disk'] . "]";
         }
@@ -295,7 +295,7 @@ function show_artist_select($name, $artist_id = 0, $allow_add = false, $song_id 
 
     while ($row = Dba::fetch_assoc($db_results)) {
         $selected    = '';
-        $artist_name = trim($row['prefix'] . " " . $row['name']);
+        $artist_name = trim((string) $row['prefix'] . " " . $row['name']);
         if ($row['id'] == $artist_id) {
             $selected = "selected=\"selected\"";
         }
