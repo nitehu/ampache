@@ -285,7 +285,7 @@ class Session
             AmpConfig::get('cookie_life'),
             AmpConfig::get('cookie_path'),
             AmpConfig::get('cookie_domain'),
-            AmpConfig::get('cookie_secure'));
+            make_bool(AmpConfig::get('cookie_secure')));
         session_write_close();
 
         // Set name
@@ -461,7 +461,7 @@ class Session
         $cookie_life   = AmpConfig::get('cookie_life');
         $cookie_path   = AmpConfig::get('cookie_path');
         $cookie_domain = null;
-        $cookie_secure = AmpConfig::get('cookie_secure');
+        $cookie_secure = make_bool(AmpConfig::get('cookie_secure'));
 
         if (isset($_SESSION)) {
             setcookie(session_name(), session_id(), $cookie_life);
