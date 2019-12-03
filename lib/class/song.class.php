@@ -962,7 +962,7 @@ class Song extends database_object implements media, library_item
         if ($album_artist->prefix) {
             return $album_artist->prefix . " " . $album_artist->name;
         } else {
-            return $album_artist->name;
+            return (string) $album_artist->name;
         }
     } // get_album_artist_name
 
