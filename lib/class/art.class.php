@@ -183,7 +183,7 @@ class Art extends database_object
             $extension = 'jpg';
         }
 
-        return $extension;
+        return (string) $extension;
     } // extension
 
     /**

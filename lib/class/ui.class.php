@@ -257,9 +257,9 @@ class UI
      * @param string $title
      * @param string $id_attrib
      * @param string $class_attrib
-     * @return string|array
+     * @return string
      */
-    public static function get_icon($name, $title = null, $id_attrib = null, $class_attrib = null)
+    public static function get_icon($name, $title = null, $id_attrib = null, $class_attrib = null): string
     {
         if (is_array($name)) {
             $hover_name = $name[1];
@@ -352,9 +352,9 @@ class UI
      * @param string $title
      * @param string $id_attrib
      * @param string $class_attrib
-     * @return string|array
+     * @return string
      */
-    public static function get_image($name, $title = null, $id_attrib = null, $class_attrib = null)
+    public static function get_image($name, $title = null, $id_attrib = null, $class_attrib = null): string
     {
         if (is_array($name)) {
             $hover_name = $name[1];
