@@ -71,6 +71,7 @@
 
 <script>
 $(function() {
+    var sbstate
     $(".header").click(function () {
             $header = $(this);
             //getting the next element
@@ -80,9 +81,12 @@ $(function() {
             $content.slideToggle(500, function () {
                 $li.toggleClass("expanded collapsed");
                 //open up the content needed - toggle the slide- if visible, slide up, if not slidedown.
-                var sbstate = "expanded";
                 if ($header.children(".header-img").hasClass("collapsed")) {
                     sbstate = "collapsed";
+                }
+                //open up the content needed - toggle the slide- if visible, slide up, if not slidedown.
+                if ($header.children(".header-img").hasClass("expanded")) {
+                    sbstate = "expanded";
                 }
             })
 
@@ -109,10 +113,11 @@ $(function() {
         // Finds the elements and if the cookie is collapsed, it
         // collapsed the found element.
         for (var key in result) {
-            if ($("#" + key).length && result[key] == "collapsed") {
+            //console.log(key);
+            if ($("#" + key).length) {
+                $("#" + key).parent().next().slideToggle(0);
                 $("#" + key).removeClass("expanded");
                 $("#" + key).addClass("collapsed");
-                $("#" + key).parent().next().slideToggle(0);
             }
         }
     });
