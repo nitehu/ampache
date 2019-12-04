@@ -386,13 +386,13 @@ class vainfo
 
             $info['genre'] = self::clean_array_tag('genre', $info, $tags);
 
-            $info['mb_trackid']       = $info['mb_trackid'] ?: trim((string) $tags['mb_trackid']);
-            $info['mb_albumid']       = $info['mb_albumid'] ?: trim((string) $tags['mb_albumid']);
-            $info['mb_albumid_group'] = $info['mb_albumid_group'] ?: trim((string) $tags['mb_albumid_group']);
-            $info['mb_artistid']      = $info['mb_artistid'] ?: trim((string) $tags['mb_artistid']);
-            $info['mb_albumartistid'] = $info['mb_albumartistid'] ?: trim((string) $tags['mb_albumartistid']);
+            $info['mb_trackid']       = $info['mb_trackid'] ?: trim($tags['mb_trackid']);
+            $info['mb_albumid']       = $info['mb_albumid'] ?: trim($tags['mb_albumid']);
+            $info['mb_albumid_group'] = $info['mb_albumid_group'] ?: trim($tags['mb_albumid_group']);
+            $info['mb_artistid']      = $info['mb_artistid'] ?: trim($tags['mb_artistid']);
+            $info['mb_albumartistid'] = $info['mb_albumartistid'] ?: trim($tags['mb_albumartistid']);
             if (trim((string) $tags['release_type']) !== '') {
-                $info['release_type'] = $info['release_type'] ?: trim((string) $tags['release_type']);
+                $info['release_type'] = $info['release_type'] ?: trim($tags['release_type']);
             }
 
             $info['original_year']  = $info['original_year'] ?: trim((string) $tags['original_year']);

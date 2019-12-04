@@ -956,7 +956,7 @@ class Api
             //Smartlists
             $playlist = new Search(str_replace('smart_', '', $uid), 'song', $user);
         }
-        if (!$playlist->type == 'public' && (!$playlist->has_access($user->id) || !Access::check('interface', 100, $user->id))) {
+        if (!$playlist->type == 'public' && (!$playlist->has_access($user->id) && !Access::check('interface', 100, $user->id))) {
             echo XML_Data::error('401', T_('Access denied to this playlist'));
 
             return;
@@ -989,7 +989,7 @@ class Api
             //Smartlists
             $playlist = new Search(str_replace('smart_', '', $uid), 'song', $user);
         }
-        if (!$playlist->type == 'public' && (!$playlist->has_access($user->id) || !Access::check('interface', 100, $user->id))) {
+        if (!$playlist->type == 'public' && (!$playlist->has_access($user->id) && !Access::check('interface', 100, $user->id))) {
             echo XML_Data::error('401', T_('Access denied to this playlist'));
 
             return;
@@ -1030,7 +1030,7 @@ class Api
         }
 
         $uid = Playlist::create($name, $type, $user->id);
-        echo XML_Data::playlists(array($uid));
+        echo XML_Data::playlists(array($uid), true);
         Session::extend($input['auth']);
     } // playlist_create
 
@@ -1042,12 +1042,12 @@ class Api
      *
      * @param array $input
      * 'filter' (string) UID of playlist
-     * 'name'   (string)
-     * 'type'   (string) 'public', 'private'
+     * 'name'   (string) 'new playlist name' //optional
+     * 'type'   (string) 'public', 'private' //optional
      */
     public static function playlist_edit($input)
     {
-        if (!self::check_parameter($input, array('name', 'type'), 'playlist_edit')) {
+        if (!self::check_parameter($input, array('filter'), 'playlist_edit')) {
             return false;
         }
         $name = $input['name'];
@@ -1056,7 +1056,7 @@ class Api
         ob_end_clean();
         $playlist = new Playlist($input['filter']);
 
-        if (!$playlist->type == 'public' && (!$playlist->has_access($user->id) || !Access::check('interface', 100, $user->id))) {
+        if (!$playlist->has_access($user->id) && !Access::check('interface', 100, $user->id)) {
             echo XML_Data::error('401', T_('Access denied to this playlist'));
 
             return;
@@ -1084,7 +1084,7 @@ class Api
         $user = User::get_from_username(Session::username($input['auth']));
         ob_end_clean();
         $playlist = new Playlist($input['filter']);
-        if (!$playlist->has_access($user->id) || !Access::check('interface', 100, $user->id)) {
+        if (!$playlist->has_access($user->id) && !Access::check('interface', 100, $user->id)) {
             echo XML_Data::error('401', T_('Access denied to this playlist'));
         } else {
             $playlist->delete();
@@ -1110,7 +1110,7 @@ class Api
         ob_end_clean();
         $playlist = new Playlist($input['filter']);
         $song     = $input['song'];
-        if (!$playlist->has_access($user->id) || !Access::check('interface', 100, $user->id)) {
+        if (!$playlist->has_access($user->id) && !Access::check('interface', 100, $user->id)) {
             echo XML_Data::error('401', T_('Access denied to this playlist'));
 
             return;
@@ -1136,14 +1136,14 @@ class Api
      * @param array $input
      * 'filter' (string) UID of playlist
      * 'song'   (string) UID of song to remove from the playlist //optional
-     * 'track'  (string) track number to remove from the playlist //optionak
+     * 'track'  (string) track number to remove from the playlist //optional
      */
     public static function playlist_remove_song($input)
     {
         $user = User::get_from_username(Session::username($input['auth']));
         ob_end_clean();
         $playlist = new Playlist($input['filter']);
-        if (!$playlist->has_access($user->id) || !Access::check('interface', 100, $user->id)) {
+        if (!$playlist->has_access($user->id) && !Access::check('interface', 100, $user->id)) {
             echo XML_Data::error('401', T_('Access denied to this playlist'));
         } else {
             if ($input['song']) {
