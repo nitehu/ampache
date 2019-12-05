@@ -40,7 +40,7 @@ class Api
     /**
      *  @var string $version
      */
-    public static $version = '400002';
+    public static $version = '400003';
 
     /**
      *  @var Browse $browse
@@ -1037,8 +1037,10 @@ class Api
     /**
      * playlist_edit
      * MINIMUM_API_VERSION=400001
+     * CHANGED_IN_API_VERSION=400003
      *
-     * This modifies name and type of playlist
+     * This modifies name and type of playlist.
+     * Changed name and type to optional and the playlist id is mandatory
      *
      * @param array $input
      * 'filter' (string) UID of playlist
